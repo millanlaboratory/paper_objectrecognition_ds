@@ -547,22 +547,99 @@ The median dwell time for targets is significantly longer in online phase (p-val
 \label{fig:dwell}
 \end{figure}
 
-\subsection{Comparison of decoding approaches}
+\subsection{ERP waveform}
 
+\subsection{Comparison of decoding approaches}
 
 \begin{figure}[!t]
     \includegraphics[trim={2cm 0cm 2cm 0cm},clip,width=1.1\columnwidth]{../images/ClassificationAll.png}
     \caption{Performance of EFRP classification with various approaches in offline analysis (top)
-    and simulated online analysis (bottom).}
+    and simulated online analysis (bottom). Each dot shows single fold performance
+    in a leave-one-run-out cross validation for the corresponding classification approach.}
 \label{fig:classAll}
 \end{figure}
 
+\subsubsection*{Offline}
+All the classification approaches lead to the performance between 53 and 60 AUC points on average
+(Figure \ref{fig:classAll})
+which is statistically significant against random level of 50 
+(p-values $< 0.001$ with Student's t-test after Bonferroni correction).
+8 out of 13 subjects achieve performance above 60 for at least one of the approaches based
+on neural correlates.
+Although each subject has a different preferred approach, the differences between
+the approaches are not statistically significant (p-value $= 0.16$ with repeated measures ANOVA).
+It is worth noticing that the combination of both dwell time and EEG waveform is not always
+better than just one of these feature sets.
+
+\subsubsection*{Simulated online}
+First of all, we note that the performance of neural-based approaches 
+on online data is consistent with the training performance on offline data.
+The average AUC values lie between 56 and 59 for each approach
+which is statistically significant against 50
+(p-values $< 0.001$ with Student's t-test after Bonferroni correction).
+
+For approaches relying on the dwell time, however, the performance drastically improved
+for multiple subjects. The average AUC for \textit{dwell} classifier increased
+from 56 to 73 and for the \textit{Linear with Dwell} classifier from 59 to 67.
+This improvement is a direct consequence of the changes in target dwell time
+together with the constant non-target dwell time shown in \ref{fig:dwell}.
 
 
+\subsection{Online performance}
+
+\begin{figure}[!t]
+    \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.5\columnwidth]{../images/OnlineConfusion.png}
+    \caption{The aggregated confusion matrix of online decoding for each type of symbol being
+    a target.}
+\label{fig:onlineconf}
+\end{figure}
+
+
+\begin{table}
+    \centering
+    \caption{Online performance}
+    %\tiny
+    %\footnotesize
+    \scriptsize
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{l r r r r r r r r r r r r r}
+        \hline
+        Subjects & S1 & S2 & S3 & S4 & S5 & S6 & S7 & S8 & S9 & S10 & S11 & S12 \\
+        \hline
+
+        Accuracy & 0.44 & 0.38 & 0.45 & 0.29 & 0.44 & 0.35 & 0.39 & 0.25 & 0.31 & 0.38 & 0.38 & 0.4 \\ 
+        %0.44, 0.38, 0.45, 0.29, 0.44, 0.35, 0.39, 0.25, 0.31, 0.38, 0.38, 0.4
+        \shortstack{Accuracy \\ test} & \textbf{0.003} & 0.29 & \textbf{0.002} & 5.27 & \textbf{0.003} & 0.62 & 0.08 & 12.0 & 2.40 & 0.29 & 0.29 &
+        0.16 \\
+        \shortstack{Independence \\ test}  & \textbf{ 0.004} & 2.58 & 0.06 & 8.91 & 0.24 & 0.84 & 0.39 & 4.13 & 5.26 & 1.14 & 1.53
+        & 2.07 \\
+        \hline
+        %Binom:  [0.003, 0.2903, 0.0016, 5.2731, 0.003, 0.6192, 0.0771, 12.0, 2.4047, 0.2903, 0.2903, 0.1592]
+        %Chi * 12  [0.0044, 2.5806, 0.0608, 8.9126, 0.243, 0.8449, 0.3913, 4.1269, 5.2593, 1.1424, 1.5352, 2.0768]
+    \end{tabular}
+    \label{tab:onlineperf}
+\end{table}
+
+We assessed the task performance of each subject as the accuracy of
+target decoding (Table \ref{tab:onlineperf}). The averaged accuracy 
+equals 0.37 and it is significantly different from random level of 0.25 for
+a classification of 4 between balanced classes (p-value $< 0.0001$ with Student's t-test).
+Additionally, we applied statistical test to assess the accuracy per subject.
+After Bonferroni correction only 3 subjects showed statistically better than random performance.
+
+To verify the independence of the 4 classes in online phase
+we computed the aggregated confusion matrices of across all symbol (Figure \ref{fig:onlineconf}).
+We applied an independence test for confusion matrices per subject.
+After Bonferroni correction only one subject.
 
 
 \section{Discussion}
 \label{sec:discussion}
+
+In the online phase subjects looked longer on targets compared to the offline phase.
+Although the subjects dwell time was not decoded directly, they were aware
+that they could potentially influence the decoding quality. This might
+lead to deliberate or unconscious changes in their behavior.
 
 
 \section*{References}
