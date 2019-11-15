@@ -51,7 +51,7 @@
 %\usepackage{iopams}  
 \begin{document}
 
-\title[]{Detection of target object recognition in simulated driving}
+\title[]{\textcolor{red}{NOT READY FOR REVIEW} Detection of target object recognition in simulated driving}
 
 \author{R Aydarkhanov$^1$,
 M Uscumlic$^2$,
@@ -100,53 +100,109 @@ J d R Millan$^4$}
 \section{Introduction}
 \label{sec:intro}
 
-Brain Computer Interfaces (BCI) proved their potential utility 
-by successfully passing tests in controlled laboratory conditions.
-One of the remarkable examples is P300-based spellers
-which allow to type up to 10 characters per minute \cite{rezeika_braincomputer_2018}.
-The home use of such spellers can improve the quality of life
+We study decoding of neural and behavioral correlates 
+of visual recognition in simulated driving.
+%Driving is a good example of daily activity in real life
+%where BCI can enhance the driver's experience.
+Driving is a complex activity involving a range of neural processes from motor control
+to visual information processing, thus illustrating
+many BCI challenges in real world application.
+
+There are many examples in literature where EEG signature
+of visual recognition was reported.
+In the controlled experiments where subjects had to recognize
+rare target stimuli in the sequence, the recognition process
+is reflected in EEG as a well-known P300 Event Related Potential (ERP).
+It was successfully used in various BCI applications such as
+P300-based speller because of high decoding performance.
+With the typing speed of 10 characters per minute \cite{rezeika_braincomputer_2018},
+the home use of such spellers can improve the quality of life
 of patients with strong motor disabilities, such as ALS \cite{sellers_brain-computer_2010,holz_long-term_2015}.
-However, bringing BCI to everyday life for healthy people
-remains a challenge.
+For healthy users, however, this setup and typing performance does not bring any value.
 
-A classical P300-based speller presents a static matrix of symbols on a screen.
-The symbols are highlighted in groups (i.e. column-wise and row-wise)
-by flashing regularly. The users pay attention on the screen and 
-do a mental evaluation of whether the target symbol is highlighted or not.
-At each flash an Event-Related Potential (ERP)
-is elicited, and when the user believes that the target is active
-the ERP will contain P300 component.
-To reduce the noise in the signals the users are instructed to limit their body as well as
-eye movements by staring in the middle of the screen.
+Successful decoding of visual recognition in free viewing tasks
+would open space for BCI application for healthy users.
+In free viewing conditions people need to fixate
+or track moving objects to perceive it in all details.
+Fixations evoke a type of ERP called Eye Fixation Related Potentials (EFRP)
+and some studies showed that later components of EFRP resemble P300
+component from oddball paradigm.
 
-The real world is more diverse and more dynamic than traditional
-P300-based experimental protocols. So the time to evaluate
-the visual input can vary which is reflected in the ERP waveform \cite{arico_evaluation_2013}.
-Numerous attempts were done to close this gap and investigate
-the limitations to detect P300 under more challenging conditions
-which includes recognition of dynamic or semantically
-rich stimuli as compared to alphabet characters \cite{rosenthal_evoked_2014}.
-Additionally, natural environment does not provide regular flashing stimulation.
-Instead, it is sampled by free visual exploration with free eye movements.
-There are three major types of eye movements: saccades, fixations
-and smooth pursuit. The clear and sharp perception of visual input
-is only possible during fixations and smooth pursuit.
-Fixations trigger a type of ERP called Eye Fixation Related Potentials (EFRP).
-Although P300 was successfully detected within EFRP,
-it 
+Visual stimuli mostly used in these studies range from simple geometric shapes
+randomly positioned in static scenes and natural images to synthetic dynamic
+scenes \cite{}. Only a few attempts on EFRP decoding in videos or VR simulations
+have been reported \cite{}. \textcolor{red}{Limitations of these studies
+and motivate my study.
+Explain that the used experimental conditions do not correspond to real world environment.
+There is no real driving involved as a primary task STUDY 1.
+The authors sped up the action video to clearly define the relevant
+event time STUDY 2.}
+
+In our study subjects perform visual recognition task while primarily engaged
+in driving in a car simulator.
+The subject are faced with natural radially expanding optic flow.
+We study EFRP
+while driving
+facing optic flow
+yet we ensured that recognition happens upon the fixation by introducing pop up effect.
+Otherwise, there would be 2 challenges: 
+1) case when driver gazes at the distant object
+until he approaches it close enough to recognize and
+2) case when he returns gaze to the object multiple times until the object
+is recognizable.
+The latter challenges collecting clean data while the former challenges
+the EFRP decoding itself.
 
 
-P300 is a reflection of a cognitive process of stimulus evaluation and
-categorization. Its application has potential to go beyond the selection from 
-a limited set of stimuli. P300 can be monitored and detected during execution
-of everyday tasks. For example, driving a car provides a suitable context
-for this type of BCI application. Detection of recognition of critical objects
-or traffic events will give a valuable information for the Advanced
-Driving Assistant Systems (ADAS). Various paradigms were developed
-to investigate decoding performance of EFRP-based P300 during simulated driving.
-For passive driving task which require only brake input from the driver
-the P300 decoding can achieve above chance level for half of the participants \cite{jangraw_neurally_2014}.
-In this paper we address the P300 decoding during active simulated driving with automatic gear.
+
+
+%Brain Computer Interfaces (BCI) proved their potential utility 
+%by successfully passing tests in controlled laboratory conditions.
+%One of the remarkable examples is P300-based spellers
+%which allow to type up to 10 characters per minute \cite{rezeika_braincomputer_2018}.
+%The home use of such spellers can improve the quality of life
+%of patients with strong motor disabilities, such as ALS \cite{sellers_brain-computer_2010,holz_long-term_2015}.
+%However, bringing BCI to everyday life for healthy people
+%remains a challenge.
+
+%A classical P300-based speller presents a static matrix of symbols on a screen.
+%The symbols are highlighted in groups (i.e. column-wise and row-wise)
+%by flashing regularly. The users pay attention on the screen and 
+%do a mental evaluation of whether the target symbol is highlighted or not.
+%At each flash an Event-Related Potential (ERP)
+%is elicited, and when the user believes that the target is active
+%the ERP will contain P300 component.
+%To reduce the noise in the signals the users are instructed to limit their body as well as
+%eye movements by staring in the middle of the screen.
+
+%The real world is more diverse and more dynamic than traditional
+%P300-based experimental protocols. So the time to evaluate
+%the visual input can vary which is reflected in the ERP waveform \cite{arico_evaluation_2013}.
+%Numerous attempts were done to close this gap and investigate
+%the limitations to detect P300 under more challenging conditions
+%which includes recognition of dynamic or semantically
+%rich stimuli as compared to alphabet characters \cite{rosenthal_evoked_2014}.
+%Additionally, natural environment does not provide regular flashing stimulation.
+%Instead, it is sampled by free visual exploration with free eye movements.
+%There are three major types of eye movements: saccades, fixations
+%and smooth pursuit. The clear and sharp perception of visual input
+%is only possible during fixations and smooth pursuit.
+%Fixations trigger a type of ERP called Eye Fixation Related Potentials (EFRP).
+%Although P300 was successfully detected within EFRP,
+%it 
+
+
+%P300 is a reflection of a cognitive process of stimulus evaluation and
+%categorization. Its application has potential to go beyond the selection from 
+%a limited set of stimuli. P300 can be monitored and detected during execution
+%of everyday tasks. For example, driving a car provides a suitable context
+%for this type of BCI application. Detection of recognition of critical objects
+%or traffic events will give a valuable information for the Advanced
+%Driving Assistant Systems (ADAS). Various paradigms were developed
+%to investigate decoding performance of EFRP-based P300 during simulated driving.
+%For passive driving task which require only brake input from the driver
+%the P300 decoding can achieve above chance level for half of the participants \cite{jangraw_neurally_2014}.
+%In this paper we address the P300 decoding during active simulated driving with automatic gear.
 
 
 
