@@ -1,0 +1,59 @@
+\begin{thebibliography}{1}
+
+\bibitem{rezeika_braincomputer_2018}
+Aya Rezeika, Mihaly Benda, Piotr Stawicki, Felix Gembler, Abdul Saboor, and
+  Ivan Volosyak.
+\newblock Brain–{Computer} {Interface} {Spellers}: {A} {Review}.
+\newblock {\em Brain Sciences}, 8(4), March 2018.
+
+\bibitem{sellers_brain-computer_2010}
+Eric~W. Sellers, Theresa~M. Vaughan, and Jonathan~R. Wolpaw.
+\newblock A brain-computer interface for long-term independent home use.
+\newblock {\em Amyotrophic Lateral Sclerosis}, 11(5):449--455, October 2010.
+
+\bibitem{holz_long-term_2015}
+Elisa~Mira Holz, Loic Botrel, Tobias Kaufmann, and Andrea Kübler.
+\newblock Long-{Term} {Independent} {Brain}-{Computer} {Interface} {Home} {Use}
+  {Improves} {Quality} of {Life} of a {Patient} in the {Locked}-{In} {State}:
+  {A} {Case} {Study}.
+\newblock {\em Archives of Physical Medicine and Rehabilitation}, 96(3,
+  Supplement):S16--S26, March 2015.
+
+\bibitem{rosenthal_evoked_2014}
+Daniel Rosenthal, Paul DeGuzman, Lucas~C. Parra, and Paul Sajda.
+\newblock Evoked {Neural} {Responses} to {Events} in {Video}.
+\newblock {\em IEEE Journal of Selected Topics in Signal Processing},
+  8(3):358--365, June 2014.
+
+\bibitem{jangraw_neurally_2014}
+David~C. Jangraw, Jun Wang, Brent~J. Lance, Shih-Fu Chang, and Paul Sajda.
+\newblock Neurally and ocularly informed graph-based models for searching 3d
+  environments.
+\newblock {\em Journal of Neural Engineering}, 11(4):046003, 2014.
+
+\bibitem{khaliliardali_action_2015}
+Zahra Khaliliardali, Ricardo Chavarriaga, Lucian~Andrei Gheorghe, and José
+  del~R. Millán.
+\newblock Action prediction based on anticipatory brain potentials during
+  simulated driving.
+\newblock {\em Journal of Neural Engineering}, 12(6):066006, 2015.
+
+\bibitem{zhang_eeg-based_2015}
+H.~Zhang, R.~Chavarriaga, Z.~Khaliliardali, L.~Gheorghe, I.~Iturrate, and
+  J.~d~R. Millán.
+\newblock {EEG}-based decoding of error-related brain activity in a real-world
+  driving task.
+\newblock {\em Journal of Neural Engineering}, 12(6):066028, 2015.
+
+\bibitem{renold_eeg_2014}
+Hadrian Renold, Ricardo Chavarriaga, Lucian~Andrei Gheorghe, and José del~R.
+  Millán.
+\newblock {EEG} correlates of active visual search during simulated driving:
+  {An} exploratory study.
+\newblock In {\em 2014 {IEEE} {International} {Conference} on {Systems}, {Man},
+  and {Cybernetics}}, 2014.
+
+\bibitem{noauthor_about_nodate}
+About - {VDrift}.
+
+\end{thebibliography}
