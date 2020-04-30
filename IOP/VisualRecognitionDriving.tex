@@ -53,17 +53,51 @@
 
 \title[]{Closed-loop EEG study on visual recognition during driving}
 
-\author{R Aydarkhanov$^1$,
-M Uscumlic$^2$,
-L Gheorghe$^2$,
-R Chavarriaga$^3$,
-J d R Millan$^4$}
+\author{Ruslan Aydarkhanov$^1$,
+Marija U\v{s}\'{c}umli\'{c}$^2$,
+Ricardo Chavarriaga$^{3,4}$,
+Lucian Gheorghe$^5$,
+Jos\'e del R Mill\'an$^{3,6,7}$}
 
 
-\address{$^1$EPFL, Switzerland}
-\address{$^2$EPFL, Switzerland}
-\address{$^3$EPFL, Switzerland}
-\address{$^4$TU Austin, USA}
+\address{$^1$Medical Image Processing Laboratory,
+Center for Neuroprosthetics,
+Interschool Institute of Bioengineering,
+\'Ecole Polytechnique F\'ed\'erale de Lausanne (EPFL),
+Campus Biotech H4,
+1202 Geneva,
+Switzerland}
+\address{$^2$Nissan International SA,
+La Pi\`ece 12,
+1180 Rolle,
+Switzerland
+}
+%\address{$^3$Zurich University of Applied Sciences, ZHAW,
+%InIT Institut of Applied Information Technology,
+%Ob. Kirchgasse 2,
+%8400 Winterthur,
+%Switzerland}
+
+\address{$^3$\'Ecole Polytechnique F\'ed\'erale de Lausanne (EPFL),
+Campus Biotech H4,
+1202 Geneva,
+ Switzerland}
+
+\address{$^4$ZHAW Datalab, Zürich University of Applied Sciences, Winterthur, Switzerland
+ }
+
+\address{$^5$
+Advanced Materials and Processing Laboratory, Nissan Research Center, Nissan Motors Co. LTD, 1,
+Natsushima, Yokosuka-shi, Kanagawa-ken, 237-8523, Japan
+}
+\address{$^6$Dept. of Electrical and Computer Engineering,
+The University of Texas at Austin,
+Austin, TX 78712,
+USA}
+\address{$^7$Dept. of Neurology,
+The University of Texas at Austin,
+Austin, TX 78712,
+USA}
 \ead{ruslan.aydarkhanov@epfl.ch}
 \vspace{10pt}
 %\begin{indented}
@@ -71,31 +105,41 @@ J d R Millan$^4$}
 %\end{indented}
 
 \begin{abstract}
-In contrast to the controlled visual protocols and mental tasks,
+\textit{Objective.} In contrast to the controlled visual protocols and mental tasks,
 visual recognition decoding during daily activities remains challenging.
+The objective of this paper is to explore the
+feasibility to decode such perceptual decisions in 
+complex experimental conditions which demand a natural 
+everyday behavior while interacting with dynamic content.
+\textit{Approach.} 
 To this line, we investigated EEG and behavioral correlates of
 visual recognition during driving in a car simulator where 
 no constraint on visual behavior was introduced. 
-The focus was on the EFRP and the sudden changes in the visual scene. 
-We decode the recognition of target objects from 
-Eye Fixation Related Potentials (EFRP) in a closed loop scenario. 
-By integrating decoding probabilities of multiple 
+The focus was put on Eye Fixation Related Potentials (EFRP)
+in response to billboards suddenly appearing in the environment.
+We decode the recognition of target vs non-target boards from 
+EFRP in a closed-loop scenario. 
+\textit{Main results.} By integrating decoding probabilities of multiple 
 EFRP the accuracy reached 0.37 on average in identifying 
-one out of four object types. 
-These results show that visual recognition of sudden events
-can be decoded during active driving facing the  natural optic-flow. 
-Finally, we performed a comparative study of 
-classification algorithms and feature spaces. Our results showed that
-visual recognition can be decoded during
-active driving with natural dynamics except for sudden appearance
-of task-relevant objects.
+one target out of four board types. 
+Using the acquired data, we performed a comparative study of 
+classification algorithms and feature spaces
+for offline and simulated online scenarios.
+The EEG-derived approaches provide comparable 
+above the chance-level performance between 0.53 and 0.6 AUC 
+in binary classification of targets vs non-targets.
+\textit{Significance.} These results show that visual recognition of sudden events
+can be decoded during active driving. 
+It lays a foundation for assistive and recommender systems
+based on driver's brain signals.
     
 \end{abstract}
 
 %
 % Uncomment for keywords
 \vspace{2pc}
-\noindent{\it Keywords\/}: Brain-computer interfaces, Electroencephalography, Eye tracking, Driving
+\noindent{\it Keywords\/}: Brain-computer interfaces, Electroencephalography, Eye tracking, Driving,
+Visual recognition
 %
 % Uncomment for Submitted to journal title message
 %\submitto{\JPA}
@@ -129,66 +173,112 @@ of task-relevant objects.
 %to visual information processing, thus illustrating
 %many BCI challenges in real world application.
 
-To bring a value to able-bodied people 
-Brain Computer Interface (BCI) systems should be smoothly 
-integrated in their daily activities boost their experience and performance. 
-It is necessary, therefore, to successfully perform decoding
-of neural and behavioral correlates of targeted perceptual
-and/or cognitive processing while people actively participate
-in the complex real-world environment. In contrast to the
-experimental conditions, neither 
-the human behavior nor the content can be suppressed and controlled.
-In this line, we performed a study on visual BCI in
+Brain-computer interfaces (BCI), especially those based on 
+non-invasive electroencephalogram (EEG) signals, are not only
+proving their value as assistive tools for people 
+with disabilities
+\cite{birbaumer_spelling_1999,wolpaw_control_2004,holz_braincomputer_2013,leeb_towards_2015,saeedi_long-term_2017,perdikis_cybathlon_2018}
+and key rehabilitation components for
+neurological patients
+\cite{ramos-murguialday_brain-machine-interface_2013,pichiorri_braincomputer_2015,biasiucci_brain-actuated_2018,cervera_braincomputer_2018},
+but also open opportunities 
+to augment interaction for healthy users \cite{zhang_eeg-based_2015,khaliliardali_action_2015,chavarriaga_decoding_2018}. In this
+later respect, a promising possibility is to decode neural
+correlates of perceptual and cognitive processes while people
+overtly interact with real-world environments
+\cite{uscumlic_iterative_2013,jangraw_neurally_2014,haufe_electrophysiology-based_2014}.
+In this work, we take a step further as we want to explore the
+feasibility to decode perceptual decisions in 
+natural experimental conditions where humans exhibit natural motor
+behaviors while interacting with dynamic content. In particular,
+
+%To bring value to able-bodied people 
+%Brain-Computer Interface (BCI) systems should be smoothly 
+%integrated in their daily activities.
+%It is necessary, therefore, to successfully perform decoding
+%of neural and behavioral correlates of targeted perceptual
+%and/or cognitive processing while people actively interact with
+%complex real-world environments. In contrast to the
+%experimental conditions, neither 
+%human behavior nor the content can be suppressed and controlled.
+%In this line,
+we performed a study on visual BCI in
 driving -- aiming at decoding visual recognition
 while a driver is primarily engaged in controlling the car simulator,
-actively exploring the visual environment to complete the visual search task.
+actively exploring the visual environment to complete a visual search task.
 
-EEG signature of visual recognition was reported
-under various conditions.
-In the controlled experiments where subjects had to recognize
-rare target stimuli in the sequence, the recognition process
-is reflected in EEG as a well-known P300 Event Related Potential (ERP).
-It was successfully used in various BCI applications such as
+Previous works have reported certain EEG signatures of visual recognition in simple, well-controlled experimental setups
+\cite{gerson_cortically_2006,krusienski_toward_2008,rosenthal_evoked_2014,jangraw_neurally_2014}.
+The explored conditions do not allow a direct translation
+of the BCI technology into everyday life of healthy people.
+The classical restrictive conditions require that
+the stimuli are static and undergo sharp
+transitions (e.g. flashing) as well as 
+subjects sit still in front of a screen \cite{krusienski_toward_2008}. 
+In such experiments with an oddball paradigm 
+where subjects had to recognize
+rare targets stimuli in a sequence, the recognition process
+is reflected in EEG as a well-known P300 component of Event-Related Potential (ERP).
+P300 is a positive deflection in parietal region which occurs
+approximately between 250 and 500 ms after the stimulus onset \cite{polich_updating_2007}.
+This signal has been successfully used in various BCI applications such as
 P300-based speller because of high decoding performance.
 With the typing speed of 10 characters per minute \cite{rezeika_braincomputer_2018},
-the home use of such spellers can improve the quality of life
-of patients with strong motor disabilities, such as ALS \cite{sellers_brain-computer_2010,holz_long-term_2015}.
-For healthy users, however, this setup and typing performance does not bring any value.
+the home use of such spellers may improve the quality of life
+of people with severe motor disabilities, such as ALS
+\cite{sellers_brain-computer_2010,holz_long-term_2015,wolpaw_independent_2018}.
+For healthy users, however, this setup and typing performance does not bring much value.
 
 Drivers are exposed to a richer environment and need to constantly interact with it
 by controlling the car, visually exploring the surrounding and
-planning the actions. 
+planning upcoming actions. 
 Successful decoding of visual recognition in free viewing tasks
 would open space for BCI application for healthy users
 by providing them assistance and recommendations.
-In free viewing conditions people need to fixate
-or track moving objects to perceive it in all details.
-Fixations evoke a type of ERP called Eye Fixation Related Potentials (EFRP)
-where later components of EFRP resemble P300 component from oddball paradigm \cite{brouwer_distinguishing_2013}.
+A hypothetical application scenario may include
+the driver's recognition of road signs of a particular target category, e.g. parking.
+The driver's interest in parking signs decoded from the EEG
+will allow to provide timely recommendations for the nearest parking.
 
-Visual stimuli mostly used in these studies range from simple geometric shapes
-randomly positioned in static scenes and natural images to synthetic dynamic
-scenes \cite{uscumlic_active_2016,devillez_p300_2015}. 
-Only a few attempts on ERP or EFRP decoding in videos or VR simulations
-have been reported. 
+In free viewing conditions, people need to fixate
+or track moving objects to perceive them in all details.
+Fixations evoke a type of ERP called Eye Fixation Related Potentials (EFRP)
+as opposed to external events in more classical ERP designs.
+Early EEG deflections in EFRP reflect the processing of low-level features 
+of visual input projected from the retina to the occipital lobe of the cortex
+and are manifested mainly in high-amplitude P100 or lambda component.
+Later EEG deflections in EFRP resemble P300 component in the oddball paradigm \cite{brouwer_distinguishing_2013}.
+
+Visual stimuli used in previous studies range from simple geometric shapes
+in static scenes, to static natural images or dynamic
+scenes with geometric shapes \cite{uscumlic_active_2016, devillez_p300_2015}.
+Only a few attempts on ERP or EFRP decoding in videos or virtual reality (VR) simulations
+have been reported, e.g. \cite{rosenthal_evoked_2014,jangraw_neurally_2014}. 
 %\textcolor{red}{Limitations of these studies
 %and motivate my study.
 %Explain that the used experimental conditions do not correspond to real world environment.
 %There is no real driving involved as a primary task STUDY 1.
 %The authors sped up the action video to clearly define the relevant
 %event time STUDY 2.}
-However, the experimental conditions in those studies do not fully
-reflect the real world dynamics.
-In human action recognition from a cartoon animation the video playback was sped up
-to limit the time of the recognition process. No eye-tracking was used
-and ERP was analyzed due to clear 
-definition of external event in space and time \cite{rosenthal_evoked_2014}.
-In a maze navigation experiment the subjects experienced fast autonomous driving
-with a simple motor task of button press when the car in front brakes suddenly \cite{jangraw_neurally_2014}.
-The braking task required a constant monitoring of the car in front leading
-to a brief visual attendance of the stimuli. It resembled attentional load
-of real driving, however an unnaturally high optic flow and lack of full car control
-limits the transfer of the results to real driving.
+However, the experimental conditions in those studies did not fully
+reflect the real-world dynamics.
+For instance, in human action recognition from a cartoon animation, the video playback was sped up
+to limit the time of the recognition process, and other experimental
+settings made unnecessary to utilize eye-tracking 
+as it would have been the case on more natural setups \cite{rosenthal_evoked_2014}.
+%Examples of actions
+%include a person looking at his watch or entering the scene.
+%No eye-tracking was used and ERP was analyzed due to occurrence of 
+%a single salient event on the video \cite{rosenthal_evoked_2014}.
+The classification performance of Target vs Non-Target event reached average AUC $> 0.8$.
+In another study involving maze navigation, subjects experienced fast autonomous driving
+and had to press a button whenever the car in front braked suddenly \cite{jangraw_neurally_2014}.
+The braking task required constant monitoring of the car in front, leading
+to a brief visual attendance of the stimuli. It resembled the attentional load
+of real driving, however, an unnaturally high speed and lack of full car control
+limit the transfer of the results to real driving.
+The classification performance based on single EFRP 
+was around $0.65$ AUC on average across subjects.
 
 %In our study subjects perform visual recognition task while primarily engaged
 %in active driving in a car simulator.
@@ -198,24 +288,54 @@ limits the transfer of the results to real driving.
 %facing optic flow
 %yet we ensured that recognition happens upon the fixation by introducing pop up effect.
 
-We conducted a study on visual recognition decoding during driving
-in a car simulator based on the eye-fixation related
-potentials and visual behavior. 
-In our study subjects perform visual recognition of a given
-target board while primarily engaged in active driving through
-the urban environment. Subjects are asked to drive with the speed
-of \~80 km/h thus experiencing the natural radially
-expanding optic flow. 
+In this paper we report a study on visual recognition decoding during driving
+in a car simulator based on the Eye Fixation Related
+Potentials and visual behavior. 
+In our study 13 subjects visually attended billboards along the roads
+while primarily engaged in active driving through
+an urban environment with a natural speed of $\thicksim$ 80 km/h. 
 We introduced, nevertheless, certain limitation concerning 
-the content of the surroundings to ensure that recognition
-take place near the eye fixation to the content. 
-Otherwise, there would be 2 challenges: 
-1) case when driver gazes at the distant object
-until he approaches it close enough to recognize and
-2) case when he returns gaze to the object multiple times until the object
-is recognizable.
+the stimuli presentation.
+The boards were invisible most of the time 
+and suddenly appeared in the environment when the driver approached the them.
+Such popping up of the board ensured that recognition
+took place soon after the eye fixation.
+Otherwise, there would be 2 challenges due to fixations on remote 
+and poorly recognizable boards:
+1) to locate the recognition timing of within long fixation,
+2) to select one of multiple returning fixations when the recognition occurs.
 The latter challenges collecting clean data while the former challenges
 the EFRP decoding itself.
+
+The experiment consisted of 2 phases: offline and online.
+The goal of the offline phase was two-fold: (1) to analyze behavioral
+and neural correlates of visual recognition and (2) to train
+a classifier for the online phase.
+Then we conducted the online phase to study the performance
+of the decoder in a closed-loop setting and, as a major objective, to verify
+the feasibility of the corresponding BCI application.
+
+Our protocol closely resembles the real-life scenario of traffic sign
+recognition on the roads. In the application, 
+the BCI system that decodes the cognitive response on the target sign
+recognition can be integrated into the advanced driver-assistance system
+(ADAS) of the car.
+In this case the target is naturally chosen by the driver
+according to the current driving situation. 
+The accurate decoding of the target traffic signs 
+from the driver’s brainwaves can shed light on the driver’s intentions
+and goals, from which the ADAS system could derived useful 
+recommendations and assistance.
+
+%The accurate
+%decoding of the target traffic signs from the driver's mind
+%can shed light on what the driver's intentions and needs
+%and can be utilized for useful suggestions and recommendations.
+
+%Although subjects followed
+%the objects moving on the screen,
+%we could analyze their eye behavior by approximating smooth pursuit
+%with consecutive fixations combination.
 
 
 %Brain Computer Interfaces (BCI) proved their potential utility 
@@ -275,13 +395,57 @@ the EFRP decoding itself.
 
 \begin{figure}[!t]
     %\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.6\columnwidth]{../images/Driving-photo.jpg}
-    \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.8\columnwidth]{../images/setup_protocol2.png}
-    \caption{Experimental setup (top left), screenshot from the beginning of the road (bottom left)
-    and schematic drawing of one road (right).}
+    \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.9\columnwidth]{../images/setup_protocol3.png}
+    \caption{Visualization of the protocol.
+        Top left: The experimental setup with driving simulator (chair and 3 3D screens), 
+        Eye-tracker and subject with EEG cap.
+        Middle left: screenshot from the beginning of the road with the cue on the floor
+        and the first board on the left-hand side.
+        Bottom left: screenshot with the online phase feedback for correct decoding, i.e.
+        the 2D board at the bottom of the screen and a green circle.
+        Right: schematic drawing of one road with the target cue, boards and finish line.
+    }
 \label{fig:setup}
 \end{figure}
 
-\subsection{System}
+\subsection{Data collection}
+%We had 13 volunteers (3 female) with the average age of 28.
+%Experiment lasted 3 hours including the set up (\~1h), the offline phase (\~45 min),
+%the break (\~30 min) and the online phase (\~45 min).
+
+13 volunteers (age of 28 $\pm$ 6, 3 female) participated in the study.
+Experiment lasted 3 hours including the set up ($\thicksim$ 1 h), the offline phase ($\thicksim$ 45 min),
+one pause period ($\thicksim$ 30 min) and the online phase ($\thicksim$ 45 min).
+The extended pause period was necessary to process all the data
+from the offline phase and to train the classifier for the online phase.
+The offline phase consisted of 3 runs through the city  whereas the online
+phase could have from 3 to 5 runs depending on the available time
+and subject's fatigue.
+One run included 20 non-empty roads with 240 boards in total.
+Before each run the subjects were asked to move their eyes up-down and left-right
+for one minute in order to collect the data for eye movement artifact removal.
+
+The EEG was acquired with BioSemi ActiveTwo system with 64 electrodes at 2 kHz sampling rate.
+Additionally, we recorded 3 EOG channels to collect the eye movement data:
+two electrodes next to the outer canthi of the eyes and one above the nasion.
+%The EEG data was captured and saved on the laptop. The real time processing
+%of EEG in online phase was done on the same laptop.
+The real time processing
+of EEG in online phase was done on a dedicated computer.
+
+The eye gaze was recorded with SMI RED Eye tracking system with sampling rate of 120 Hz.
+The chair and eye tracker positions were adjusted for each subject. The eye tracker
+was calibrated with 13 points only once after the EEG setup and before beginning of 
+the experiment.
+
+The driving simulator logged the driver location,
+the controllers state and the 2D position of boards on the screen at a sampling rate
+of 256 Hz. In order to synchronize the data acquisition on three separate machines
+(EEG, eye tracking and driving simulator) at different sampling rates,
+a square pulse of 4 Hz was generated by the driving simulator and sent 
+to the eye tracker through TCP connection and to BioSemi through the parallel port.
+
+\subsection{Driving simulator}
 %Our system is based on the driving simulator previously used for
 %EEG-based BCI experiments \cite{khaliliardali_action_2015,zhang_eeg-based_2015}.
 %We extend the protocol published in \cite{renold_eeg_2014}.
@@ -290,31 +454,38 @@ In our study we used the driving simulator previously used in
 It allows for immersive driving experience through the utilization
 of real Nissan driving chair with steering wheel and two pedals (gas and brake).
 The visual input is provided with three 3D monitors which create multiple renders for
-different angles. The virtual environment is implemented on a basis of
-the open source driving simulator project VDrift \cite{noauthor_about_nodate}.
+different angles. The virtual environment is implemented using
+the open source driving simulator project VDrift. % \cite{noauthor_about_nodate}.
 The environment resembles a regular grid city with static objects, i.e.
 building, traffic lights, fields. The task-related objects include
 direction indications on the road, target cue, boards with symbols
-and finish lines. 
+and finish lines (Figure \ref{fig:setup}).
+
+
+%\begin{figure}[!t]
+    %\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.6\columnwidth]{../images/Target}
+    %\caption{Protocol}
+%\label{fig:protocol}
+%\end{figure}
 
 \subsection{Tasks}
-The experimental session had 2 phases offline and online.
-The data collected in offline phase allows to train a classifier
-which is applied in the online phase with a closed-loop interaction.
+The experimental session had 2 phases: offline and online.
+The data collected in the offline phase allows to train a classifier
+which is applied in the online phase to provide the feedback on the decoding results.
 In both phases, a subject is instructed to drive through the city while
 following indications left or right turn at the crossings (Figure \ref{fig:setup}).
-In the beginning of the road a symbol (the cue) is depicted
+In the beginning of the road segment a symbol (the cue) is depicted
 on the ground (Figure \ref{fig:setup}). Subjects must memorize and search for it among
 the boards appearing through the road.
-Subjects count the number of boards with the target symbol. 
+Subjects are asked to count the number of boards with the target symbol in each segment. 
 To keep subjects engaged in the task, they have to
 report the number of targets in offline phase or observe a
-feedback in online phase of the experiment
+feedback from the decoder in online phase of the experiment
 after they cross a finish line at the end of each road.
 
-We include the empty roads where subjects has no additional tasks 
-except driving, allowing them to rest.
-In total, a quarter of the roads are empty.
+We included empty roads where subjects has no additional tasks 
+except driving, allowing them to rest from the visual recognition task.
+In total, a quarter of the roads were empty.
 
 \subsubsection*{Offline phase.}
 The steering wheel is equipped with a button.
@@ -325,9 +496,13 @@ as the number of target boards he/she counted along the current road.
 In the online phase we want to estimate the system's performance
 in detecting the target symbol (1 out of 4) among all presented
 symbols (see Section \ref{sec:stim}). 
-After crossing the finish line the predicted target is projected
-at the bottom of the screen. Subjects are instructed to pay
+After crossing the finish line the board with predicted target is rendered
+at the bottom of the screen as a 2D object (Figure \ref{fig:setup}). 
+Subjects are instructed to pay
 attention to this feedback.
+The online phase resembles a closed-loop interaction because
+the subjects perceive the decoder result shortly after
+looking at the stimuli, within 15 seconds after the first board on the road.
 
 
 \subsection{Stimuli presentation}
@@ -335,21 +510,22 @@ attention to this feedback.
 
 \begin{figure}[!t]
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.80\columnwidth]{../images/Stimuli.png}
-    \caption{The boards with the symbols. In offline phase we used only boards 
-        with symbol E and flipped E whereas in online phase we used all the 4 boards.}
+    \caption{The boards with the used symbols. In offline phase we used only boards 
+        with symbol E and flipped E whereas in online phase we used all 4 boards.}
 \label{fig:boards}
 \end{figure}
 
-\subsubsection{Pop up stimuli.} The board presentation is carefully adjusted to guide visual behavior of subjects.
+\subsubsection{Stimuli visibility.}
+The board presentation is carefully adjusted to guide visual behavior of subjects.
 First of all, boards are invisible unless the driver approaches them
-close enough making them to pop up suddenly.
+close enough making them to pop up.
 Their positions are generated using the following rules.
-The boards appear on a regular grid along the road however
-randomly on either side of the road with maximum of 2 boards
-on the same side in a row  (Figure \ref{fig:setup}). The number of boards on left
+The boards appear on a regular grid along the road, although
+randomly on either side of the road with a maximum of 2 boards
+on the same side in a row  (e.g., 2 boards on the left in Figure \ref{fig:setup}). The number of boards on left
 and right sides are balanced. Since the pop up distance was greater
 than the distance between the boards along the road, multiple
-boards from the same side were visible in the same time
+boards from the same side were visible in the same time,
 so their horizontal and vertical position were adjusted to avoid
 the overlap for the driver view.
 
@@ -359,13 +535,15 @@ to attend all the boards and count the targets.
 Nonetheless, all the subjects practiced until they felt comfortable 
 with completing the recognition task at the maximum speed
 during the EEG setup.
-Due to constant speed and regular placement of the boards they
+Due to constant speed and regular placement of the boards, the boards
 popped up at a regular pace with 900 ms period.
 
-\subsubsection{Stimuli (Boards with symbols).} In order to link the perception of the symbols on the board
+\subsubsection{Stimuli content.} In order to link the perception of the symbols on the board
 with the eye fixations, the recognition by
 peripheral vision must be avoided. Therefore, the target and distracting
-symbols were similar and surrounded by \# character as previously used in \ref{}.
+symbols were similar and surrounded by the \# character to create
+a crowding effect and force the foveating on the main symbol
+as previously used in \cite{kamienkowski_fixation-related_2012}.
 Additionally, we added a bright red border around the board similar 
 to the traffic signs
 to create a contrast with the environment and facilitate
@@ -373,24 +551,28 @@ their identification.
 
 \subsubsection*{Symbols in offline phase.}
 In the offline phase one of the two symbols were depicted on each board:
-E and horizontally flipped E, i.e. $\exists$.
-One of them was randomly chosen as a target and were presented as the cue
+E and $\exists$.
+One of them was randomly chosen as a target per road segment
+and was presented as the cue
 at the beginning of the road. There were 2-4 targets out of 12 boards
 on each road with the average fraction of targets of 0.25 in total.
 
 \subsubsection*{Symbols in online phase.}
-In the online phase 4 different symbols were available. There were
-between 2 and 4 boards of each symbol resulting into 12 boards on the road.
-Only one of them was a target on each road. The fraction
-of targets is 0.25 in total.
-We introduced 2 more symbols resulting into 4 symbols in total
-with equal appearance rate in the online phase.
-To allow equal accumulation for each symbol we increased
-number of symbols to four, keeping the constant number of instances per symbol. 
+To allow equal accumulation for each symbol by keeping
+a low fraction of targets,
+we introduced 2 more symbols resulting into 4 symbols in total.
+There were between 2 and 4 boards of each symbol resulting into 12 boards on the road.
+Only one of them was a target on each road. Therefore, the fraction
+of targets was 0.25 on average as in offline phase.
 
-To decode the target at the end of the road each EFRP following the
+
+To decode the target at the end of the road each EFRP associated to the
 symbol attendance
-is classified and these decisions are accumulated.
+is assigned a probability to belong to the target class.
+At the end of the road segment the probabilities
+of all EFRPs are aggregated symbol-wise by averaging.
+The symbol that has the highest probability of a target class
+is selected as a predicted target.
 Therefore, to allow equal accumulation on average for each symbol 
 we increased number of symbols to four.
 Each symbol appears between 2 and 4 times
@@ -402,67 +584,31 @@ The fraction of targets is 0.25 in total.
 \begin{table}
     \centering
     \caption{The protocol differences between offline and online phases.}
-    \begin{tabular}{c | c | c}
+    \begin{tabular}{l | c | c}
         \hline 
         & Offline & Online \\
         \hline 
         Types of boards & 2 & 4 \\
-        Task & \shortstack{Count silently \\ Press button at the end} & \shortstack{Count silently \\ Observe the feedback} \\
+        \hline
+        Task & \shortstack{Count silently \\ Button press at the end} & \shortstack{Count silently \\ Observe the feedback} \\
         \hline 
     \end{tabular}
     \label{tab:OffOn}
 \end{table}
 
-\subsection{Data collection}
-We had 13 volunteers (3 female) with the average age of 28.
-Experiment lasted 3 hours including the set up (\~1h), the offline phase (\~45 min),
-the break (\~30 min) and the online phase (\~45 min).
-The offline phase consisted of 3 runs through the city  whereas the online
-phase could have from 3 to 5 runs depending on the available time
-and subject's fatigue.
-One run included 20 non-empty roads with 240 boards in total.
-Before each run the subjects were asked to move their eyes up-down and left-right
-for one minute in order to collect the data for eye movement artifact removal.
-
-The EEG was acquired with BioSemi ActiveTwo system with 64 electrodes at 2 kHz sampling rate.
-Additionally, we recorded 3 EOG channels to collect the eye movement data:
-two electrodes next to the outer canthi of the eyes and one above the nasion.
-The EEG data was captured and saved on the laptop. The real time processing
-of EEG in online phase was done on the same laptop.
-
-The eye gaze was recorded with SMI RED Eye tracking system with the sampling rate of 120 Hz.
-The chair and eye tracker positions were adjusted for each subject. The eye tracker
-was calibrate with 13 points only once after the EEG setup and before beginning of 
-the experiment.
-
-The driving simulator logged various information of the driver location,
-the controllers state and the 2D position of boards on the screen at the sampling rate
-of 256 Hz. In order to synchronize the data acquisition on three separate machines
-(EEG, eye tracking and driving simulator) at different sampling rates,
-a square pulse of 4 Hz was generated by the driving simulator and sent 
-to the eye tracker through TCP connection and to BioSemi through the parallel port.
-
-
-
-%\begin{figure}[!t]
-    %\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.6\columnwidth]{../images/Target}
-    %\caption{Protocol}
-%\label{fig:protocol}
-%\end{figure}
 
 \section{Methods}
 \label{sec:methods}
-\subsection{Objectives}
+\subsection{Performed analyses}
 Our analysis of EEG and behavioral data, as well as visual
-recognition decoding has certain specificities in respect of
-the protocol phase.
+recognition decoding, has different objectives in the offline and online phases.
 The offline phase is necessary for collecting good quality data
-for training a classifier to be used in the online phase
+for training a classifier to be used in closed-loop the online phase
 and to estimate its performance. However, it also allows us 
 to study EEG correlates of visual recognition and  perform a
 comparative study of different classifiers.
 
-The online phase allows the estimation of the BCI
+The online phase allows the estimation of the closed-loop BCI
 application performance.
 In the online phase, we apply a single decoding approach. 
 In order to make a comparative analysis of different
@@ -470,16 +616,19 @@ decoding approaches under online conditions we also performed a simulated online
 
 \subsection{Fixation extraction and analysis}
 There exist numerous methods to extract eye movement events
-from the eye gaze direction. Some of them proved to provide
-a better quality according to the human experts
-however are more challenging to implement in real time.
-We used one of the methods for offline analysis and another one
-for real-time online processing and simulated online analysis.
-Simulated online analysis is implemented identical to online phase.
+from the eye gaze direction.
+We used a more robust and accurate method of 
+Identification by 2-Means Clustering (I2MC)
+\cite{hessels_noise-robust_2017}
+for the offline phase data and 
+simpler and easy to implement for real-time processing
+Identification by Dispersion-Threshold (IDT) \cite{salvucci_identifying_2000}
+for the online phase and simulated online analysis.
 
 
 \subsubsection*{Offline phase.}
-The detection of fixation is done with the Identification by 2-Means Clustering (I2MC) method.
+The detection of fixation is done with the Identification by 2-Means Clustering (I2MC) method
+\cite{hessels_noise-robust_2017}.
 We relied on the implementation provided by the authors of the method
 using the default parameters.
 The main idea behind is to find the transition between two consecutive fixations
@@ -490,8 +639,9 @@ This method is more precise and robust to noisy outliers which
 allows to obtain a training dataset of higher quality.
 
 \subsubsection*{Online phase.}
-We could not use the provided implementation of I2MC in real time
-to extract fixations so we used the Identification by Dispersion-Threshold (IDT)
+Since the available implementation of I2MC method cannot be applied 
+in real time to extract eye fixations,
+we used the Identification by Dispersion-Threshold (IDT) 
 supplied with our eye tracking system. Fixation in IDT is extracted
 when the signals lies within the dispersion thresholds for at least a minimum fixation duration.
 It requires two parameters: we used 100 ms for the minimum fixation duration
@@ -502,8 +652,8 @@ The same procedure for fixation extraction is applied as in the online phase.
 
 \subsubsection*{Fixation analysis.}
 \label{sec:fixanal}
-The cognitive response is stronger when the stimulus is perceived and recognized
-for the first time. 
+The neural correlates of cognitive response are stronger when the stimulus is perceived and recognized
+for the first time \cite{devillez_p300_2015}. 
 We assume that subjects categorized the symbol at the first
 attendance so we use only the first fixations on the boards for our analysis.
 As mentioned in Section \ref{sec:stim}, the popping up effect is introduced 
@@ -514,56 +664,69 @@ The visual input during the task is dynamic. Due to driving through
 the virtual environment the objects including the boards are also moving on the screen.
 So we assume that most of the board attendances are done with
 smooth pursuit rather than fixations. 
-To the best of our knowledge there is no available algorithm for efficient
+To the best of our knowledge, there is no available algorithm for efficient
 extraction of smooth pursuit for eye movement data sampled at 120 Hz.
 The only consequence of 
 extracting fixation from smooth pursuit is that a single smooth pursuit
 may be oversegmented into multiple fixations.
-For the sake of our analysis we do not need to differentiate between
+For the sake of our analysis, we do not need to differentiate between
 fixations and smooth pursuit movement. The onset of first fixation on a board
 will coincide with the onset of smooth pursuit.
 
+Each detected fixation was assigned to a target board, a non-target board or non-board.
+Because (1) the visual span for text reading extends up to several degrees, 
+(2) the boards were moving and (3) eye tracking data were noisy,
+we applied the following approach to assign the boards
+to fixations. For each eye gaze sample, we estimate the probability of
+fixating eyes on the center of the board according to a normal distribution.
+After averaging log-probabilities across the fixation time window we apply a hard
+threshold to assign the fixation to a board or a non-board category.
+This procedure was implemented in the analysis of the data.
+The real-time assignment of fixations on boards in online phase was
+modified for computational efficiency. It was based
+on the first 100 ms after fixation onset and
+used on the average fixation direction within 100 ms.
+
 For the behavioral analysis we estimate the total attendance time of boards
 for the first uninterrupted visit or dwell time. The dwells were created
-by merging all the fixations on the same board with saccade durations
+by merging all the fixations on the same board with inter-fixation interval 
 between them below 50 ms.
+For the sake of a valid comparison between offline and online phases 
+in behavioral analysis we used IDT method to extract fixations.
 
-Each fixation and dwell were assigned to a target board, a non-target board or non-board.
-Due to a reading visual span of several degrees, the board movement and 
-noisy eye tracking data we applied the following approach to assign the boards
-to fixations. For each eye gaze sample we estimate the probability of
-fixating eyes on the center of the board according to a normal distribution.
-After averaging log-probabilities across the dwell time we apply a hard
-threshold to assign the fixation to a board or a non-board class.
 
 
 \subsection{EEG processing}
 \subsubsection*{EEG processing of offline data.}
 All the EEG and EOG were filtered with Butterworth band-pass filter
 of order 4 within the band [1, 10] Hz
-using noncausal filtering and downsampled from 2 kHz to 256 Hz.
+using non-causal filtering and downsampled from 2 kHz to 256 Hz.
 Due to low conductivity of the skull and the skin,
 EEG signal is spatially smoothed so a high contrast between nearby channels
 is a result of noise and movement artifacts. We remove this noise
 by keeping only low spatial frequency components after decomposition EEG with SPHARA.
 Horizontal and vertical components of eye movement were estimated which allowed
-to remove the eye movement artifacts from EEG using multivariate regression.
+to remove the eye movement artifacts from EEG using multiple regression 
+as in \cite{schlogl_fully_2007} using only horizontal and vertical 
+components as well as the intercept.
 The coefficients of multiple regression were estimated from the 
 one-minute session of eye movements before the corresponding run.
 Then the signal is spatially
 filtered with common-average-reference (CAR). 
 
-\subsubsection*{EEG processing in simulated online.}
+\subsubsection*{EEG processing in simulated online analysis.}
 The EEG processing was identical to the offline analysis
-except for the eye movement artifacts removal. The multiple regression
-model was obtained from offline data.
+except for the eye movement artifacts removal.
+The multiple regression model was obtained from offline data.
 
 \subsubsection*{EEG processing in online.}
-The online phase required the real time processing. SMI system provides
+The closed-loop interaction in the online phase required real-time processing.
+SMI system provides
 a real time eye fixation detection. The fixations were buffered
 by a parallel process within the driving simulator, matched with the boards,
 and a trigger was sent to the BioSemi system 3 s after the onset of each the fixation
-on a board. We choose 3 s delay because we apply non-causal filter on EEG data.
+on a board. We choose 3 s delay because we apply non-causal filter on EEG data
+and need to diminish the edge effect of the backward filter pass.
 EEG processing  was identical to the offline procedure
 except for 2 steps:
 \begin{itemize}
@@ -582,23 +745,26 @@ visual recognition (see Section \ref{sec:fixanal}).
 We investigate and compare different decoding approaches which consist of 
 various feature sets and classifiers.
 
-\subsubsection*{Offline decoding.}
+\subsubsection*{Offline and simulated online decoding.}
 For the offline analysis we chose the following combination of features and classifiers:
 \begin{itemize}
-    \item \textbf{PLR-Waveform}. Penalized logistic regression (PLR) trained on waveform features after reducing
+    \item \textbf{PLR-Waveform}. Penalized logistic regression (PLR) trained on waveform features (i.e. the signals
+        value at each channel and time point) after reducing
         the dimensionality with PCA. Only the components which explain 90\% of variance
         are kept. 
     \item \textbf{PLR-Dwell}. PLR trained on dwell time on the boards.
     \item \textbf{PLR-Combined}. PLR trained on the combination of waveform features with dwell time. We concatenate
         the two feature sets before applying PCA to keep 95\% of variance. Since the dynamic
-        range of dwell time in ms is greater than the one of EEG in uV, most of the information
-        remains is projecte
+        range of dwell time in ms is greater than the one of EEG in uV, most of the dwell time information
+        is projected into the first component and kept after the transformation.
+
     \item \textbf{RF-Waveform}. Random forest trained on waveform features. We use 100 decision trees and
         with maximum depth of 5.
-    \item \textbf{PLR-Riemann}. PLR trained on Riemannian features from simple epochs.
+    \item \textbf{PLR-Riemann}. PLR trained on Riemannian features from simple EEG epochs.
         To build Riemannian features we
         estimate spatial covariance matrix with shrinkage and project it
-        to the tangent space according to the classical Riemannian geometry on SPD matrices.
+        to the tangent space according to the classical Riemannian geometry on SPD matrices
+        \cite{barachant_multiclass_2012}.
         We subselected 8 channels based on mean Fisher score across the epoch.
     \item \textbf{PLR-Riemann+}. PLR trained on Riemannian features from augmented epochs.
         Before computing the covariance matrix we augment the epoch with the averaged ERP
@@ -606,17 +772,17 @@ For the offline analysis we chose the following combination of features and clas
         approach.
 \end{itemize}
 
-Since PLR is a linear regularized classifier we standardize all the features to z-score when
-using PLR.
-
-\subsubsection*{Simulated online decoding.}
-The EEG processing was identical to the offline analysis
-except for the eye movement artifacts removal. The multiple regression
-model was obtained from offline data.
+%Since PLR is a linear regularized classifier we standardize all the features to z-score when
+%using PLR.
 
 \subsubsection*{Online decoding.}
-On the data obtained in the offline phase we trained RF-Waveform classifier
-and applied it in real time. The probability for the target class was 
+The preliminary tests on two subjects showed that RF-Waveform classifier
+performed better than PLR-Waveform classifier. We did not consider
+PLR-Riemann classifier at this stage because the its training
+was too slow to apply between offline and online phases.
+Therefore, on the data obtained in the offline phase we trained individual RF-Waveform classifiers
+and applied it in real time in online phase.
+The probability for the target class was
 estimated on each instance of every symbol and sent
 back to the driving simulator. After crossing the finish line
 the probabilities were averaged per each symbol (1 out of 4).
@@ -645,7 +811,12 @@ to all the online data and obtained a single AUC value.
 \subsubsection*{Online performance evaluation.}
 During online phase we predicted the target symbol from the EFRP classification.
 We assess the overall performance with accuracy and confusion matrices
-for 4 symbols.
+for 4 symbols. Accuracies were estimated per subject and averaged across 16 subjects.
+The significance of single subject performance was tested with the exact binomial test against
+0.25 (the random level with 4 balanced classes). Due to the high number of tests
+we applied conservative Bonferroni correction. The average performance was tested
+with Student's t-test. The confusion matrices were tested for independency
+with Chi-square test separately for each subject with Bonferroni correction.
 
 \section{Results}
 \label{sec:results}
@@ -660,7 +831,7 @@ The average attendance rate
 is shown in the Table \ref{tab:boardAtt}. 
 Repeated measures ANOVA shows significant difference between
 all 4 groups: targets in offline, targets  in online,
-non-targets in offline and non-targets in online, with $p-value < 0.0001$.
+non-targets in offline and non-targets in online, with p-value $< 0.0001$.
 Post-hoc analysis shows that it is driven by the difference between
 offline and online phases with p-value $< 0.0001$ (paired t-test).
 The difference between targets and non-targets is not significant with p-value $= 0.048$
@@ -691,7 +862,7 @@ The total number of targets in offline phase is 173.
 We analyzed the button presses which should be equal to the number of targets
 on each road.
 The average number of incorrect counts (both missed and extra counts) was 5,
-the worst performance was at 15 errors (Figure \ref{fig:classAll}).
+the worst performance was at 15 errors (see the number of mis-counts in Figure \ref{fig:classAll}).
 
 
 \subsubsection*{Dwell time}
@@ -704,39 +875,48 @@ The median dwell time for targets is significantly longer in online phase (p-val
 
 \begin{figure}[!t]
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.6\columnwidth]{../images/DwelltimeDist_online_allmean.pdf}
-    \caption{Dwell time distribution for targets vs distractors in offline and online phases.}
+    \caption{Dwell time distribution for first dwells on
+    targets vs distractors in offline and online phases.}
 \label{fig:dwell}
 \end{figure}
 
 \subsection{EFRP waveform}
 \begin{figure}[!t]
+    \includegraphics[trim={0cm 0cm 1.5cm 0cm},clip,width=0.45\columnwidth]{../images/offline/Epochs_GA_chCz_Saggregate_objrec_subjects_popuponline_s1.pdf}
+    \includegraphics[trim={0cm 0cm 1.5cm 0cm},clip,width=0.45\columnwidth]{../images/online/Epochs_GA_chCz_Saggregate_objrec_subjects_popuponline_s1.pdf}
+    \caption{The signal of Cz channel for extracted epochs aggregated
+        for the 4 best performing subjects with PLR-Waveform approach.
+        Left: offline, Right: online.
+        The epochs are ordered according to the dwell time
+        shown with the black curve.
+    }
+\label{fig:epochsCz}
+\end{figure}
+
+\begin{figure}[!t]
     \includegraphics[trim={0cm 0.01cm 0cm 0cm},clip,width=0.45\columnwidth]{../images/SignR_offline.pdf}
     \includegraphics[trim={0cm 0cm 0cm 0.01cm},clip,width=0.45\columnwidth]{../images/SignR_online.pdf}
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.9\columnwidth]{../images/offline/TopoPlot_TLock-start_signRSquare_Saggregate_objrec_subjects_popuponline_s1.pdf}
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.9\columnwidth]{../images/online/TopoPlot_TLock-start_signRSquare_Saggregate_objrec_subjects_popuponline_s1.pdf}
-    \caption{The discriminant power for the 4 best subjects with the offline AUC above 60.
+    \caption{The discriminant power for the aggregated epochs of
+        4 best subjects with the offline AUC above 0.6 with PLR-Waveform approach.
     Signed $R^2$ is demonstrated for midline channels across around the eye fixation onset
     (top left: offline, top right: online) and on topographic maps (top map: offline, bottom map: online).}
 \label{fig:signR}
 \end{figure}
 
-\begin{figure}[!t]
-    \includegraphics[trim={0cm 0cm 1.5cm 0cm},clip,width=0.45\columnwidth]{../images/offline/Epochs_GA_chCz_Saggregate_objrec_subjects_popuponline_s1.pdf}
-    \includegraphics[trim={0cm 0cm 1.5cm 0cm},clip,width=0.45\columnwidth]{../images/online/Epochs_GA_chCz_Saggregate_objrec_subjects_popuponline_s1.pdf}
-    \caption{The signal of Cz channel for all epochs for the 4 best subjects. Left: offline, Right: online.
-        The black curve shows the offset of the fixation.
-    }
-\label{fig:epochsCz}
-\end{figure}
 
-We present the analysis of the EFRP waveform for the 4 subjects who demonstrated
-the highest classification performance in the offline phase with the PLR-Waveform classifier.
+We present the analysis of the aggregated EFRP waveform
+for the 4 subjects who demonstrated
+the highest classification performance in the offline phase with the 
+PLR-Waveform classifier because it allows for direct representation
+of the features used by a linear classifier (see Section \ref{sec:class}).
 The univariate discriminant power is shown on the Figure \ref{fig:signR}.
-The results are similar for the offline and online phases with online data having twice
+The results are similar for the offline and online phases, with online data having twice
 as higher discriminant power with up to 0.01 of signed $R^2$.
 The greatest values are mainly confined within the region between 100 and 700 ms.
 The higher discriminant power is spread across the whole scalp which can be the consequence
-of using CAR in the processing. Nonetheless, the P300-like component can be seen at 500 ms
+of using CAR in the processing. Nonetheless, the P300-like component of EFRP can be seen at 500 ms
 after the fixation onset. The representative channel for this component is Cz.
 
 We visualized Cz signal for each eye fixation while ordering them
@@ -753,23 +933,27 @@ as seen on the averaged EFRP.
 
 
 \subsection{Comparison of decoding approaches}
+\label{sec:class}
 
 \begin{figure}[!t]
     \includegraphics[trim={2cm 0cm 2cm 0cm},clip,width=1.1\columnwidth]{../images/ClassificationAll.png}
     \caption{Performance of EFRP classification with various approaches in offline analysis (top)
-    and simulated online analysis (bottom). Each dot shows single fold performance
-    in a leave-one-run-out cross validation for the corresponding classification approach.}
+    and simulated online analysis (bottom) as percentage of AUC.
+    Each dot shows single fold performance
+    in a leave-one-run-out cross validation for the corresponding classification approach.
+    The overlaid gray bars at the top show the behavioral performance:
+    the number of mis-counts in offline phase on the same scale as AUC percentage.}
 \label{fig:classAll}
 \end{figure}
 
 \subsubsection*{Offline}
 All the classification approaches on a single-trial level
-lead to the performance between 53 and 60 AUC on average
+lead to the performance between 0.53 and 0.6 AUC on average
 (Figure \ref{fig:classAll})
-which is statistically significant against random level of 50 
+which is statistically significant against random level of 0.5 
 (p-values $< 0.001$ with Student's t-test after Bonferroni correction).
-Eight out of thirteen subjects achieve performance above 60 for at least one of the approaches based
-on neural correlates.
+Eight out of thirteen subjects achieve performance above 0.6 for at least one of the approaches based
+on EEG features.
 Performance of different approaches has a different ranking per subject, however
 the differences between
 the approaches are not statistically significant (p-value $= 0.16$ with repeated measures ANOVA).
@@ -777,10 +961,10 @@ It is worth noticing that the combination of both dwell time and EEG waveform is
 better than just one of these feature sets.
 
 \subsubsection*{Simulated online}
-First of all, we note that the performance of neural-based approaches 
+It is worth noting that the performance of EEG-based approaches
 on online data is consistent with the training performance on offline data.
-The average AUC values lie between 56 and 59 for each approach
-which is statistically significant against 50
+The average AUC values lie between 0.56 and 0.59 for each approach
+which is statistically significant against 0.5
 (p-values $< 0.001$ with Student's t-test after Bonferroni correction).
 
 For approaches relying on the dwell time, however, the performance drastically improved
@@ -788,14 +972,18 @@ for multiple subjects. The average AUC for \textit{dwell} classifier increased
 from 56 to 73 and for the \textit{PLR-Combined} classifier from 59 to 67.
 This improvement is a direct consequence of the increased target dwell time
 together while non-target dwell time remained unchanged, see Figure \ref{fig:dwell}.
+However, the underlying question of why the dwell time changed 
+between the offline and the online phases still remains.
 
 
 \subsection{Online performance}
 
 \begin{figure}[!t]
-    \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.5\columnwidth]{../images/OnlineConfusion.png}
+    \includegraphics[trim={1cm 0cm 1cm 1cm},clip,width=0.7\columnwidth]{../images/OnlineConfusion_percent.png}
+    %\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.5\columnwidth]{../images/OnlineConfusion.png}
     \caption{The aggregated confusion matrix of online decoding for each type of symbol being
-    a target.}
+    a target class. The absolute number of cases is presented and normalized as percentage 
+    relative to the actual class (row-wise normalization).}
 \label{fig:onlineconf}
 \end{figure}
 
@@ -836,7 +1024,7 @@ Additionally, we applied statistical test to assess the accuracy per subject.
 After Bonferroni correction only 3 subjects performed statistically above chance level.
 
 To verify the independence of the 4 classes in online phase
-we computed the aggregated confusion matrices across all symbol (Figure \ref{fig:onlineconf}).
+we computed the aggregated confusion matrices across all symbols for all subjects (Figure \ref{fig:onlineconf}).
 We applied an independence test for confusion matrices per subject.
 After Bonferroni correction only one subject shows significant imbalance in the
 confusion matrix. It is linked to a high accuracy of the symbol $\Xi$ and low accuracy 
@@ -845,24 +1033,20 @@ for the symbol E.
 
 \section{Discussion}
 \label{sec:discussion}
+
 Decoding of cognitive process from EFRP has a potential to augment
-real life interaction with machines for healthy users.
-In this study we investigated the scenario of simulated driving.
+real life interaction with machines for able-bodied users.
+In this study we investigated the decoding of visual recognition in a driving scenario.
 It resembles one of the typical everyday activity
 and provides the associated challenges in decoding visual recognition:
 free eye gazes, dynamic visual input, primary tasks.
 For this purpose we limit the driving task to following 
 the simple route at a comfortable and natural speed.
-To avoid overloading subjects' attention with too many distractors
-we did not include other participants of the traffic and  moving objects.
+To avoid overloading subjects' attention with too many distractors,
+we did not include other participants on the road nor moving objects.
 Nonetheless, due to the movement of the car, the drivers
 were subjected to a dynamic visual input and perceived a
 natural optic flow.
-
-%Although subjects followed
-%the objects moving on the screen,
-%we could analyze their eye behavior by approximating smooth pursuit
-%with consecutive fixations combination.
 
 In the online phase subjects looked longer on targets compared to the offline phase.
 Although the subjects dwell time was not decoded directly, they were aware
@@ -870,8 +1054,14 @@ that they could potentially influence the decoding quality. This might
 lead to deliberate or unconscious changes in their behavior.
 Some subjects could achieve a high decoding performance based
 only on dwell time in offline phase. But with the changes in the behavior
-during online phase most of the subjects drastically improve in their decoding performance.
+during online phase, most of the subjects drastically improve in their decoding performance
+based on the dwell time.
 
+
+The board attendance rate reveals two aspects of the task completion:
+(1) how well the subjects coped with the pace and attentional load
+and (2) whether they can differentiate between targets and distractors
+using their peripheral vision.
 We observed a statistically significant difference in the board attendance
 between offline and online phases despite the equal number of boards.
 On one hand, we expected the subjects to 
@@ -879,20 +1069,20 @@ be more engaged in the task due to interactive feedback part.
 However, the observed increase of the dwell time on target boards 
 in online phase made it more challenging to attend all
 the boards.
-On the other hand, behavioral response on number of recognized targets
+On the other hand, behavioral response based on number of recognized targets
 were not required which might relax the cognitive load.
 
 We carefully designed stimuli presentation to ensure their recognition
 only upon direct gaze.
-It is confirmed by equal
-the attendance rate on targets and non-targets and 
+It is confirmed by similar
+attendance rate on targets and non-targets and 
 by just a few errors in the counting task.
-We had concern that introduction of new symbols in online phase
+We were concerned that the introduction of new symbols in the online phase
 may change the behavior or the cognitive response due to the novelty.
 The balanced confusion matrices of decoding target recognition in the online phase
 confirm that subjects perceived all the symbols equally with regards
 to the task. The presence of new types of stimuli did not alter
-the cognitive process.
+the cognitive process nor the EEG correlates.
 
 The discriminant analysis of EFRP shows similar results for both
 offline and online phases. Most of the relevant
@@ -901,7 +1091,7 @@ durations. The spatial localization of relevant features is consistent with the 
 spatial distribution of P300 component in oddball paradigm.
 The EFRP waveforms are known to contain a strong P1 component at the occipital
 area that reflects the beginning of the visual processing of a stable visual input
-after the saccade. In the analysis of Cz channel it corresponds to the negative
+after the saccade. In the analysis of Cz channel, it corresponds to the negative
 deflection at 100 ms. It is clearly present in most of the fixations on boards.
 Moreover, we could also see it for the following fixations.
 It leads to the overlap between P300-like component and 
@@ -919,31 +1109,56 @@ from more controlled conditions with static visual input.
 
 We compared multiple classification approaches based on EFRP on offline data and 
 simulated their application to online data.
-All approaches including waveform-based linear and non-linear and covariance-based 
-methods result in similar performance on average across subjects
+All approaches, including waveform-based linear and non-linear and covariance-based 
+methods, result in similar performance on average across subjects
 which is significantly above the chance level.
-However there is no single best approach for all subjects.
+However, there is no single best approach for all subjects.
+
+The actual online performance in closed-loop measured by the target symbol identification
+is significantly above the chance level only for 3 subjects.
+Nonetheless, on average across subjects the accuracy of 0.37 is 
+significantly higher than 0.25.
 
 One can argue that the high performance of EFRP-based classifiers is
 due to the strong and well-aligned evoked potentials after the fixations,
 which reflects the difference between the target and non-targets dwell times.
 In this case we would see an improvement in performance for online data
 similar to the classification approaches based on dwell time.
-The combination of two sources of information (EEG and dwell time), nonetheless,
-does not lead to significant improvement and in the simulated online
-decoding it results in intermediate performance.
+A simple concatenation of features from two sources 
+of information (EEG and dwell time), nonetheless,
+does not lead to significant improvement and in the simulated online,
+such a decoding results in intermediate performance.
+In this study our primary goal was to explore the neural correlates
+of the object recognition.
+Ocular correlates such as pupil dilation along with multi-modal
+integration of neural and ocular correlates may be further investigated
+in future studies.
+Multimodal integration may improve the decoding performance \cite{jangraw_neurally_2014}.
 
-The actual online performance measured by the target symbol identification
-is significantly above the chance level only for 3 subjects.
-Nonetheless, on average across subjects the accuracy of 0.37 is 
-significantly higher than 0.25.
+At this stage we did not test the system for any specific application.
+The achieved performance may be too low for critical task,
+such as navigation,
+so this system cannot be used to grant the full control to the vehicle.
+However, it might be enough to recognize subjectively interesting
+categories of road signs and object and provide valuable recommendations
+to drivers.
+Further improvements can be introduced in different parts
+of the system before specific application testing,
+such as higher quality eye-tracker with a real-time
+implementation of robust segmentation algorithm,
+longer training of subjects over multiple sessions,
+and multimodal integration of neural
+and ocular data.
 
+\ack
 
+The authors thank Nissan Motor Co. Ltd for supporting
+this work.
 
 \section*{References}
 
 \bibliographystyle{unsrt}
-\bibliography{ObjRec_DS.bib}
+\bibliography{ObjRec_DS}
 
 \end{document}
 
