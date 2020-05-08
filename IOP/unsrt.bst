@@ -188,7 +188,7 @@ FUNCTION {format.names}
   s num.names$ 'numnames :=
   numnames 'namesleft :=
     { namesleft #0 > }
-    { s nameptr "{ff~}{vv~}{ll}{, jj}" format.name$ 't :=
+    { s nameptr "{f.~}{vv~}{ll}{, jj}" format.name$ 't :=
       nameptr #1 >
         { namesleft #1 >
             { ", " * t * }
@@ -550,7 +550,7 @@ FUNCTION {article}
     }
   if$
   new.block
-  note output
+  %note output
   fin.entry
 }
 
@@ -669,7 +669,7 @@ FUNCTION {inproceedings}
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
       format.bvolume output
-      format.number.series output
+      %format.number.series output
       format.pages output
       address empty$
         { organization publisher new.sentence.checkb
@@ -677,11 +677,12 @@ FUNCTION {inproceedings}
           publisher output
           format.date "year" output.check
         }
-        { address output.nonnull
+        { 
+          %address output.nonnull
           format.date "year" output.check
-          new.sentence
-          organization output
-          publisher output
+          %new.sentence
+          %organization output
+          %publisher output
         }
       if$
     }
