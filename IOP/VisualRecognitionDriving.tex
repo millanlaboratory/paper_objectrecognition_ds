@@ -49,6 +49,7 @@
 \newcommand{\gguide}{{\it Preparing graphics for IOP Publishing journals}}
 %Uncomment next line if AMS fonts required
 %\usepackage{iopams}  
+
 \begin{document}
 
 \title[]{Closed-loop EEG study on visual recognition during driving}
@@ -225,12 +226,12 @@ of people with severe motor disabilities, such as ALS
 \cite{sellers_brain-computer_2010,holz_long-term_2015,wolpaw_independent_2018}.
 For people without motor impairments, however, this setup and typing performance does not bring much value.
 
-Car drivers are exposed to a richer environment and need to constantly interact with it
-by controlling the car, visually exploring the surrounding and
-planning upcoming actions. 
 Successful decoding of visual recognition in free viewing tasks
 would open space for BCI application for healthy users
 by providing them assistance and recommendations.
+Car drivers are exposed to a richer environment and need to constantly interact with it
+by controlling the car, visually exploring the surrounding and
+planning upcoming actions. 
 A hypothetical application scenario may include
 the driver's recognition of road signs of a particular target category, e.g. parking.
 The driver's interest in parking signs decoded from the EEG
@@ -288,7 +289,7 @@ was around $0.65$ AUC on average across subjects.
 In this paper we report a study on visual recognition decoding during driving
 in a car simulator based on the Eye Fixation Related
 Potentials and visual behavior. 
-In our study 13 subjects visually attended billboards along the roads
+In our study 13 subjects visually attended sign boards along the roads
 while primarily engaged in active driving through
 an urban environment with a natural speed of $\thicksim$ 80 km/h. 
 We introduced, nevertheless, certain limitation concerning 
@@ -603,6 +604,7 @@ The fraction of targets is 0.25 in total.
 \end{table}
 
 
+
 \section{Methods}
 \label{sec:methods}
 %\subsection{Performed analyses}
@@ -833,11 +835,48 @@ with Benjamini-Hochberg correction.
 \label{sec:results}
 \subsection{Behavioral analysis}
 
+\subsubsection*{Comparison of fixation extraction methods I2MC vs IDT}
+We used two different methods to extract fixations in the offline 
+and online phase of the experiment. We compared them using
+the offline phase data via two measures: 1) the average number of all extracted
+dwells on boards per run and 2) the average dwell time (Table \ref{tab:EyeMethods}).
+The number of dwells obtained with IDT method is 10\% smaller (260 vs 284)
+which is a statistically significant difference
+(p-values $< 0.0001$ with one-tailed Student's t-test).
+Since we used IDT method in the online phase,
+we missed a 10\% of the fixations which led
+to either missed attendance or utilization of the second
+fixation instead of the first one on the board.
+The dwell duration is slightly longer with IDT method (433 vs 408 ms)
+and it is not significantly different compared to I2MC method
+(p-values $= 0.06$ with one-tailed Student's t-test).
+
+\begin{table}
+    \centering
+    \caption{The average number of dwells on boards and the average 
+        dwell time per run
+    based on fixation extraction with I2MC and IDT methods in the
+    offline phase.
+    The numbers represent the average and standard deviation across subjects.
+}
+    \begin{tabular}{l | c |c}
+        \hline 
+        & \# of dwells & Dwell time [ms] \\
+        \hline 
+        I2MC & 284 $\pm$ 59  & 408 $\pm$ 54 \\
+        \hline
+        IDT & 260 $\pm$ 64  & 433 $\pm$ 86 \\
+        \hline 
+    \end{tabular}
+    \label{tab:EyeMethods}
+\end{table}
 \subsubsection*{Board attendance}
 One of the subjects
 had a poor quality of eye tracker calibration which led
 to poor fixation extraction.
 This subject is excluded from the behavioral analysis.
+For the analysis of attendance rate we used IDT method to extract fixations 
+for the data from both offline and online phases.
 Subjects attended most of the boards in the offline phase and approximately
 half of them in the online phase. 
 The average attendance rate
@@ -851,9 +890,11 @@ The difference between targets and non-targets is not significant with p-value $
 so we can assume that subjects could not differentiate the symbols
 with peripheral vision.
 
+
 \begin{table}
     \centering
-    \caption{Board attendance rate for targets and non-targets in offline and online phases.
+    \caption{Board attendance rate for targets and non-targets in offline and online phases with IDT method of fixation
+        extraction.
     The numbers represent the average and standard deviation across subjects.}
     \begin{tabular}{c | c | c}
         \hline 
@@ -869,6 +910,9 @@ with peripheral vision.
 %DistOff    0.865138
 %TargOn     0.454746
 %DistOn     0.428700
+
+
+
 
 \subsubsection*{Counting}
 The total number of targets in the offline phase is 173.
@@ -969,8 +1013,8 @@ All the classification methods yielded a single-trial
 performance between 0.53 and 0.6 AUC on average
 (Figure \ref{fig:classAll})
 which is statistically significant against random level of 0.5 
-for all methods except PLR-Dwell
-(p-values $< 0.01$ with Student's t-test after Bonferroni correction
+for all methods
+(p-values $< 0.05$ with Student's t-test after Benjamini-Hochberg correction
 for 6 methods).
 Eight out of thirteen subjects achieve performance 
 above 0.6 for at least one of the approaches based
@@ -986,8 +1030,8 @@ It is worth noting that the performance of EEG-based approaches
 on online data is consistent with the training performance on offline data.
 The average AUC values lie between 0.56 and 0.59 for each approach
 which is statistically significant against 0.5
-for all approaches except PLR-Riemann.
-(p-values $< 0.01$ with Student's t-test after Bonferroni correction 
+for all approaches.
+(p-values $< 0.05$ with Student's t-test after Benjamini-Hochberg correction 
 for 6 approaches).
 
 For approaches relying on the dwell time, however, the performance drastically improved
@@ -1133,8 +1177,9 @@ The balanced confusion matrices of decoding target recognition in the online pha
 confirm that subjects perceived all the symbols equally with regards
 to the task. However, the presence of additional types of stimuli 
 may have contributed to the increased dwell time 
-on the target boards because the target identification among 4
-categories is more challenging than among 2 categories
+on the target boards because the target identification 
+among 4 symbols closely resembling each other 
+is more challenging than among only 2 symbols
 \cite{dick_processing_1971,alegria_time_1970}.
 
 
@@ -1179,25 +1224,28 @@ We compared multiple classification approaches based on EFRP on offline data and
 simulated their application to online data.
 All approaches, including waveform-based linear and non-linear and covariance-based 
 methods, resulted in similar performance on average across subjects
-which is significantly above the chance level for most
-of the approaches.
+which is significantly above the chance level for all the approaches.
 However, there is no single best approach for all subjects.
 
 The actual online performance in closed-loop measured by the target symbol identification
-is significantly above the chance level only for 3 subjects.
+is significantly above the chance level for 8 subjects.
 Nonetheless, on average across subjects the accuracy of 0.37 is 
 significantly higher than 0.25.
 
-One can argue that the high performance of EFRP-based classifiers is
+One can argue that the relatively good performance of EFRP-based classifiers is
 due to the strong and well-aligned evoked potentials after the fixations offset,
 which reflects the difference between the target and non-targets dwell times.
-In this case we would see an improvement in performance for online data
-similar to the classification approaches based on dwell time.
-A simple concatenation of features from two sources 
-of information (EEG and dwell time), nonetheless,
-does not lead to significant improvement and in the simulated online,
-such a decoding results in intermediate performance.
-In this study our primary goal was to explore the neural correlates
+However, this was not the case as the simulated online
+performance of the EEG-based decoders did not exhibit 
+the improvement achieved by the classification models based on
+dwell time. Also, a combination of the two sources of 
+information (EEG and dwell time) did not lead to a significant
+improvement as compared to EEG alone. Future work will require 
+incorporating techniques in the BCI decoders to cope
+with the natural temporal variability of EEG potentials 
+\cite{aydarkhanov_stability_2020}.
+
+Finally, In this study our primary goal was to explore the neural correlates
 of the object recognition.
 Ocular correlates such as pupil dilation along with multi-modal
 integration of neural and ocular correlates may be further investigated
@@ -1208,23 +1256,18 @@ Multimodal integration may improve the decoding performance \cite{jangraw_neural
 \section{Conclusion}
 \label{sec:conclusion}
 
-
-In this study we demonstrated the feasibility to decode
-recognition of visual targets from brain signals in challenging conditions
-of everyday driving scenario.
-The system can be validated in a specific application
-of realistic interaction between the driver and the car.
-For example, the achieved decoding performance 
-might be enough to recognize subjectively interesting
-categories of road signs and objects and provide valuable recommendations
-to drivers.
-Further improvements can be introduced in different parts
-of the system before specific application testing,
-such as higher quality eye-tracker with a real-time
-implementation of robust segmentation algorithm,
-longer training of subjects over multiple sessions,
-and multimodal integration of neural
-and ocular data.
+In this study we have demonstrated the feasibility to decode 
+recognition of visual targets from brain signals in
+challenging conditions of a naturalistic driving scenario.
+Our approach and results, although far from optimal, would
+enhance interaction by enabling intelligent cars provide 
+valuable recommendations to drivers, who could quickly accept
+or ignore. Still, our approach can benefit from improvements
+in different components, such as decoders robust to the
+natural temporal variability of EEG potentials, reliable
+and computationally efficient eye fixation algorithms, longer
+training of subjects over multiple sessions, and multimodal 
+integration of neural and ocular data.
 
 \ack
 
