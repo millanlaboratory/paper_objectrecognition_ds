@@ -763,9 +763,9 @@ For the offline analysis we chose the following combination of features and clas
         are kept. 
     \item \textbf{PLR-Dwell}. PLR trained on dwell time on the boards.
     \item \textbf{PLR-Combined}. PLR trained on the combination of waveform features with dwell time. We concatenate
-        the two feature sets before applying PCA to keep 95\% of variance. Since the dynamic
-        range of dwell time in ms is greater than the one of EEG in uV, most of the dwell time information
-        is projected into the first component and kept after the transformation.
+        the dwell time and EEG derived features after applying PCA to keep 95\% of variance. 
+        %Since the dynamic range of dwell time in ms is greater than the one of EEG in uV, most of the dwell time information
+        %is projected into the first component and kept after the transformation.
 
     \item \textbf{RF-Waveform}. Random forest trained on waveform features. We use 100 decision trees and
         with maximum depth of 5.
@@ -998,7 +998,7 @@ after the fixation onset.
 \label{sec:class}
 
 \begin{figure}[!t]
-    \includegraphics[trim={2cm 0cm 2cm 0cm},clip,width=1.1\columnwidth]{../images/ClassificationAll.png}
+    \includegraphics[trim={3cm 0cm 2cm 0cm},clip,width=1.1\columnwidth]{../images/ClassificationAll_FixDurSep.png}
     \caption{Performance of EFRP classification with various approaches in offline analysis (top)
     and simulated online analysis (bottom) as percentage of AUC.
     Each dot shows single fold performance
