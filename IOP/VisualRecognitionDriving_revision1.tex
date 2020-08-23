@@ -236,15 +236,13 @@ the driver's recognition of road signs of a particular target category, e.g. par
 The driver's interest in parking signs decoded from the EEG
 will allow to provide timely recommendations for the nearest parking.
 
-In free viewing conditions, people need to fixate
-or track moving objects to perceive them in all details.
-Fixations evoke a type of ERP called Eye Fixation Related Potentials (EFRP)
+Visual search tasks in free viewing condition require us to fixate or track static or moving objects respectively to perceive them in all details. Fixations evoke a type of ERP called Eye Fixation Related Potentials (EFRP)
 as opposed to external events in more classical ERP designs.
 Early EEG deflections in EFRP reflect the processing of low-level features 
 of visual input projected from the retina to the occipital lobe of the cortex
 and are manifested mainly in high-amplitude 
 of the P100 component, also referred to as lambda component \cite{evans_further_1952}.
-Later EEG deflections in EFRP resemble the P300 component in the oddball paradigm \cite{brouwer_distinguishing_2013}.
+When fixating at a target object in free viewing visual search tasks, later EEG deflections in EFRP resemble the P300 component in the oddball paradigm \cite{brouwer_distinguishing_2013}.
 
 Visual stimuli used in previous ERP and EFRP studies range from simple geometric shapes
 in static scenes to static natural images or dynamic
@@ -307,11 +305,8 @@ the EFRP decoding itself.
 
 The experiment consisted of 2 phases: offline and online.
 The goal of the offline phase was two-fold: (1) to analyze behavioral
-and neural correlates of visual recognition and (2) to gather data to train
-a classifier to be used in the online phase.
-Then we conducted the online phase to study the performance
-of the decoder in a closed-loop setting and, as a major objective, to verify
-the feasibility of the corresponding BCI application.
+and neural correlates of visual recognition and (2) to gather data to train a single-trial classifier that differentiates between attending boards with the target and non-target symbols to be used in the BCI application (the online phase).
+Then we conducted the online phase which allows us to examine the single-trial classifier performance in a closed-loop setting and, as a major objective, to verify the feasibility of the corresponding BCI application for detecting the drivers' interest along a road segment.
 
 Our protocol closely resembles the real-life scenario of traffic sign
 recognition on the roads. In the application, 
@@ -401,7 +396,7 @@ recommendations and assistance.
         and the first board on the left-hand side.
         Bottom left: screenshot with the online phase feedback for correct decoding, i.e.
         the 2D board at the bottom of the screen and a green circle.
-        Right: schematic drawing of one road with the target cue, boards and finish line.
+        Right: schematic drawing of a road segment with the target cue, boards and finish line.
     }
 \label{fig:setup}
 \end{figure}
@@ -423,11 +418,11 @@ from the offline phase and to train the classifier for the online phase.
 The offline phase consisted of 3 runs through the city  whereas the online
 phase could comprise from 3 to 5 runs depending on the available time
 and subject's fatigue.
-One run included 20 roads with 12 boards each resulting in 240 boards per run.
+One run included 20 road segments with 12 boards each resulting in 240 boards per run.
 Before each run, the subjects were asked to move their eyes up-down and left-right
 for one minute in order to collect the data for eye movement artifact removal.
 
-The EEG was acquired with BioSemi ActiveTwo system with 64 electrodes at 2 kHz sampling rate.
+The EEG was acquired with Biosemi ActiveTwo system (Biosemi, Netherland) with 64 electrodes at 2 kHz sampling rate.
 Additionally, we recorded 3 EOG channels to collect the eye movement data:
 two electrodes next to the outer canthi of the eyes and one above the nasion.
 %The EEG data was captured and saved on the laptop. The real time processing
@@ -435,7 +430,7 @@ two electrodes next to the outer canthi of the eyes and one above the nasion.
 The real-time processing
 of EEG in the online phase was done on a dedicated computer.
 
-The eye gaze was recorded with the SMI RED Eye tracking system 
+The eye gaze was recorded with the SMI RED (SensoMotoric Instruments, Teltow, Germany) Eye tracking system 
 with sampling rate of 120 Hz.
 The chair and eye tracker positions were adjusted for each subject.
 The eye tracker
@@ -465,7 +460,7 @@ The visual input is provided with three 3D monitors which create multiple render
 different angles. The virtual environment is implemented using
 the open-source driving simulator project VDrift. % \cite{noauthor_about_nodate}.
 The environment resembles a regular grid city with static objects, i.e.
-building, traffic lights, fields. The task-related objects include
+building, traffic lights, fields. The task-related items include
 direction indications on the road, target cue, boards with symbols
 and finish lines (Figure \ref{fig:setup}).
 
@@ -478,40 +473,33 @@ and finish lines (Figure \ref{fig:setup}).
 
 \subsection{Tasks}
 The experimental session had 2 phases: offline and online.
-The data collected in the offline phase allows to train a classifier
-that is used in the online phase to provide feedback on the decoding results.
+The data collected in the offline phase allows us to train a single-trial classifier that differentiates between attending the target and non-target symbols. The online phase illustrates how this classifier can be used in the closed-loop BCI application for detecting the symbol the driver is interested in along a road segment.In particular, the single-trial classifier is used to decode driver's brain responses to multiple instances of symbols along a road segment. The BCI system inferres the target symbol based on these accumulated evidences and shows it to the driver as a feedback at the end of a road segment.
 In both phases, the subject is instructed to drive through the city while
 following indications left or right turn at the crossings (Figure \ref{fig:setup}).
 At the beginning of the road segment, a symbol (the cue) is depicted
 on the ground. Subjects must memorize and search for it among
 the boards appearing through the road segment.
-Subjects are asked to count the number of boards with the target symbol in each segment. 
-To keep subjects engaged in the task, they have to
-report the number of targets in the offline phase or observe
-feedback from the decoder in the online phase of the experiment
-after they cross a finish line at the end of each road.
 
-We included empty roads where subjects have no additional tasks 
-except driving, allowing them to rest from the visual recognition task.
-In total, a quarter of the roads were empty.
+%Subjects are asked to count the number of boards with the target symbol in each segment. 
+%To keep subjects engaged in the task, they have to
+%report the number of targets in the offline phase or observe
+%feedback from the decoder in the online phase of the experiment
+%after they cross a finish line at the end of each road.
 
 \subsubsection*{Offline phase.}
-After crossing the finish line the subject presses 
+Subjects are asked to count the number of boards with the target symbol along a road segment. To keep subjects engaged in the task, they have to report the number of targets at the end of a road segment. After crossing the finish line the subject presses 
 a button located at the steering wheel as many times
 as the number of target boards he/she counted along the current road.
 
 \subsubsection*{Online phase.}
-In the online phase we want to estimate the system's performance
-in detecting the target symbol (1 out of 4) among all presented
-symbols (see Section \ref{sec:stim}). 
-After crossing the finish line the board with the predicted target is rendered
-at the bottom of the screen as a 2D object (Figure \ref{fig:setup}). 
-Subjects are instructed to pay
-attention to this feedback.
+At the end of a road segment, after crossing the finish line the inferred target symbol is rendered at the bottom of the screen as a 2D object (Figure \ref{fig:setup}). Subjects are instructed to pay attention to this feedback. 
 The online phase resembles a closed-loop interaction because
 the subjects perceive the decoder result shortly after
 looking at the stimuli, within 15 seconds after the first board on the road.
 
+In both phases, we included empty roads where subjects have no additional tasks 
+except driving, allowing them to rest from the visual recognition task.
+In total, a quarter of the roads were empty.
 
 \subsection{Stimuli presentation}
 \label{sec:stim}
@@ -565,12 +553,10 @@ E and $\exists$.
 One of them was randomly chosen as a target per road segment
 and was presented as the cue
 at the beginning of the road. There were 2-4 targets out of 12 boards
-on each road with the average fraction of the targets of 0.25 in total.
+on each road segment with the average fraction of the targets of 0.25 in total.
 
 \subsubsection*{Symbols in the online phase.}
-To allow equal accumulation for each symbol by keeping
-a low fraction of the targets,
-we introduced 2 more symbols resulting in 4 symbols in total.
+In the online scenario that corresponds to the BCI application, we included four different symbols. This is done to mimic to some extent diversity of the natural visual environment (e.g. traffic signs) and to estimate the generalization of the training oddball paradigm. Since the BCI application detects the symbol drivers are interested in along a road segment, 4 symbols allow equal occurance rate of symbols and thus the equal evidence accumulation, while the target symbol appearance is still a rare event. 
 There were between 2 and 4 boards of each symbol resulting in 12 boards on the road.
 Only one of them was a target on each road. Therefore, the fraction
 of the targets was 0.25 on average as in the offline phase.
@@ -672,9 +658,9 @@ and the boards are specially designed to ensure that
 recognition takes place near fixation on the symbol.
 
 The visual input during the task is dynamic. Due to driving through
-the virtual environment the objects, including the boards, are also moving on the screen.
+the virtual environment the objects, including the boards, are also moving on the screen. To judge if the board contains the target symbol the subjects therefore had to fixate it and to follow it by gaze until they made a decision.
 So we assume that most of the board attendances are done with
-smooth pursuit rather than fixations. 
+smooth pursuit rather than fixations. However, the onset of the first fixation on a board will coincide with the onset of smooth pursuit.
 To the best of our knowledge, there is no available algorithm for efficient
 extraction of smooth pursuit for eye movement data sampled at 120 Hz.
 The only consequence of 
@@ -1249,8 +1235,7 @@ incorporating techniques in the BCI decoders to cope
 with the natural temporal variability of EEG potentials 
 \cite{aydarkhanov_spatial_2020}.
 
-Finally, in this study, our primary goal was to explore the neural correlates
-of the object recognition.
+Finally, in this study, our focus was on detecting the neural correlates of object recognition.
 Ocular correlates such as pupil dilation along with multi-modal
 integration of neural and ocular correlates may be further investigated
 in future studies.
