@@ -227,7 +227,7 @@ For people without motor impairments, however, this setup and typing performance
 
 Successful decoding of visual recognition in free viewing tasks
 would open space for BCI application for healthy users
-by providing them assistance and recommendations.
+by providing them with assistance and recommendations.
 Car drivers are exposed to a richer environment and need to constantly interact with it
 by controlling the car, visually exploring the surrounding and
 planning upcoming actions. 
@@ -406,7 +406,7 @@ recommendations and assistance.
 %Experiment lasted 3 hours including the set up (\~1h), the offline phase (\~45 min),
 %the break (\~30 min) and the online phase (\~45 min).
 
-13 volunteers (age of 28 $\pm$ 6, 3 female) participated in the study.
+13 volunteers (age of 28 $\pm$ 6, 3 female) with normal or corrected-to-normal vision participated in the study.
 The study was approved by the ethical committees of the 
 Cantons of Vaud and Geneva, Switzerland (Commission cantonale
 d'\'ethique de la recherche sur l'\^etre humain, study no. PB\_2017-00295),
@@ -621,7 +621,7 @@ Identification by 2-Means Clustering (I2MC)
 for the offline phase data.
 In the online phase, and simulated online analysis,
 we used Identification by Dispersion-Threshold (IDT), a simpler and
-easy to implement for real-time processing \cite{salvucci_identifying_2000}
+easy to implement method for real-time processing \cite{salvucci_identifying_2000}
 
 
 \subsubsection*{Offline phase.}
@@ -698,7 +698,7 @@ in behavioral analysis, we used IDT method to extract fixations.
 \subsubsection*{EEG processing of offline data.}
 All the EEG and EOG were downsampled from 2 kHz to 256 Hz
 using FIR antialiasing lowpass filter
-and further filtered non-causally with a Butterworth band-pass filter
+and further filtered non-causally (to eliminate phase distortion) with a Butterworth band-pass filter
 of order 4 within the band [1, 10] Hz.
 Due to the low conductivity of the skull and the skin,
 the EEG signal is spatially smoothed so a high contrast between nearby channels
@@ -1077,10 +1077,10 @@ between the offline and the online phases still remains.
 \end{table}
 
 We assessed the task performance for each subject as the accuracy of
-decoding target at the end of the road integrated after multiple presentations
-of each type of boards (Table \ref{tab:onlineperf}).
+detecting the target symbol at the end of a road segment based on the evidences obtained by applying a RF-Waveform classifier
+to decode driver’s brain responses to multiple instances of symbols along a road segment (Table \ref{tab:onlineperf}).
 The averaged accuracy 
-equals 0.37 and it is significantly different from the random level of 0.25 for
+equals 0.37 and it is significantly above the random level of 0.25 for
 a multi-class classification with 4 balanced classes (p-value $< 0.0001$ with Student's t-test).
 Additionally, we applied a statistical test to assess the accuracy per subject.
 After adjusting p-values with Benjamini-Hochberg procedure 8 subjects performed statistically above chance level.
