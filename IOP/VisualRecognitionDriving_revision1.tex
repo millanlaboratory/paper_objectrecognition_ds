@@ -396,7 +396,7 @@ recommendations and assistance.
         and the first board on the left-hand side.
         Bottom left: screenshot with the online phase feedback for correct decoding, i.e.
         the 2D board at the bottom of the screen and a green circle.
-        Right: schematic drawing of a road segment with the target cue, boards and finish line. Note that the boards are invisible until they are approached to a close distance.
+        Right: schematic drawing of a road segment with the target cue, boards, indications left/right turn at the crossings and finish line. Note that the boards are invisible until they are approached to a close distance.
 
     }
 \label{fig:setup}
@@ -475,9 +475,9 @@ and finish lines (Figure \ref{fig:setup}).
 \subsection{Tasks}
 The experimental session had 2 phases: offline and online.
 The data collected in the offline phase allows us to train a single-trial classifier that differentiates between attending the target and non-target symbols. The online phase illustrates how this classifier can be used in the closed-loop BCI application for detecting the symbol the driver is interested in along a road segment.In particular, the single-trial classifier is used to decode driver's brain responses to multiple instances of symbols along a road segment. The BCI system inferres the target symbol based on these accumulated evidences and shows it to the driver as a feedback at the end of a road segment.
-In both phases, the subject is instructed to drive through the city while
+In both phases, the subject is instructed to drive through the city (without stopping) while
 following indications left or right turn at the crossings (Figure \ref{fig:setup}).
-At the beginning of the road segment, a symbol (the cue) is depicted
+At the beginning of a road segment, a symbol (the cue) is depicted
 on the ground. Subjects must memorize and search for it among
 the boards appearing through the road segment.
 
@@ -498,9 +498,9 @@ The online phase resembles a closed-loop interaction because
 the subjects perceive the decoder result shortly after
 looking at the stimuli, within 15 seconds after the first board on the road.
 
-In both phases, we included empty roads where subjects have no additional tasks 
+In both phases, we included empty road segments (without boards and cues) where subjects have no additional tasks 
 except driving, allowing them to rest from the visual recognition task.
-In total, a quarter of the roads were empty.
+In total, a quarter of the road segments were empty.
 
 \subsection{Stimuli presentation}
 \label{sec:stim}
