@@ -227,7 +227,7 @@ For people without motor impairments, however, this setup and typing performance
 
 Successful decoding of visual recognition in free viewing tasks
 would open space for BCI application for healthy users
-by providing them assistance and recommendations.
+by providing them with assistance and recommendations.
 Car drivers are exposed to a richer environment and need to constantly interact with it
 by controlling the car, visually exploring the surrounding and
 planning upcoming actions. 
@@ -395,7 +395,8 @@ recommendations and assistance.
         and the first board on the left-hand side.
         Bottom left: screenshot with the online phase feedback for correct decoding, i.e.
         the 2D board at the bottom of the screen and a green circle.
-        Right: schematic drawing of a road segment with the target cue, boards and finish line.
+        Right: schematic drawing of a road segment with the target cue, boards, indications left/right turn at the crossings and finish line. Note that the boards are invisible until they are approached to a close distance.
+
     }
 \label{fig:setup}
 \end{figure}
@@ -405,7 +406,7 @@ recommendations and assistance.
 %Experiment lasted 3 hours including the set up (\~1h), the offline phase (\~45 min),
 %the break (\~30 min) and the online phase (\~45 min).
 
-13 volunteers (age of 28 $\pm$ 6, 3 female) participated in the study.
+13 volunteers (age of 28 $\pm$ 6, 3 female) with normal or corrected-to-normal vision participated in the study.
 The study was approved by the ethical committees of the 
 Cantons of Vaud and Geneva, Switzerland (Commission cantonale
 d'\'ethique de la recherche sur l'\^etre humain, study no. PB\_2017-00295),
@@ -414,7 +415,7 @@ Experiment lasted 3 hours including the set up ($\thicksim$ 1 h), the offline ph
 one pause period ($\thicksim$ 30 min) and the online phase ($\thicksim$ 45 min).
 The extended pause period was necessary to process all the data
 from the offline phase and to train the classifier for the online phase.
-The offline phase consisted of 3 runs through the city  whereas the online
+A run represents a ride through the city. The offline phase consisted of 3 runs whereas the online
 phase could comprise from 3 to 5 runs depending on the available time
 and subject's fatigue.
 One run included 20 road segments with 12 boards each resulting in 240 boards per run.
@@ -473,9 +474,9 @@ and finish lines (Figure \ref{fig:setup}).
 \subsection{Tasks}
 The experimental session had 2 phases: offline and online.
 The data collected in the offline phase allows us to train a single-trial classifier that differentiates between attending the target and non-target symbols. The online phase illustrates how this classifier can be used in the closed-loop BCI application for detecting the symbol the driver is interested in along a road segment.In particular, the single-trial classifier is used to decode driver's brain responses to multiple instances of symbols along a road segment. The BCI system inferres the target symbol based on these accumulated evidences and shows it to the driver as a feedback at the end of a road segment.
-In both phases, the subject is instructed to drive through the city while
+In both phases, the subject is instructed to drive through the city (without stopping) while
 following indications left or right turn at the crossings (Figure \ref{fig:setup}).
-At the beginning of the road segment, a symbol (the cue) is depicted
+At the beginning of a road segment, a symbol (the cue) is depicted
 on the ground. Subjects must memorize and search for it among
 the boards appearing through the road segment.
 
@@ -496,14 +497,15 @@ The online phase resembles a closed-loop interaction because
 the subjects perceive the decoder result shortly after
 looking at the stimuli, within 15 seconds after the first board on the road.
 
-In both phases, we included empty roads where subjects have no additional tasks 
+In both phases, we included empty road segments (without boards and cues) where subjects have no additional tasks 
 except driving, allowing them to rest from the visual recognition task.
-In total, a quarter of the roads were empty.
+In total, a quarter of the road segments were empty.
 
 \subsection{Stimuli presentation}
 \label{sec:stim}
 
 \begin{figure}[!t]
+\center
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.80\columnwidth]{../images/Stimuli.png}
     \caption{The boards with the used symbols. In the offline phase, we used only boards 
         with symbol E and flipped E whereas in the online phase we used all 4 boards.}
@@ -557,7 +559,7 @@ on each road segment with the average fraction of the targets of 0.25 in total.
 \subsubsection*{Symbols in the online phase.}
 In the online scenario that corresponds to the BCI application, we included four different symbols. This is done to mimic to some extent diversity of the natural visual environment (e.g. traffic signs) and to estimate the generalization of the training oddball paradigm. Since the BCI application detects the symbol drivers are interested in along a road segment, 4 symbols allow equal occurance rate of symbols and thus the equal evidence accumulation, while the target symbol appearance is still a rare event. 
 There were between 2 and 4 boards of each symbol resulting in 12 boards on the road.
-Only one of them was a target on each road. Therefore, the fraction
+Only one of them was a target on each road segment. Therefore, the fraction
 of the targets was 0.25 on average as in the offline phase.
 
 
@@ -567,7 +569,7 @@ is assigned a probability to belong to the target class.
 At the end of the road segment, the probabilities
 of all EFRPs are aggregated symbol-wise by averaging.
 The symbol that has the highest probability of a target class
-is selected as a predicted target.
+is selected as an identified target.
 Therefore, to allow equal accumulation on average for each symbol 
 we increased the number of symbols to four.
 Each symbol appears between 2 and 4 times
@@ -620,7 +622,7 @@ Identification by 2-Means Clustering (I2MC)
 for the offline phase data.
 In the online phase, and simulated online analysis,
 we used Identification by Dispersion-Threshold (IDT), a simpler and
-easy to implement for real-time processing \cite{salvucci_identifying_2000}
+easy to implement method for real-time processing \cite{salvucci_identifying_2000}
 
 
 \subsubsection*{Offline phase.}
@@ -697,8 +699,8 @@ in behavioral analysis, we used IDT method to extract fixations.
 \subsubsection*{EEG processing of offline data.}
 All the EEG and EOG were downsampled from 2 kHz to 256 Hz
 using FIR antialiasing lowpass filter
-and further filtered non-causally with a Butterworth band-pass filter
-of order 4 within the band [1, 10] Hz.
+and further filtered  with a Butterworth band-pass filter
+of order 4 within the band [1, 10] Hz  in a forward-backward way (to eliminate phase distortion).
 Due to the low conductivity of the skull and the skin,
 the EEG signal is spatially smoothed so a high contrast between nearby channels
 is a result of noise and movement artifacts. We remove this noise
@@ -816,7 +818,7 @@ The significance of single-subject performance was tested with the exact binomia
 0.25 (the random level with 4 balanced classes). Due to the high number of tests,
 we applied the Benjamini-Hochberg correction \cite{benjamini_controlling_1995}.
 The average performance was tested
-with Student's t-test. The confusion matrices were tested for independence
+with t-test. The confusion matrices were tested for independence
 with Pearson's chi-square test \cite{frs_x_1900} separately for each subject 
 with Benjamini-Hochberg correction.
 
@@ -831,14 +833,14 @@ the offline phase data via two measures: 1) the average number of all extracted
 dwells on boards per run and 2) the average dwell time (Table \ref{tab:EyeMethods}).
 The number of dwells obtained with IDT method is 10\% smaller (260 vs 284)
 which is a statistically significant difference
-(p-values $< 0.0001$ with one-tailed Student's t-test).
+(p-values $< 0.0001$ with one-tailed t-test).
 Since we used IDT method in the online phase,
 we missed 10\% of the fixations which led
 to either missed attendance or labeling some of the second
 fixations as first fixations.
 The dwell duration is slightly longer with IDT method (433 vs 408 ms)
 and it is not significantly different compared to I2MC method
-(p-values $= 0.06$ with one-tailed Student's t-test).
+(p-values $= 0.06$ with one-tailed t-test).
 
 \begin{table}
     \centering
@@ -1003,7 +1005,7 @@ performance between 0.53 and 0.6 AUC on average
 (Figure \ref{fig:classAll})
 which is statistically significant against the random level of 0.5 
 for all methods
-(p-values $< 0.05$ with Student's t-test after Benjamini-Hochberg correction
+(p-values $< 0.05$ with t-test after Benjamini-Hochberg correction
 for 6 methods).
 Eight out of thirteen subjects achieve performance 
 above 0.6 for at least one of the approaches based
@@ -1020,7 +1022,7 @@ on online data is consistent with the training performance on offline data.
 The average AUC values lie between 0.56 and 0.59 for each approach
 which is statistically significant against 0.5
 for all approaches.
-(p-values $< 0.05$ with Student's t-test after Benjamini-Hochberg correction 
+(p-values $< 0.05$ with t-test after Benjamini-Hochberg correction 
 for 6 approaches).
 
 For approaches relying on the dwell time, however, the performance drastically improved
@@ -1076,11 +1078,11 @@ between the offline and the online phases still remains.
 \end{table}
 
 We assessed the task performance for each subject as the accuracy of
-decoding target at the end of the road integrated after multiple presentations
-of each type of boards (Table \ref{tab:onlineperf}).
+detecting the target symbol at the end of a road segment based on the evidences obtained by applying a RF-Waveform classifier
+to decode driver’s brain responses to multiple instances of symbols along a road segment (Table \ref{tab:onlineperf}).
 The averaged accuracy 
-equals 0.37 and it is significantly different from the random level of 0.25 for
-a multi-class classification with 4 balanced classes (p-value $< 0.0001$ with Student's t-test).
+equals 0.37 and it is significantly above the random level of 0.25 for
+a multi-class classification with 4 balanced classes (p-value $< 0.0001$ with t-test).
 Additionally, we applied a statistical test to assess the accuracy per subject.
 After adjusting p-values with Benjamini-Hochberg procedure 8 subjects performed statistically above chance level.
 
@@ -1234,8 +1236,7 @@ incorporating techniques in the BCI decoders to cope
 with the natural temporal variability of EEG potentials 
 \cite{aydarkhanov_spatial_2020}.
 
-Finally, in this study, our focus was on detecting the neural correlates of object recognition.
-Ocular correlates such as pupil dilation along with multi-modal
+Finally, in this study, our focus was on detecting the EEG correlates of object recognition in free viewing visual search tasks during driving. Ocular correlates such as pupil dilation along with multi-modal
 integration of neural and ocular correlates may be further investigated
 in future studies.
 Multimodal integration may improve the decoding performance \cite{jangraw_neurally_2014}.
