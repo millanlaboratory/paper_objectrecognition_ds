@@ -292,7 +292,7 @@ an urban environment with a natural speed of $\thicksim$ 80 km/h.
 We considered specifically the sudden appearance of the task relevant visual content (the boards) in the driving environment.
 Furthermore, the boards were invisible until the driver got close enough,
 then they popped up at random locations above the sidewalks.
-The process of attentional orienting under a such distance constraint on popping up of the board ensured 
+The process of attentional orienting under such a distance constraint on popping up ensured 
 that once drivers gaze at a board, they can recognize the content.
 Otherwise, there would be 2 challenges in decoding
 visual recognition due to fixations on distant
@@ -521,11 +521,7 @@ The boards appear along the road at an equal distance between them,
 randomly on either side of the road above the sidewalks
 with a maximum of 2 boards
 on the same side in a row  (e.g., 2 boards on the left in Figure \ref{fig:setup}). The number of boards on the left
-and right sides is balanced. Since the pop-up distance was greater
-than the distance between the boards along the road, multiple
-boards from the same side were visible at the same time,
-so their horizontal and vertical positions were adjusted to avoid
-the overlap for the driver view.
+and right sides is balanced. Since the pop-up distance was greater than the distance between the boards along the road, there is a time overlap in the presence of multiple boards at the same side, so their positions (horizontal and vertical coordinates) were chosen to avoid the overlap for the driver view.
 
 The maximum speed of the car was limited to 80 km/h to ensure 
 that all the targets
@@ -554,13 +550,13 @@ E and $\exists$.
 One of them was randomly chosen as a target per road segment
 and was presented as the cue
 at the beginning of the road. There were 2-4 targets out of 12 boards
-on each road segment with the average fraction of the targets of 0.25 in total.
+on each road segment with the average proportion of the targets of 0.25 in total.
 
 \subsubsection*{Symbols in the online phase.}
 In the online scenario that corresponds to the BCI application, we included four different symbols. This is done to mimic to some extent diversity of the natural visual environment (e.g. traffic signs) and to estimate the generalization of the training oddball paradigm. Since the BCI application detects the symbol drivers are interested in along a road segment, 4 symbols allow equal occurance rate of symbols and thus the equal evidence accumulation, while the target symbol appearance is still a rare event. 
 There were between 2 and 4 boards of each symbol resulting in 12 boards on the road.
-Only one of them was a target on each road segment. Therefore, the fraction
-of the targets was 0.25 on average as in the offline phase.
+Only one of them was a target on each road segment. Therefore, the proportion
+of the targets was 0.25 on average per a road section in a run as in the offline phase.
 
 
 To decode the target at the end of the road each EFRP associated with the
@@ -570,13 +566,6 @@ At the end of the road segment, the probabilities
 of all EFRPs are aggregated symbol-wise by averaging.
 The symbol that has the highest probability of a target class
 is selected as an identified target.
-Therefore, to allow equal accumulation on average for each symbol 
-we increased the number of symbols to four.
-Each symbol appears between 2 and 4 times
-resulting in 12 boards on the road.
-The fraction of the targets is 0.25 in total.
-
-
 
 \begin{table}
     \centering
@@ -672,10 +661,7 @@ fixations and smooth pursuit movements. The onset of the first fixation on a boa
 will coincide with the onset of smooth pursuit.
 
 Each detected fixation was assigned to a target board, a non-target board or non-board.
-Because (1) the visual span for text reading extends up to several degrees, 
-(2) the boards were moving and (3) eye tracking data were noisy,
-we applied the following approach to assign the boards
-to fixations. For each eye gaze sample, we estimate the probability of
+Considering that (i) the visual span (the angular span) within which our vision is sharp enough to perform a given task extends up to several degrees, (ii) the driver's motion relative to the boards imposes visual tracking to perform the search task, and (iii) the noise in eye-tracking (a sudden and brief disruptions spanning several data samples are occasionally observed in the eye-tracking data), we applied the following approach to assign the boards to fixations. For each eye gaze sample, we estimate the probability of
 fixating eyes on the center of the board according to a normal distribution.
 After averaging log-probabilities across the fixation time window we apply a hard
 threshold to assign the fixation to a board or a non-board category.
