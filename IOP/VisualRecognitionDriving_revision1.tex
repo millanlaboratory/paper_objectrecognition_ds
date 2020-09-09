@@ -597,10 +597,10 @@ comparative study of different classifiers.
 
 The online phase allows the estimation of the closed-loop BCI
 application performance.
-In the online phase, we apply a single decoding approach. 
+In the online phase, we apply a chosen decoding approach. 
 In order to make a comparative analysis of different
 decoding approaches under online conditions,
-we also performed a simulated online analysis. 
+we performed a simulated online analysis using the data recorded in the online phase. 
 
 \subsection{Fixation extraction and analysis}
 There exist numerous methods to extract eye movement events
@@ -652,8 +652,7 @@ the virtual environment the objects, including the boards, are also moving on th
 So we assume that most of the board attendances are done with
 smooth pursuit rather than fixations. However, the onset of the first fixation on a board will coincide with the onset of smooth pursuit.
 To the best of our knowledge, there is no available algorithm for efficient
-extraction of smooth pursuit for eye movement data sampled at 120 Hz.
-The only consequence of 
+extraction of smooth pursuit for eye movement data sampled at 120 Hz (the upper sampling rate limit of the eye-tracker model that we used). The only consequence of 
 extracting fixation from smooth pursuit is that a single smooth pursuit
 may be oversegmented into multiple fixations.
 For the sake of our analysis, we do not need to differentiate between
@@ -854,8 +853,7 @@ to poor fixation extraction.
 This subject is excluded from the behavioral analysis.
 For the analysis of attendance rate, we used IDT method to extract fixations 
 for the data from both offline and online phases.
-Subjects attended most of the boards in the offline phase and approximately
-half of them in the online phase. 
+In the offline phase subjects visually attended most of the boards. The attendance rate is almost halved in the online phase. 
 The average attendance rate
 is shown in Table \ref{tab:boardAtt}. 
 Two-way repeated measures ANOVA shows a minor significant effect 
