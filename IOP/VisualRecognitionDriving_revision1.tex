@@ -770,12 +770,7 @@ PLR-Riemann classifier at this stage because its training
 was too slow to apply between offline and online phases.
 Therefore, on the data obtained in the offline phase, we trained individual RF-Waveform classifiers
 and applied it in real time in the online phase.
-The probability for the target class was
-estimated on each instance of every symbol and sent
-back to the driving simulator. After crossing the finish line
-the probabilities were averaged per each symbol (1 out of 4).
-The symbol which had the highest probability of being a target was
-shown to the subject on the screen.
+The probability of being a target was estimated on each instance of every symbol along a road segment and sent back to the driving simulator. Based on the probabilities averaged over instances for each of four symbols separately the BCI system will infer the target symbol at the end of a road segment.
 
 
 \subsection{Performance evaluation}
@@ -1121,7 +1116,7 @@ on the stimuli was not informative about
 the stimuli type (target vs. non-target) in contrast
 to the more attentionally demanding motion appearance conditions.   
 Interestingly, we observed  the time spent on the stimuli  to be
-discriminative in our exp. scenario although the same
+discriminative in our experimental scenario although the same
 pop-up stimuli appearance was considered.
 This illustrates the effect of the user/driver motion
 relative to the visual content on the visual information
