@@ -605,7 +605,7 @@ we performed a simulated online analysis using the data recorded in the online p
 
 \subsection{Fixation extraction and analysis}
 There exist numerous methods to extract eye movement events
-from the eye gaze direction.
+from the eye gaze direction \cite{}.
 We used a more robust and accurate method of 
 Identification by 2-Means Clustering (I2MC)
 \cite{hessels_noise-robust_2017}
@@ -724,8 +724,8 @@ except for 2 steps:
 
 \subsection{Decoding approaches}
 To decode visual recognition from EEG signals we extracted the epochs
-around the fixation onset -- EEG segment between
-200 ms to 1000ms  after the fixation onset.
+around the fixation onset -- more precisely, the EEG activity within the time interval from
+200 ms to 1000ms following the fixation onset.
 In addition, we extracted dwell time as eye-gaze based features to detect
 visual recognition (see Section \ref{sec:fixanal}).
 We investigate and compare different decoding approaches which consist of 
@@ -768,7 +768,7 @@ The preliminary tests on two subjects showed that RF-Waveform classifier
 performed better than the PLR-Waveform classifier. We did not consider
 PLR-Riemann classifier at this stage because its training
 was too slow to apply between offline and online phases.
-Therefore, on the data obtained in the offline phase, we trained individual RF-Waveform classifiers
+Therefore, on the data obtained in the offline phase, we trained for each subject individually a RF-Waveform classifier
 and applied it in real time in the online phase.
 The probability of being a target was estimated on each instance of every symbol along a road segment and sent back to the driving simulator. Based on the probabilities averaged over instances for each of four symbols separately the BCI system will infer the target symbol at the end of a road segment.
 
@@ -967,8 +967,7 @@ The univariate discriminant power is shown in Figure \ref{fig:signR}.
 The results are similar for the offline and online phases, with online data having twice
 as higher discriminant power with up to 0.01 of signed $R^2$.
 The greatest values are mainly confined within the region between 100 and 700 ms.
-The higher discriminant power is spread across the whole scalp which can be the consequence
-of using CAR in the processing. Nonetheless, the P300-like component of EFRP can be seen at 500 ms
+There is a spatio-temporal evolution of discriminant activity spreading across the whole scalp. This is expected as the visual processing involves different brain regions. It is important to emphasize that the interpretation of the spatial distribution of discriminant activity depends on the chosen referencing method (CAR in our case). Nonetheless, the P300-like component of EFRP can be seen at 500 ms
 after the fixation onset.
 
 
