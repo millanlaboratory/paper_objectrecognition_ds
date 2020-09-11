@@ -596,12 +596,7 @@ and to estimate its performance. However, it also allows us
 to study EEG correlates of visual recognition and  perform a
 comparative study of different classifiers.
 
-The online phase allows the estimation of the closed-loop BCI
-application performance.
-In the online phase, we apply a chosen decoding approach. 
-In order to make a comparative analysis of different
-decoding approaches under online conditions,
-we performed a simulated online analysis using the data recorded in the online phase. 
+The online phase allows the estimation of the closed-loop BCI application performance. In the online phase, we apply a chosen classifier trained on all the offline data. In order to make a comparative analysis of different decoding (classifications) approaches under online conditions, we performed a simulated online analysis. Namely, we trained different classifiers on all the offline data and evaluated their performance on the data recorded in the online phase. 
 
 \subsection{Fixation extraction and analysis}
 There exist numerous methods to extract eye movement events
@@ -701,9 +696,7 @@ Then the signal is spatially
 filtered with common-average-reference (CAR). 
 
 \subsubsection*{EEG processing in the simulated online analysis.}
-The EEG processing was identical to the offline analysis
-except for the eye movement artifacts removal.
-The multiple regression model was obtained from offline data.
+The EEG was  bandpass filtered by the same filters as in the offline phase. In addition, the eye movement artifacts removal is done using the multiple regression model obtained from the calibration data recorded in the offline phase.
 
 \subsubsection*{EEG processing in the online analysis.}
 The closed-loop interaction in the online phase required real-time processing.
@@ -732,7 +725,7 @@ We investigate and compare different decoding approaches which consist of
 various feature sets and classifiers.
 
 \subsubsection*{Offline and simulated online decoding.}
-For the offline analysis we chose the following combination of features and classifiers:
+The following combination of features and classifiers were applied in the offline and simulated online decoding:
 \begin{itemize}
     \item \textbf{PLR-Waveform}. Penalized logistic regression (PLR) trained on waveform features (i.e. the signal's
         value at each channel and time point) after reducing
