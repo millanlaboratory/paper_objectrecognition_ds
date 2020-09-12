@@ -754,7 +754,11 @@ The following combination of features and classifiers were applied in the offlin
 Since PLR is a linear regularized classifier 
 we standardize all the features to z-score when
 using PLR. For PLR we applied elastic net regularization
-with a major contribution from $\ell^2$-norm (1000 times greater than $\ell^1$-norm).
+with a major contribution from $\ell^2$-norm (1000 times greater than $\ell^1$-norm; $\lambda_2 >> \lambda_1$). The cost function of the PLR is given in Eq.1, where y corresponds to the class label, x represents EEG features and $\beta$ the estimated coefficients.  
+
+\begin{equation}
+\beta= arg min_{\beta} {|| y - \beta X||}^2 + \lambda_2 {||\beta||}^2+\lambda_1 {||\beta||}_1
+\end{equation}
 
 \subsubsection*{Online decoding.}
 The preliminary tests on two subjects showed that RF-Waveform classifier
