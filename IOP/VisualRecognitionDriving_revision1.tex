@@ -969,46 +969,50 @@ after the fixation onset.
 \label{sec:class}
 
 \begin{figure}[!t]
-    \includegraphics[trim={3cm 0cm 2cm 0cm},clip,width=1.1\columnwidth]{../images/ClassificationAll_FixDurSep.png}
+    \includegraphics[trim={3cm 0cm 2cm 0cm},clip,width=1.1\columnwidth]{../images/Classification12_FixDurSep.png}
     \caption{Performance of EFRP classification with various approaches in the offline analysis (top)
     and the simulated online analysis (bottom) as a percentage of AUC.
     Each dot shows single fold performance
     in a leave-one-run-out cross-validation for the corresponding classification approach.
     The overlaid gray bars at the top show the behavioral performance:
-    the number of mis-counts in the offline phase on the same scale as AUC percentage.}
+    the number of mis-counts in the offline phase with the respect to the right-hand y-axis.}
 \label{fig:classAll}
 \end{figure}
 
 \subsubsection*{Offline}
 All the classification methods yielded a single-trial 
-performance between 0.53 and 0.6 AUC on average
+performance between 0.52 and 0.60 AUC on average
 (Figure \ref{fig:classAll})
 which is statistically significant against the random level of 0.5 
 for all methods
 (p-values $< 0.05$ with t-test after Benjamini-Hochberg correction
 for 6 methods).
-Eight out of thirteen subjects achieve performance 
+Five out of twelve subjects achieve performance 
 above 0.6 for at least one of the approaches based
 on EEG features.
-The performance of different approaches has a different ranking per subject, however,
+The performance of different approaches has a different ranking per subject,
 the differences between
-the approaches are not statistically significant (F(5,60) $=4.8$, p-value $= 0.0009$ with repeated measures ANOVA).
-It is worth noticing that the combination of both dwell time and EEG waveform is not always
-better than just one of these feature sets.
+the approaches are statistically significant (F(5,55) $=6.5$, p-value $= 0.0001$ with repeated measures ANOVA).
+It is worth noticing that the combination of both dwell time and EEG waveform is
+better than just one of these feature sets with the post-hoc paired t-test
+providing p-value = $0.04$.
+\textit{Riemann} feature set has a poorer performance compared to \textit{Riemann+}
+feature set with the post-hoc paired t-test providing p-value = $0.002$.
 
 \subsubsection*{Simulated online}
-It is worth noting that the performance of EEG-based approaches
-on online data is consistent with the training performance on offline data.
-The average AUC values lie between 0.56 and 0.59 for each approach
+The average AUC values lie between 0.55 and 0.73 for each approach
 which is statistically significant against 0.5
 for all approaches.
 (p-values $< 0.05$ with t-test after Benjamini-Hochberg correction 
 for 6 approaches).
 
+It is worth noting that the performance of EEG-based approaches
+on online data is consistent with the training performance on offline data.
 For approaches relying on the dwell time, however, the performance drastically improved
 for multiple subjects compared to the offline performance.
 The average AUC for \textit{dwell} classifier increased
-from 56 to 73 and for the \textit{PLR-Combined} classifier from 59 to 67.
+from 57 to 73 (p-value $< 0.0001$ with paired t-test) and for 
+the \textit{PLR-Combined} classifier from 60 to 67 (p-value $= 0.01$ with paired t-test).
 This improvement is a direct consequence of the increased target dwell time
 together while non-target dwell time remained unchanged, see Figure \ref{fig:dwell}.
 However, the underlying question of why the dwell time changed 
@@ -1140,8 +1144,10 @@ was not required which might relax the cognitive load.
 We carefully designed stimuli
 to ensure that their recognition requires foveal vision.
 It is confirmed by the similar
-attendance rate on targets and non-targets and 
-by just a few errors in the counting task.
+attendance rate on targets and non-targets.
+%by just a few errors in the counting task.
+However, the difference is statistically significant 
+which suggests that could be rare cases of peripheral recognition.
 We were concerned that the introduction of new symbols in the online phase
 may change the behavior or the cognitive response due to the novelty.
 The balanced confusion matrices of decoding target recognition in the online phase
@@ -1196,6 +1202,8 @@ simulated their application to online data.
 All approaches, including waveform-based linear and non-linear and covariance-based 
 methods, resulted in a similar performance on average across subjects
 which is significantly above the chance level for all the approaches.
+The combination of waveform features with the dwell time outperforms
+other feature sets on average.
 However, there is no single best approach for all subjects.
 
 The actual online performance in closed-loop measured by the target symbol identification
@@ -1209,9 +1217,11 @@ which reflects the difference between the target and non-targets dwell times.
 However, this was not the case as the simulated online
 performance of the EEG-based decoders did not exhibit 
 the improvement achieved by the classification models based on
-dwell time. Also, a combination of the two sources of 
-information (EEG and dwell time) did not lead to significant
-improvement as compared to EEG alone. Future work will require 
+dwell time. 
+%Also, a combination of the two sources of 
+%information (EEG and dwell time) did not lead to significant
+%improvement as compared to EEG alone.
+Future work will require 
 incorporating techniques in the BCI decoders to cope
 with the natural temporal variability of EEG potentials 
 \cite{aydarkhanov_spatial_2020}.
