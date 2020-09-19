@@ -779,10 +779,12 @@ The inner loop is implemented with 4-fold cross-validation while keeping
 the temporal order of the trials before the split.
 Since the classes of target and non-target eye fixations are unbalanced,
 we utilized AUC to measure the classification performance.
-The group-level average performance was tested with t-test for each classifier.
+%The group-level average performance was tested with t-test for each classifier.
+The group-level average performance was tested with non-parametric one-sided one-sample Wilcoxon signed-rank test against the random level of 0.5 AUC for each classifier.
 The p-values are corrected with 
 the Benjamini-Hochberg correction \cite{benjamini_controlling_1995}.
-The differences between classifiers are estimated with a repeated measures ANOVA.
+%The differences between classifiers are estimated with a repeated measures ANOVA.
+The differences between classifiers are estimated with a non-parametric Friedman test.
 
 \subsubsection*{Simulated online performance evaluation.}
 After training the classifiers on all the offline data we applied them 
@@ -800,7 +802,7 @@ The confusion matrices were tested for independence
 with Pearson's chi-square test \cite{frs_x_1900} separately for each subject 
 with Benjamini-Hochberg correction.
 
-As for the level of statistical significance, we select the standard level of p-value $= 0.05$.
+As for the level of statistical significance, we select the standard level of $p = 0.05$.
 
 \section{Results}
 \label{sec:results}
@@ -813,14 +815,14 @@ the offline phase data via two measures: 1) the average number of all extracted
 dwells on boards per run and 2) the average dwell time (Table \ref{tab:EyeMethods}).
 The number of dwells obtained with IDT method is 10\% smaller (260 vs 284)
 which is a statistically significant difference
-(p-values $< 0.0001$ with one-tailed t-test).
+($p < 0.0001$ with one-tailed t-test).
 Since we used IDT method in the online phase,
 we missed 10\% of the fixations which led
 to either missed attendance or labeling some of the second
 fixations as first fixations.
 The dwell duration is slightly longer with IDT method (433 vs 408 ms)
 and it is not significantly different compared to I2MC method
-(p-values $= 0.06$ with one-tailed t-test).
+($p = 0.06$ with one-tailed t-test).
 
 \begin{table}
     \centering
@@ -852,10 +854,10 @@ In the offline phase subjects visually attended most of the boards. The attendan
 The average attendance rate
 is shown in Table \ref{tab:boardAtt}. 
 Two-way repeated measures ANOVA shows a minor significant effect 
-in the interaction (experimental phase x board type) with F(1,11) $= 8.927$, p-value $= 0.012$. 
-The main effect of board type (targets vs distractor) is also minor but significant with F(1,11) $= 4.923$, p-value $=0.0485$. 
+in the interaction (experimental phase x board type) with $F_{(1,11)} = 8.927$, $p = 0.012$. 
+The main effect of board type (targets vs distractor) is also minor but significant with $F_{(1,11)} = 4.923$, $p =0.0485$. 
 However, the experimental phase (offline vs online)
-shows a major and significant effect with F(1,11) $= 405$, p-value $< 0.0001$.
+shows a major and significant effect with $F_{(1,11)} = 405$, $p < 0.0001$.
 Since the effect of board type is statistically significant
 we can assume that subjects could sometimes differentiate between targets
 and distractors without directly looking at the board.
@@ -900,8 +902,8 @@ We analyzed the distribution of dwell times on targets vs non-targets
 in the offline and online phases (Figure \ref{fig:dwell}). 
 Most of the dwells are limited to the time between the boards pop up equal to 900 ms.
 The dwell times are identical for non-targets in both phases and significantly
-shorter than for targets (p-value $< 0.0001$).
-The median dwell time for targets is significantly longer in the online phase (p-value $< 0.0001$).
+shorter than for targets ($p < 0.0001$).
+The median dwell time for targets is significantly longer in the online phase ($p < 0.0001$).
 
 \begin{figure}[!t]
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.6\columnwidth]{../images/DwelltimeDist_online_allmean.pdf}
@@ -985,25 +987,29 @@ performance between 0.52 and 0.60 AUC on average
 (Figure \ref{fig:classAll})
 which is statistically significant against the random level of 0.5 
 for all methods
-(p-values $< 0.05$ with t-test after Benjamini-Hochberg correction
+($p < 0.05$ with Wilcoxon tests after Benjamini-Hochberg correction
 for 6 methods).
 Five out of twelve subjects achieve performance 
 above 0.6 for at least one of the approaches based
 on EEG features.
 The performance of different approaches has a different ranking per subject,
 the differences between
-the approaches are statistically significant (F(5,55) $=6.5$, p-value $= 0.0001$ with repeated measures ANOVA).
+%the approaches are statistically significant (F(5,55) $=6.5$, p-value $= 0.0001$ with repeated measures ANOVA).
+the approaches are statistically significant ($\chi^2_5 = 6.5$, $p = 0.0001$ with repeated measures ANOVA).
 It is worth noticing that the combination of both dwell time and EEG waveform is
-better than just one of these feature sets with the post-hoc paired t-test
-providing p-value = $0.04$.
+better than just one of these feature sets with the post-hoc 
+%paired t-test providing $p = 0.04$.
+one-sided Wilcoxon signed-rank providing $p = 0.04$.
 \textit{Riemann} feature set has a poorer performance compared to \textit{Riemann+}
-feature set with the post-hoc paired t-test providing p-value = $0.002$.
+feature set with the post-hoc
+%paired t-test providing $p = 0.002$.
+one-sided Wilcoxon signed-rank providing $p = 0.001$.
 
 \subsubsection*{Simulated online}
 The average AUC values lie between 0.55 and 0.73 for each approach
 which is statistically significant against 0.5
 for all approaches.
-(p-values $< 0.05$ with t-test after Benjamini-Hochberg correction 
+($p < 0.05$ with Wilcoxon tests after Benjamini-Hochberg correction 
 for 6 approaches).
 
 It is worth noting that the performance of EEG-based approaches
@@ -1011,8 +1017,8 @@ on online data is consistent with the training performance on offline data.
 For approaches relying on the dwell time, however, the performance drastically improved
 for multiple subjects compared to the offline performance.
 The average AUC for \textit{dwell} classifier increased
-from 57 to 73 (p-value $< 0.0001$ with paired t-test) and for 
-the \textit{PLR-Combined} classifier from 60 to 67 (p-value $= 0.01$ with paired t-test).
+from 57 to 73 ($p = 0.0002$ with one-sided Wilcoxon signed-rank) and for 
+the \textit{PLR-Combined} classifier from 60 to 67 ($p = 0.008$ with one-sided Wilcoxon signed-rank).
 This improvement is a direct consequence of the increased target dwell time
 together while non-target dwell time remained unchanged, see Figure \ref{fig:dwell}.
 However, the underlying question of why the dwell time changed 
@@ -1066,7 +1072,7 @@ detecting the target symbol at the end of a road segment based on the evidences 
 to decode driver’s brain responses to multiple instances of symbols along a road segment (Table \ref{tab:onlineperf}).
 The averaged accuracy 
 equals 0.37 and it is significantly above the random level of 0.25 for
-a multi-class classification with 4 balanced classes (p-value $< 0.0001$ with t-test).
+a multi-class classification with 4 balanced classes ($p < 0.002$ with one-sided one-sample Wilcoxon signed-rank test).
 Additionally, we applied a statistical test to assess the accuracy per subject.
 After adjusting p-values with Benjamini-Hochberg procedure 8 subjects performed statistically above chance level.
 
