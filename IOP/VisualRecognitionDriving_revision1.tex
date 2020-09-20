@@ -242,7 +242,7 @@ Early EEG deflections in EFRP reflect the processing of low-level features
 of visual input projected from the retina to the occipital lobe of the cortex
 and are manifested mainly in high-amplitude 
 of the P100 component, also referred to as lambda component \cite{evans_further_1952}.
-When fixating at a target object in free viewing visual search tasks, later EEG deflections in EFRP resemble the P300 component in the oddball paradigm \cite{brouwer_distinguishing_2013}.
+When fixating at a target object in free viewing visual search tasks, later EEG deflections in EFRP resemble the P300 component in the oddball paradigm \cite{brouwer_distinguishing_2013,kaunitz_looking_2014,devillez_eye_2015}.
 
 Visual stimuli used in previous ERP and EFRP studies range from simple geometric shapes
 in static scenes to static natural images or dynamic
@@ -600,7 +600,7 @@ The online phase allows the estimation of the closed-loop BCI application perfor
 
 \subsection{Fixation extraction and analysis}
 There exist numerous methods to extract eye movement events
-from the eye gaze direction \cite{}.
+from the eye gaze direction \cite{zhang_novel_2015,pena_detecting_2019}.
 We used a more robust and accurate method of 
 Identification by 2-Means Clustering (I2MC)
 \cite{hessels_noise-robust_2017}
@@ -656,7 +656,7 @@ fixations and smooth pursuit movements. The onset of the first fixation on a boa
 will coincide with the onset of smooth pursuit.
 
 Each detected fixation was assigned to a target board, a non-target board or non-board.
-Considering that (i) the visual span (the angular span) within which our vision is sharp enough to perform a given task extends up to several degrees, (ii) the driver's motion relative to the boards imposes visual tracking to perform the search task, and (iii) the noise in eye-tracking (a sudden and brief disruptions spanning several data samples are occasionally observed in the eye-tracking data), we applied the following approach to assign the boards to fixations. For each eye gaze sample, we estimate the probability of
+Considering that (i) the visual span (the angular span) within which our vision is sharp enough to perform a given task extends up to several degrees \cite{legge_psychophysics_2001}, (ii) the driver's motion relative to the boards imposes visual tracking to perform the search task, and (iii) the noise in eye-tracking (a sudden and brief disruptions spanning several data samples are occasionally observed in the eye-tracking data), we applied the following approach to assign the boards to fixations. For each eye gaze sample, we estimate the probability of
 fixating eyes on the center of the board according to a normal distribution.
 After averaging log-probabilities across the fixation time window we apply a hard
 threshold to assign the fixation to a board or a non-board category.
@@ -682,6 +682,7 @@ All the EEG and EOG were downsampled from 2 kHz to 256 Hz
 using FIR antialiasing lowpass filter
 and further filtered  with a Butterworth band-pass filter
 of order 4 within the band [1, 10] Hz  in a forward-backward way (to eliminate phase distortion).
+The filtering range is characteristic for P300 component \cite{demiralp_wavelet_2001}.
 Due to the low conductivity of the skull and the skin,
 the EEG signal is spatially smoothed so a high contrast between nearby channels
 is a result of noise and movement artifacts. We remove this noise
