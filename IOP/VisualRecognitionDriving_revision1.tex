@@ -130,7 +130,7 @@ of our approach in a closed-loop BCI setup.
 \textit{Main results.}
 By integrating decoding probabilities of multiple EFRP
 the online accuracy reached 0.37 $\pm$ 6 for 12 subjects in
-identifying one target out of four board types (at 0.25 chance level).
+identifying one target out of four board types which was statistically significantly above the chance level.
 Using the acquired data, we performed a comparative study
 of classification algorithms and feature spaces in
 a simulated online scenario. The EEG approaches yielded
@@ -539,7 +539,7 @@ with the eye fixations, the recognition by
 peripheral vision must be avoided. Therefore, the target and distracting
 symbols were similar and surrounded by the \# character to create
 a crowding effect and force the foveating on the main symbol
-as done in previous studies \cite{kamienkowski_fixation-related_2012}.
+as done in a previous study \cite{kamienkowski_fixation-related_2012}.
 Additionally, we added a bright red border around the board similar 
 to the traffic signs
 to create a contrast with the environment and facilitate
@@ -682,7 +682,7 @@ All the EEG and EOG were downsampled from 2 kHz to 256 Hz
 using FIR antialiasing lowpass filter
 and further filtered  with a Butterworth band-pass filter
 of order 4 within the band [1, 10] Hz  in a forward-backward way (to eliminate phase distortion).
-The filtering range is characteristic for P300 component \cite{demiralp_wavelet_2001}.
+The filtering range is characteristic for the P300 component \cite{demiralp_wavelet_2001}.
 Due to the low conductivity of the skull and the skin,
 the EEG signal is spatially smoothed so a high contrast between nearby channels
 is a result of noise and movement artifacts. We remove this noise
@@ -717,9 +717,14 @@ except for 2 steps:
 \end{itemize}
 
 \subsection{Decoding approaches}
-To decode visual recognition from EEG signals we extracted the epochs
+To decode visual target recognition from EEG signals,
+we solve the binary classification problem to classify EFRP epochs
+into Target vs Distractor. We extracted the EEG epochs
 around the fixation onset -- more precisely, the EEG activity within the time interval from
-200 ms to 1000ms following the fixation onset.
+200 ms to 1000ms following the fixation onset which is equal to 205 time points.
+Given the 64 channel montage, a single EEG epoch has a dimensionality of 
+$\mathbf{x} \in \mathbb{R}^{205 \times 64}$ or
+$\mathbf{x} \in \mathbb{R}^{13120}$ after vectorization.
 In addition, we extracted dwell time as eye-gaze based features to detect
 visual recognition (see Section \ref{sec:fixanal}).
 We investigate and compare different decoding approaches which consist of 
@@ -731,35 +736,39 @@ The following combination of features and classifiers were applied in the offlin
     \item \textbf{PLR-Waveform}. Penalized logistic regression (PLR) trained on waveform features (i.e. the signal's
         value at each channel and time point) after reducing
         the dimensionality with PCA. Only the components which explain 90\% of the variance
-        are kept. 
-    \item \textbf{PLR-Dwell}. PLR trained on dwell time on the boards.
+        are kept (transformed feature vector $\mathbf{z} \in \mathbb{R}^{86 \pm 11}$).
+    \item \textbf{PLR-Dwell}. PLR trained on dwell time on the boards ($\mathbf{z} \in \mathbb{R}^{1}$).
     \item \textbf{PLR-Combined}. PLR trained on the combination of waveform features with dwell time. We concatenate
-        the dwell time and EEG waveform features after applying PCA to keep 95\% of variance. 
+        the dwell time and EEG waveform features after applying PCA to keep 95\% of variance ($\mathbf{z} \in \mathbb{R}^{87 \pm 11}$). 
         %Since the dynamic range of dwell time in ms is greater than the one of EEG in uV, most of the dwell time information
         %is projected into the first component and kept after the transformation.
 
     \item \textbf{RF-Waveform}. Random forest trained on waveform features. We use 100 decision trees and
-        with a maximum depth of 5.
+        with a maximum depth of 5 ($\mathbf{z} \in \mathbb{R}^{13120}$).
     \item \textbf{PLR-Riemann}. PLR trained on Riemannian features from simple EEG epochs.
         To build Riemannian features we
         estimate spatial covariance matrix with shrinkage and project it
         to the tangent space according to the classical Riemannian geometry on SPD matrices
         \cite{barachant_multiclass_2012}.
-        We subselected 8 channels based on the mean Fisher score across the epoch.
+        We subselected 8 channels based on the mean Fisher score across the epoch
+        ($\mathbf{z} \in \mathbb{R}^{36}$).
     \item \textbf{PLR-Riemann+}. PLR trained on Riemannian features from augmented epochs.
         Before computing the covariance matrix we augment the epoch with the averaged ERP
         for each class (target and non-target). Otherwise, it is identical to the previous
-        approach.
+        approach ($\mathbf{z} \in \mathbb{R}^{300}$).
 \end{itemize}
 
 Since PLR is a linear regularized classifier 
 we standardize all the features to z-score when
 using PLR. For PLR we applied elastic net regularization
-with a major contribution from $\ell^2$-norm (1000 times greater than $\ell^1$-norm; $\lambda_2 >> \lambda_1$). The cost function of the PLR is given in Eq.1, where y corresponds to the class label, x represents EEG features and $\beta$ the estimated coefficients.  
+with a major contribution from $\ell^2$-norm (1000 times greater than $\ell^1$-norm; $\lambda_2 >> \lambda_1$).
 
-\begin{equation}
-\beta= arg min_{\beta} {|| y - \beta X||}^2 + \lambda_2 {||\beta||}^2+\lambda_1 {||\beta||}_1
-\end{equation}
+%The cost function of the PLR is given in Eq.1, where y corresponds to the class label, $\mathbf{x}$ represents EEG features and $\beta$ the estimated coefficients.  
+
+%\begin{equation}
+    %\beta= arg min_{\beta} {|| y - \beta \mathbf{x}||}^2 + \lambda_2 {||\beta||}^2+\lambda_1 {||\beta||}_1
+
+%\end{equation}
 
 \subsubsection*{Online decoding.}
 The preliminary tests on two subjects showed that RF-Waveform classifier
@@ -874,13 +883,14 @@ this effect is negligible in the context of our study.
     \centering
     \caption{The board attendance rate for targets and non-targets in the offline and online phases with IDT method of fixation
         extraction.
-    The numbers represent the average and standard deviation across subjects.}
+    The values represent the average and standard deviation across 12 subjects.
+The values in parentheses represent the number of boards per subject.}
     \begin{tabular}{c | c | c}
         \hline 
         & Offline & Online \\
         \hline 
-        Targets & 0.92 $\pm$ 0.07 & 0.47 $\pm$ 0.06 \\
-        Non-Targets & 0.92 $\pm$ 0.07 & 0.44 $\pm$ 0.09 \\
+        Targets & 0.92 $\pm$ 0.07 (173) & 0.47 $\pm$ 0.06 (213 $\pm$ 39)\\
+        Non-Targets & 0.92 $\pm$ 0.07 (547) & 0.44 $\pm$ 0.09  (635 $\pm$ 120)\\
         \hline 
     \end{tabular}
     \label{tab:boardAtt}
@@ -1184,7 +1194,7 @@ deflection at 100 ms. It is clearly present in most of the first fixations on bo
 Moreover, we could also see it for the following fixations.
 During the dwell time, multiple fixations can be detected 
 what leads to the overlap of the P300-like component
-locked to the 1st fixation and the following early EFRP component.
+locked to the first fixation and the following early EFRP component.
 In contrast to the classical P300 paradigms where the timing
 of the visual input is controlled (regular timing), here the
 overlap of EFRP is variable across trials.
