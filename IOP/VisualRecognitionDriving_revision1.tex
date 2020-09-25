@@ -598,6 +598,20 @@ comparative study of different classifiers.
 
 The online phase allows the estimation of the closed-loop BCI application performance. In the online phase, we apply a chosen classifier trained on all the offline data. In order to make a comparative analysis of different decoding (classifications) approaches under online conditions, we performed a simulated online analysis. Namely, we trained different classifiers on all the offline data and evaluated their performance on the data recorded in the online phase. 
 
+The data processing for offline and online phases as well as for simulated online analysis is 
+summarized in Figure \ref{fig:flowchart}.
+
+
+\begin{figure}[!t]
+    \centering
+    \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=\textwidth]{../images/DataProcessing3.pdf}
+    \caption{The summary of the data processing in offline and online phases and in simulated online
+    analysis. The boxes represent actions whereas the text without boxes represents data.}
+\label{fig:flowchart}
+\end{figure}
+
+
+
 \subsection{Fixation extraction and analysis}
 There exist numerous methods to extract eye movement events
 from the eye gaze direction \cite{zhang_novel_2015,pena_detecting_2019}.
