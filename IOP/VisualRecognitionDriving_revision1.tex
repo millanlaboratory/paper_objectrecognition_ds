@@ -303,7 +303,7 @@ The latter challenges collecting clean data while the former challenges
 the EFRP decoding itself.
 
 The experiment consisted of 2 phases: offline and online.
-The goal of the offline phase was two-fold: (1) to analyze behavioral
+The goal of the offline phase was two-fold: (1) to analyze ocular
 and neural correlates of visual recognition and (2) to gather data to train a single-trial classifier that differentiates between attending boards with the target and non-target symbols to be used in the BCI application (the online phase).
 Then we conducted the online phase which allows us to examine the single-trial classifier performance in a closed-loop setting and, as a major objective, to verify the feasibility of the corresponding BCI application for detecting the drivers' interest along a road segment.
 
@@ -588,7 +588,7 @@ is selected as an identified target.
 \section{Methods}
 \label{sec:methods}
 %\subsection{Performed analyses}
-Our analysis of EEG and behavioral data, as well as visual
+Our analysis of EEG and eye-tracking data, as well as visual
 recognition decoding, has different objectives in the offline and online phases.
 The offline phase is necessary for collecting good quality data
 for training a classifier to be used in closed-loop during the online phase
@@ -680,13 +680,13 @@ modified for computational efficiency. It was based
 on the first 100 ms after fixation onset and
 used on the average fixation direction within 100 ms.
 
-For the behavioral analysis, we estimate 
+For the gaze analysis, we estimate 
 the dwell time -- the uninterrupted time which the driver spent looking at a board.
 The dwells were created
 by merging all the fixations on the same board with the inter-fixation interval 
 between them below 50 ms.
 For the sake of valid comparison between offline and online phases 
-in behavioral analysis, we used IDT method to extract fixations.
+in gaze analysis, we used IDT method to extract fixations.
 
 
 
@@ -834,7 +834,7 @@ As for the level of statistical significance, we select the standard level of $p
 
 \section{Results}
 \label{sec:results}
-\subsection{Behavioral analysis}
+\subsection{Gaze analysis}
 
 \subsubsection*{Comparison of fixation extraction methods I2MC vs IDT}
 We used two different methods to extract fixations in the offline 
@@ -875,7 +875,7 @@ and it is not significantly different compared to I2MC method
 One of the subjects
 had a poor quality of eye tracker calibration which led
 to poor fixation extraction.
-This subject is excluded from the behavioral analysis.
+This subject is excluded from the gaze and other analysis.
 For the analysis of attendance rate, we used IDT method to extract fixations 
 for the data from both offline and online phases.
 In the offline phase subjects visually attended most of the boards. The attendance rate is almost halved in the online phase. 
