@@ -625,8 +625,7 @@ easy to implement method for real-time processing \cite{salvucci_identifying_200
 
 
 \subsubsection*{Offline phase.}
-We relied on the I2MC implementation provided by the authors of the method
-using the default parameters.
+We relied on the I2MC implementation provided by the authors of the method.
 The main idea behind this method is to find the transition between two consecutive fixations
 by applying 2-mean clustering in a sliding window manner.
 During a fixation, the eyes do not move so if we can clearly detect
@@ -634,6 +633,10 @@ During a fixation, the eyes do not move so if we can clearly detect
 it means that they correspond to two fixations.
 This method is more precise and robust to noisy outliers which
 allows to obtain a training dataset of higher quality.
+We used the values suggested by the authors for most of the numerous parameters.
+The major changes include the minimum duration of the fixation adjusted
+to match the value used for the IDT method (100 ms) and removal of downsampling
+procedure due to lower sampling rate than in the original work.
 
 \subsubsection*{Online phase.}
 Since the available implementation of I2MC method cannot be applied 
