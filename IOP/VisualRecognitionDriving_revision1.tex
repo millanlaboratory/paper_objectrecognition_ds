@@ -388,7 +388,7 @@ recommendations and assistance.
 \begin{figure}[!t]
     %\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.6\columnwidth]{../images/Driving-photo.jpg}
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.9\columnwidth]{../images/setup_protocol3.png}
-    \caption{Visualization of the protocol.
+    \caption{Visualization of the experimental setup and protocol.
         Top left: The experimental setup with the driving simulator (chair and 3 3D screens), 
         Eye-tracker and subject with EEG cap.
         Middle left: screenshot from the beginning of the road with the cue on the floor
@@ -508,7 +508,8 @@ In total, a quarter of the road segments were empty.
 \begin{figure}[!t]
 \center
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.80\columnwidth]{../images/Stimuli.png}
-    \caption{The boards with the used symbols. In the offline phase, we used only boards 
+    \caption{The boards with the used symbols. With one of them being a target symbol per road segment
+        subjects were instructed to recognize and count targets. In the offline phase, we used only boards 
         with symbol E and flipped E whereas in the online phase we used all 4 boards.}
 \label{fig:boards}
 \end{figure}
@@ -949,11 +950,13 @@ The median dwell time for targets is significantly longer in the online phase ($
 \begin{figure}[!t]
     \includegraphics[trim={0cm 0cm 1.5cm 0cm},clip,width=0.45\columnwidth]{../images/offline/Epochs_GA_chCz_Saggregate_objrec_subjects_popuponline_s1.pdf}
     \includegraphics[trim={0cm 0cm 1.5cm 0cm},clip,width=0.45\columnwidth]{../images/online/Epochs_GA_chCz_Saggregate_objrec_subjects_popuponline_s1.pdf}
-    \caption{The signal of Cz channel for extracted epochs aggregated
-        for the 4 best performing subjects with the PLR-Waveform approach.
-        Left: offline, Right: online.
+    \caption{The signal of Cz channel for extracted EFRP epochs aggregated
+        for the 4 best performing subjects with the offline AUC above 0.6 with the PLR-Waveform approach.
+        Left: offline phase. Right: online phase.
+        Top panel: target EFRP epochs. Middle panel: non-target EFRP epochs.
+        Bottom line plot: average signal across target and non-target EFRP epochs.
         The epochs are ordered according to the dwell time
-        shown with the black curve.
+        shown with the black S-shaped curve.
     }
 \label{fig:epochsCz}
 \end{figure}
@@ -964,8 +967,8 @@ The median dwell time for targets is significantly longer in the online phase ($
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.9\columnwidth]{../images/offline/TopoPlot_TLock-start_signRSquare_Saggregate_objrec_subjects_popuponline_s1.pdf}
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.9\columnwidth]{../images/online/TopoPlot_TLock-start_signRSquare_Saggregate_objrec_subjects_popuponline_s1.pdf}
     \caption{The discriminant power for the aggregated epochs of
-        4 best subjects with the offline AUC above 0.6 with the PLR-Waveform approach.
-    Signed $R^2$ is demonstrated for midline channels across around the eye fixation onset
+        the 4 best performing subjects with the offline AUC above 0.6 with the PLR-Waveform approach.
+    Signed $R^2$ is demonstrated for midline channels around the eye fixation onset
     (top left: offline, top right: online) and on topographic maps (top map: offline, bottom map: online).}
 \label{fig:signR}
 \end{figure}
@@ -975,7 +978,7 @@ We present the analysis of the aggregated EFRP waveform
 for the 4 subjects who demonstrated
 the highest classification performance in the offline phase with the 
 PLR-Waveform classifier because it allows for direct representation
-of the features used by a linear classifier (see Section \ref{sec:class}).
+of the features used by a linear classifier (see Section \ref{sec:class}, Figure \ref{fig:classAll}).
 
 We visualized the representative Cz channel signal
 for each eye fixation while ordering them
@@ -1071,7 +1074,10 @@ between the offline and the online phases still remains.
 
 \begin{table}
     \centering
-    \caption{Online performance. The test results show the p-values after Benjamini-Hochberg correction.
+    \caption{Summary of online performance: accuracy of target decoding per road segment
+        and p-values for two statistical tests. The accuracy is tested with binomial distribution.
+        The recognition of a target symbol independent of the actual symbol is tested
+        with a chi-square test of independence.  The p-values are corrected with Benjamini-Hochberg method per row.
     Statistically significant results are typed in bold.}
     %\tiny
     %\footnotesize
