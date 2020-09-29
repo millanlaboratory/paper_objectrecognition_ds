@@ -145,10 +145,10 @@ of our approach in a closed-loop BCI setup.
 \textit{Main results.}
 To identify the target out of four symbol types along a road segment, the BCI system integrated decoding probabilities of multiple EFRP and achieved the average online accuracy of 0.37 $\pm$ 6 (12 subjects), statistically significantly above the chance level.
 Using the acquired data, we performed a comparative study
-of classification algorithms and feature spaces in
+of classification algorithms (discriminating target vs. non-target) and feature spaces in
 a simulated online scenario. The EEG approaches yielded
 similar moderate performances not higher than 0.6 AUC,
-yet significantly above the chance level.
+yet statistically significantly above the chance level.
 In addition, the gaze duration (dwell time) appears
 to be an additional informative feature in this context.
 \textit{Significance.}
@@ -559,7 +559,7 @@ their identification (Figure \ref{fig:boards}).
 
 \subsubsection*{Symbols in the offline phase.}
 In the offline phase, one of the two symbols were depicted on each board:
-E and $\exists$.
+ \rotatebox[origin=c]{180}{$\exists$} and $\exists$.
 One of them was randomly chosen as a target per road segment
 and was presented as the cue
 at the beginning of the road. There were 2-4 targets out of 12 boards
@@ -944,9 +944,9 @@ the worst performance was at 15 errors (see the number of mis-counts in Figure \
 We analyzed the distribution of dwell times on targets vs non-targets
 in the offline and online phases (Figure \ref{fig:dwell}). 
 Most of the dwells are limited to the time between the boards pop up equal to 900 ms.
-The dwell times are identical for non-targets in both phases and significantly
+The dwell times are identical for non-targets in both phases and statistically significantly
 shorter than for targets ($p < 0.0001$).
-The median dwell time for targets is significantly longer in the online phase ($p < 0.0001$).
+The median dwell time for targets is statistically significantly longer in the online phase ($p < 0.0001$).
 
 \begin{figure}[!t]
 \center
@@ -1124,7 +1124,7 @@ We assessed the task performance for each subject as the accuracy of
 detecting the target symbol at the end of a road segment based on the evidences obtained by applying a RF-Waveform classifier
 to decode driver’s brain responses to multiple instances of symbols along a road segment (Table \ref{tab:onlineperf}).
 The averaged accuracy 
-equals 0.37 and it is significantly above the random level of 0.25 for
+equals 0.37 and it is statistically significantly above the random level of 0.25 for
 a multi-class classification with 4 balanced classes ($p < 0.002$ with one-sided one-sample Wilcoxon signed-rank test).
 Additionally, we applied a statistical test to assess the accuracy per subject.
 After adjusting p-values with Benjamini-Hochberg procedure 8 subjects performed statistically above chance level.
@@ -1267,7 +1267,7 @@ However, there is no single best approach for all subjects.
 The actual online performance in closed-loop measured by the target symbol identification
 is significantly above the chance level for 8 subjects.
 Nonetheless, on average across subjects, the accuracy of 0.37 is 
-significantly higher than 0.25.
+statistically significantly higher than 0.25.
 
 One can argue that the relatively good performance of EFRP-based classifiers is
 due to the strong and well-aligned evoked potentials after the fixations offset,
