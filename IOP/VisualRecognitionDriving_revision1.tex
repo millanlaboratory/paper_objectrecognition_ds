@@ -473,13 +473,12 @@ and finish lines (Figure \ref{fig:setup}).
 %\end{figure}
 
 \subsection{Tasks}
-The experimental session had 2 phases: offline and online.
-The data collected in the offline phase allows us to train a single-trial classifier that differentiates between attending the target and non-target symbols. The online phase illustrates how this classifier can be used in the closed-loop BCI application for detecting the symbol the driver is interested in along a road segment.In particular, the single-trial classifier is used to decode driver's brain responses to multiple instances of symbols along a road segment. The BCI system inferres the target symbol based on these accumulated evidences and shows it to the driver as a feedback at the end of a road segment.
-In both phases, the subject is instructed to drive through the city (without stopping) while
+The experimental session had 2 phases: offline and online. In both phases, the subject is instructed to drive through the city (without stopping) while
 following indications left or right turn at the crossings (Figure \ref{fig:setup}).
 At the beginning of a road segment, a symbol (the cue) is depicted
 on the ground. Subjects must memorize and search for it among
-the boards appearing through the road segment.
+the boards appearing through the road segment. 
+The data collected in the offline phase allows us to train a single-trial classifier that differentiates between attending the target and non-target symbols. The online phase illustrates how this classifier can be used in the closed-loop BCI application for detecting the symbol the driver is interested in along a road segment. In particular, the single-trial classifier is used to decode driver's brain responses to multiple instances of symbols along a road segment. The BCI system inferres the target symbol based on these accumulated evidences and shows it to the driver as a feedback at the end of a road segment.
 
 %Subjects are asked to count the number of boards with the target symbol in each segment. 
 %To keep subjects engaged in the task, they have to
@@ -488,12 +487,12 @@ the boards appearing through the road segment.
 %after they cross a finish line at the end of each road.
 
 \subsubsection*{Offline phase.}
-Subjects are asked to count the number of boards with the target symbol along a road segment. To keep subjects engaged in the task, they have to report the number of targets at the end of a road segment. After crossing the finish line the subject presses 
+Subjects are asked  to search and count the number of boards with the target symbol along a road segment. To keep subjects engaged in the task, they have to report the number of targets at the end of a road segment. After crossing the finish line the subject presses 
 a button located at the steering wheel as many times
 as the number of target boards he/she counted along the current road.
 
 \subsubsection*{Online phase.}
-At the end of a road segment, after crossing the finish line the inferred target symbol is rendered at the bottom of the screen as a 2D object (Figure \ref{fig:setup}). Subjects are instructed to pay attention to this feedback. 
+Subjects are instructed to search for boards with the target symbol and to pay attention to the feedback at the end of a road segment -- after crossing the finish line the inferred target symbol is rendered at the bottom of the screen as a 2D object (Figure \ref{fig:setup}). 
 The online phase resembles a closed-loop interaction because
 the subjects perceive the decoder result shortly after
 looking at the stimuli, within 15 seconds after the first board on the road.
@@ -523,7 +522,7 @@ The boards appear along the road at an equal distance between them,
 randomly on either side of the road above the sidewalks
 with a maximum of 2 boards
 on the same side in a row  (e.g., 2 boards on the left in Figure \ref{fig:setup}). The number of boards on the left
-and right sides is balanced. Since the pop-up distance was greater than the distance between the boards along the road, there is a time overlap in the presence of multiple boards at the same side, so their positions (horizontal and vertical coordinates) were chosen to avoid the overlap for the driver view.
+and right sides is balanced. The pop-up distance was greater than the distance between the boards along the road creating a time overlap in the presence of multiple boards at the same side. For this reason, the predefined  boards' positions (horizontal and vertical coordinates) were chosen to avoid the overlap for the driver view.
 
 The maximum speed of the car was limited to 80 km/h to ensure 
 that all the targets
@@ -557,16 +556,15 @@ on each road segment with the average proportion of the targets of 0.25 in total
 \subsubsection*{Symbols in the online phase.}
 In the online scenario that corresponds to the BCI application, we included four different symbols. This is done to mimic to some extent diversity of the natural visual environment (e.g. traffic signs) and to estimate the generalization of the training oddball paradigm. Since the BCI application detects the symbol drivers are interested in along a road segment, 4 symbols allow equal occurance rate of symbols and thus the equal evidence accumulation, while the target symbol appearance is still a rare event. 
 There were between 2 and 4 boards of each symbol resulting in 12 boards on the road.
-Only one of them was a target on each road segment. Therefore, the proportion
+Only one symbol was a target on each road segment. Therefore, the proportion
 of the targets was 0.25 on average per a road section in a run as in the offline phase.
 
 
-To decode the target at the end of the road each EFRP associated with the
-symbol attendance
-is assigned a probability to belong to the target class.
+To infer the target symbol at the end of the road each EFRP associated with the
+symbol attendance is assigned a probability to belong to the target class. 
 At the end of the road segment, the probabilities
 of all EFRPs are aggregated symbol-wise by averaging.
-The symbol that has the highest probability of a target class
+The symbol that has the highest average probability of being a target class
 is selected as an identified target.
 
 \begin{table}
