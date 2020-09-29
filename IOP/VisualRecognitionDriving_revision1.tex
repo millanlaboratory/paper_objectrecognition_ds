@@ -1278,6 +1278,30 @@ incorporating techniques in the BCI decoders to cope
 with the natural temporal variability of EEG potentials 
 \cite{aydarkhanov_spatial_2020}.
 
+A critical part of real-time systems such as the one implemented in our
+experiments is the computational cost of the used algorithms.
+The approaches used in online phase proved to be time efficient without
+causing delays. Eye fixation extraction was successfully done
+with IDT provided by SMI. 
+I2MC method requires more computation due to a clustering step 
+on a sliding window manner, however, it might also 
+be suitable for a real-time application.
+Spatial and temporal filtering as well as eye movement artifact removal
+are fast linear operations.
+Regarding feature extraction and inference of the classifier,
+these steps are the least demanding in terms of computational time
+because they are applied only as frequently as the relevant
+eye fixations are detected. All mentioned pairs of features and classifiers
+were applicable in the current setup, therefore,
+it did not affect the choice of the approach in the online phase.
+Nonetheless, the training even on a single subject data required 
+considerable amount of time especially when applied multiple
+times within nested cross validation. The most demanding
+steps included estimation of parameters for Riemannian features
+and for Random Forest classifier. This led to an extended
+pause between offline and online phases of the experimental session.
+
+
 Finally, in this study, our focus was on detecting the EEG correlates of object recognition in free viewing visual search tasks during driving. Ocular correlates such as pupil dilation along with multi-modal
 integration of neural and ocular correlates may be further investigated
 in future studies.
