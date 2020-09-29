@@ -50,6 +50,21 @@
 %Uncomment next line if AMS fonts required
 %\usepackage{iopams}  
 
+\usepackage{pict2e}
+
+\DeclareRobustCommand{\eightsymbol}{%
+  \begingroup\setlength{\unitlength}{\fontcharht\font`A}%
+  \begin{picture}(.5,1)
+  \roundcap
+  \put(0,1){\line(1,0){.5}}
+  \put(0,1){\line(0,-1){1}}
+ \put(0.5,1){\line(0,-1){1}}
+  \put(0,0){\line(1,0){.5}}
+ \put(0,0.5){\line(1,0){.5}}
+  \end{picture}%
+  \endgroup
+}
+
 \begin{document}
 
 \title[]{Closed-loop EEG study on visual recognition during driving}
@@ -123,14 +138,12 @@ in the environment while driving a car-simulator.
 Given that subjects exhibit an unconstrained overt 
 visual behavior, we based our study on 
 eye fixation related potentials (EFRP).
-We report on visual behavior and single-trial 
+We report on gaze behavior and single-trial 
 EFRP decoding performance (fixations on task-related vs. distracting objects).
 In addition, we demonstrate the application
 of our approach in a closed-loop BCI setup.
 \textit{Main results.}
-By integrating decoding probabilities of multiple EFRP
-the online accuracy reached 0.37 $\pm$ 6 for 12 subjects in
-identifying one target out of four board types which was statistically significantly above the chance level.
+To identify the target out of four symbol types along a road segment, the BCI system integrated decoding probabilities of multiple EFRP and achieved the average online accuracy of 0.37 $\pm$ 6 (12 subjects), statistically significantly above the chance level.
 Using the acquired data, we performed a comparative study
 of classification algorithms and feature spaces in
 a simulated online scenario. The EEG approaches yielded
@@ -172,7 +185,6 @@ Visual recognition
 
 \section{Introduction}
 \label{sec:intro}
-
 %Decoding of neural and behavioral correlates 
 %of visual recognition is complex in everyday life.
 %%Driving is a good example of daily activity in real life
@@ -285,7 +297,7 @@ was around $0.65$ AUC on average across subjects.
 
 In this paper, we report a study on visual recognition decoding during driving
 in a car simulator based on the Eye Fixation Related
-Potentials and visual behavior. 
+Potentials and gaze behavior. 
 In our study 13 subjects visually attended sign boards along the roads
 while primarily engaged in active driving through
 an urban environment with a natural speed of $\thicksim$ 80 km/h. 
@@ -386,16 +398,16 @@ recommendations and assistance.
 
 
 \begin{figure}[!t]
+\center
     %\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.6\columnwidth]{../images/Driving-photo.jpg}
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.9\columnwidth]{../images/setup_protocol3.png}
     \caption{Visualization of the experimental setup and protocol.
         Top left: The experimental setup with the driving simulator (chair and 3 3D screens), 
         Eye-tracker and subject with EEG cap.
-        Middle left: screenshot from the beginning of the road with the cue on the floor
+        Middle left: A screenshot from the beginning of the road with the cue on the floor
         and the first board on the left-hand side.
-        Bottom left: screenshot with the online phase feedback for correct decoding, i.e.
-        the 2D board at the bottom of the screen and a green circle.
-        Right: schematic drawing of a road segment with the target cue, boards, indications left/right turn at the crossings and finish line. Note that the boards are invisible until they are approached to a close distance.
+        Bottom left: A screenshot (in the online phase) showing the feedback after the finish line for the correct target symbol detection -- a green circle and the 2D board of the inferred target symbol. 
+        Right: The schematic drawing of a road segment with the target cue, boards, indications left/right turn at the crossings and finish line. Note that the boards are invisible until they are approached to a close distance.
 
     }
 \label{fig:setup}
@@ -937,6 +949,7 @@ shorter than for targets ($p < 0.0001$).
 The median dwell time for targets is significantly longer in the online phase ($p < 0.0001$).
 
 \begin{figure}[!t]
+\center
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.6\columnwidth]{../images/DwelltimeDist_online_allmean.pdf}
     \caption{Dwell time distribution for first dwells on
     targets vs distractors in the offline and online phases. The single-subject
@@ -946,6 +959,7 @@ The median dwell time for targets is significantly longer in the online phase ($
 
 \subsection{EFRP waveform}
 \begin{figure}[!t]
+\center
     \includegraphics[trim={0cm 0cm 1.5cm 0cm},clip,width=0.45\columnwidth]{../images/offline/Epochs_GA_chCz_Saggregate_objrec_subjects_popuponline_s1.pdf}
     \includegraphics[trim={0cm 0cm 1.5cm 0cm},clip,width=0.45\columnwidth]{../images/online/Epochs_GA_chCz_Saggregate_objrec_subjects_popuponline_s1.pdf}
     \caption{The signal of Cz channel for extracted EFRP epochs aggregated
@@ -960,6 +974,7 @@ The median dwell time for targets is significantly longer in the online phase ($
 \end{figure}
 
 \begin{figure}[!t]
+\center
     \includegraphics[trim={0cm 0.01cm 0cm 0cm},clip,width=0.45\columnwidth]{../images/SignR_offline.pdf}
     \includegraphics[trim={0cm 0cm 0cm 0.01cm},clip,width=0.45\columnwidth]{../images/SignR_online.pdf}
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.9\columnwidth]{../images/offline/TopoPlot_TLock-start_signRSquare_Saggregate_objrec_subjects_popuponline_s1.pdf}
@@ -1004,6 +1019,7 @@ after the fixation onset.
 \label{sec:class}
 
 \begin{figure}[!t]
+\center
     \includegraphics[trim={3cm 0cm 2cm 0cm},clip,width=1.1\columnwidth]{../images/Classification12_FixDurSep.png}
     \caption{Performance of EFRP classification with various approaches in the offline analysis (top)
     and the simulated online analysis (bottom) as a percentage of AUC.
@@ -1061,7 +1077,8 @@ between the offline and the online phases still remains.
 \subsection{Online performance}
 
 \begin{figure}[!t]
-    \includegraphics[trim={1cm 0cm 1cm 1cm},clip,width=0.7\columnwidth]{../images/OnlineConfusion_percent.png}
+\center
+    \includegraphics[trim={1cm 0cm 1cm 1cm},clip,width=0.7\columnwidth]{../images/OnlineConfusion_percent_eight.png}
     %\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.5\columnwidth]{../images/OnlineConfusion.png}
     \caption{The aggregated confusion matrix of online decoding for each type of symbol being
     a target class. The absolute number of cases is presented and normalized as a percentage 
@@ -1119,7 +1136,6 @@ After adjusting p-values with Benjamini-Hochberg procedure
 only two subjects show a significant imbalance in the
 confusion matrix. It is linked to the high accuracy of the symbol $\Xi$ and low accuracy 
 for the symbol E.
-
 
 \section{Discussion}
 \label{sec:discussion}
