@@ -599,15 +599,9 @@ is selected as an identified target.
 \section{Methods}
 \label{sec:methods}
 %\subsection{Performed analyses}
-Our analysis of EEG and eye-tracking data, as well as visual
-recognition decoding, has different objectives in the offline and online phases.
-The offline phase is necessary for collecting good quality data
-for training a classifier to be used in closed-loop during the online phase
-and to estimate its performance. However, it also allows us 
-to study EEG correlates of visual recognition and  perform a
-comparative study of different classifiers.
+The offline and online phases of our experiment have different objectives. As earlier explained, the offline phase is necessary for collecting good quality data for training a classifier which differentiates between attending target and non-target objects to be used in the closed-loop BCI in the online phase. However, it also allows us to study EEG correlates of visual recognition and perform a comparative study of different classification algorithms. The online phase allows the estimation of the closed-loop BCI application performance. In the online phase, we apply a chosen classifier trained on all the offline data. 
 
-The online phase allows the estimation of the closed-loop BCI application performance. In the online phase, we apply a chosen classifier trained on all the offline data. In order to make a comparative analysis of different decoding (classifications) approaches under online conditions, we performed a simulated online analysis. Namely, we trained different classifiers on all the offline data and evaluated their performance on the data recorded in the online phase. 
+In order to make a comparative analysis of different decoding (classifications) approaches under online conditions, we performed a simulated online analysis. Namely, we trained different classifiers on all the offline data and evaluated their performance on the data recorded in the online phase. 
 
 The data processing for offline and online phases as well as for simulated online analysis is 
 summarized in Figure \ref{fig:flowchart}.
@@ -747,7 +741,7 @@ except for 2 steps:
 \subsection{Decoding approaches}
 To decode visual target recognition from EEG signals,
 we solve the binary classification problem to classify EFRP epochs
-into Target vs Distractor. We extracted the EEG epochs
+into Target vs Non-target. We extracted the EEG epochs
 around the fixation onset -- more precisely, the EEG activity within the time interval from
 200 ms to 1000ms following the fixation onset which is equal to 205 time points.
 Given the 64 channel montage, a single EEG epoch has a dimensionality of 
@@ -897,12 +891,12 @@ The average attendance rate
 is shown in Table \ref{tab:boardAtt}. 
 Two-way repeated measures ANOVA shows a minor significant effect 
 in the interaction (experimental phase x board type) with $F_{(1,11)} = 8.927$, $p = 0.012$. 
-The main effect of board type (targets vs distractor) is also minor but significant with $F_{(1,11)} = 4.923$, $p =0.0485$. 
+The main effect of board type (targets vs non-target) is also minor but significant with $F_{(1,11)} = 4.923$, $p =0.0485$. 
 However, the experimental phase (offline vs online)
 shows a major and significant effect with $F_{(1,11)} = 405$, $p < 0.0001$.
 Since the effect of board type is statistically significant
 we can assume that subjects could sometimes differentiate between targets
-and distractors without directly looking at the board.
+and non-targets without directly looking at the board.
 However due to the small difference in the attendance rate
 this effect is negligible in the context of our study.
 
@@ -952,7 +946,7 @@ The median dwell time for targets is statistically significantly longer in the o
 \center
     \includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.6\columnwidth]{../images/DwelltimeDist_online_allmean.pdf}
     \caption{Dwell time distribution for first dwells on
-    targets vs distractors in the offline and online phases. The single-subject
+    targets vs non-targets in the offline and online phases. The single-subject
     distributions were smoothed and averaged across subjects.}
 \label{fig:dwell}
 \end{figure}
@@ -1187,7 +1181,7 @@ based on the dwell time.
 
 The board attendance rate reveals two aspects of the task completion:
 (1) how well the subjects coped with the pace and attentional load
-and (2) whether they can differentiate between targets and distractors
+and (2) whether they can differentiate between targets and non-targets
 using their peripheral vision.
 We observed a statistically significant difference in the board attendance
 between offline and online phases despite the equal number of boards.
@@ -1255,8 +1249,8 @@ as well as low-level features of the visual input
 %and direct eye movement potential propagation by regressing it out 
 %from the EOG signal.
 
-We compared multiple classification approaches based on EFRP on offline data and 
-simulated their application to online data.
+We compared multiple EFRP-based classification approaches on the offline data. In addition, 
+we did the comparative study using the recorded online data (simulated online analysis).
 All approaches, including waveform-based linear and non-linear and covariance-based 
 methods, resulted in a similar performance on average across subjects
 which is significantly above the chance level for all the approaches.
@@ -1264,10 +1258,10 @@ The combination of waveform features with the dwell time outperforms
 other feature sets on average.
 However, there is no single best approach for all subjects.
 
-The actual online performance in closed-loop measured by the target symbol identification
-is significantly above the chance level for 8 subjects.
+The actual online closed-loop performance measured by the target symbol identification (a four-class problem)
+is significantly above the chance level for eight subjects.
 Nonetheless, on average across subjects, the accuracy of 0.37 is 
-statistically significantly higher than 0.25.
+statistically significantly higher than the chance level.
 
 One can argue that the relatively good performance of EFRP-based classifiers is
 due to the strong and well-aligned evoked potentials after the fixations offset,
