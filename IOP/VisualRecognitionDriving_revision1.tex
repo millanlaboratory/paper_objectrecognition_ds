@@ -621,7 +621,7 @@ summarized in Figure \ref{fig:flowchart}.
 \subsection{Fixation extraction and analysis}
 There exist numerous methods to extract eye movement events
 from the eye gaze direction \cite{zhang_novel_2015,pena_detecting_2019}.
-We used a more robust and accurate method of 
+We used a robust and accurate method of 
 Identification by 2-Means Clustering (I2MC)
 \cite{hessels_noise-robust_2017}
 for the offline phase data.
@@ -833,7 +833,8 @@ During the online phase, we predicted the target symbol from the EFRP classifica
 We assess the overall performance with accuracy and confusion matrices
 for 4 symbols. Accuracies were estimated per subject and averaged across subjects.
 The significance of single-subject performance was tested with the exact binomial test against
-0.25 (the random level with 4 balanced classes). Due to the high number of tests,
+0.25 (the random level with 4 balanced classes) \cite{muller-putz_better_2008}.
+Due to the high number of tests,
 we applied the Benjamini-Hochberg correction \cite{benjamini_controlling_1995}.
 The confusion matrices were tested for independence
 with Pearson's chi-square test \cite{frs_x_1900} separately for each subject 
@@ -1001,9 +1002,10 @@ The positive deflection occurs at the end of the dwell for both
 targets and non-targets, however, it has a greater amplitude for targets
 as seen on the averaged EFRP.
 
-The univariate discriminant power is shown in Figure \ref{fig:signR}.
-The results are similar for the offline and online phases, with online data having twice
-as higher discriminant power with up to 0.01 of signed $R^2$.
+The spatio-temporal distribution of discriminant power is visualized 
+with signed R-squared ($r^2$) value obtained on aggregated 
+epochs of the 4 best performing subjects (Figure \ref{fig:signR})
+The results are qualitatively similar between the offline and online phases.
 The greatest values are mainly confined within the region between 100 and 700 ms.
 There is a spatio-temporal evolution of discriminant activity spreading across the whole scalp. This is expected as the visual processing involves different brain regions. It is important to emphasize that the interpretation of the spatial distribution of discriminant activity depends on the chosen referencing method (CAR in our case). Nonetheless, the P300-like component of EFRP can be seen at 500 ms
 after the fixation onset.
@@ -1126,11 +1128,11 @@ After adjusting p-values with Benjamini-Hochberg procedure 8 subjects performed 
 
 To verify the independence of the 4 classes in the online phase
 we computed the aggregated confusion matrices across all symbols for all subjects (Figure \ref{fig:onlineconf}).
-We applied an independence test for confusion matrices per subject.
+We performed an independence test for confusion matrices per subject.
 After adjusting p-values with Benjamini-Hochberg procedure
 only two subjects show a significant imbalance in the
-confusion matrix. It is linked to the high accuracy of the symbol $\Xi$ and low accuracy 
-for the symbol E.
+confusion matrix.
+The reason is that for these two subjects the accuracy of the symbol $\Xi$ was higher and the accuracy of the symbol E was lower than of the other symbols.
 
 \section{Discussion}
 \label{sec:discussion}
@@ -1167,9 +1169,9 @@ to the more attentionally demanding motion appearance conditions.
 Interestingly, we observed  the time spent on the stimuli  to be
 discriminative in our experimental scenario although the same
 pop-up stimuli appearance was considered.
-This illustrates the effect of the user/driver motion
-relative to the visual content on the visual information
-processing and the attentional load. Moreover, in the online phase
+This can be explained by the effect of the relative motion of user/driver to the objects on
+the visual information processing and the attentional load.
+Moreover, in the online phase
 subjects looked longer on targets compared to the offline phase.
 Although the subjects' dwell time was not decoded directly, they were aware
 that they could potentially influence the decoding quality. This might
@@ -1264,21 +1266,11 @@ is significantly above the chance level for eight subjects.
 Nonetheless, on average across subjects, the accuracy of 0.37 is 
 statistically significantly higher than the chance level.
 
-One can argue that the relatively good performance of EFRP-based classifiers is
-due to the strong early evoked components after the subsequent fixation
-onset rather than due to the difference in later cognitive components.
-Therefore, these classifiers may indirectly rely on the difference 
-between the target and non-targets dwell times.
-However, this was not the case as the simulated online
-performance of the EEG-based decoders did not exhibit 
-the improvement similar to the classification models based on dwell time. 
-%Also, a combination of the two sources of 
-%information (EEG and dwell time) did not lead to significant
-%improvement as compared to EEG alone.
-Future work will require 
-incorporating techniques in the BCI decoders to cope
-with the natural temporal variability of EEG potentials 
-\cite{aydarkhanov_spatial_2020}.
+Considering the observed dwell-time difference between target and non-target boards, one can argue that the relatively good performance of EFRP classifiers is due to the early evoked components of the following fixations rather than due to the later cognitive components of the analyzed EFRP. Therefore, these classifiers
+may indirectly rely on the difference between the target and non-targets dwell times.
+However, this was not the case as the simulated online performance of the EEG-based
+decoders did not exhibit the improvement similar to the classification models based on
+dwell time. 
 
 A critical part of real-time systems such as the one implemented in our
 experiments is the computational cost of the used algorithms.
@@ -1303,6 +1295,26 @@ steps included estimation of parameters for Riemannian features
 and for Random Forest classifier. This led to an extended
 pause between offline and online phases of the experimental session.
 
+One of the challenges in building a real-world BCI application is an adequate
+training protocol design. The training protocol has to secure good quality data
+for training a classifier. Thus, the practice is to create highly controlled
+trials in terms of stimuli and subjects’ behavior.
+At the same time, the introduced constraints should not 
+compromise the data not to be representative of the actual 
+phenomenon in real-world conditions when operating 
+the BCI application. It is known that stimuli -- particularly
+their semantic richness, ambiguity and diversity -- may
+affect visual recognition and the corresponding ERP
+components. We believe that the approach to address
+this challenge should include two actions: (i) to create a
+training protocol as close as possible to the real-world
+setup, and (ii) to consider decoding algorithms able
+to deal with variability in neural responses
+\cite{aydarkhanov_spatial_2020}. We plan to further investigate
+in this direction and encourage the other researchers
+in this field to address this challenge.
+
+
 
 Finally, in this study, our focus was on detecting the EEG correlates of object recognition in free viewing visual search tasks during driving. Ocular correlates such as pupil dilation along with multi-modal
 integration of neural and ocular correlates may be further investigated
@@ -1314,17 +1326,23 @@ Multimodal integration may improve the decoding performance \cite{jangraw_neural
 \label{sec:conclusion}
 
 In this study, we have demonstrated the feasibility to decode 
-recognition of visual targets from brain signals in
-challenging conditions of a naturalistic driving scenario.
-Our approach and results, although far from optimal, would
-enhance interaction by enabling intelligent cars provide 
-valuable recommendations to drivers, who could quickly accept
-or ignore. Still, our approach can benefit from improvements
-in different components, such as decoders robust to the
-natural temporal variability of EEG potentials, reliable
-and computationally efficient eye fixation algorithms, longer
-training of subjects over multiple sessions, and multimodal 
-integration of neural and ocular data.
+recognition of visual targets from brain signals in 
+challenging conditions of a naturalistic driving scenario. 
+By decoding the brain signals the intelligent car can learn
+drivers’ interest and enhance their interaction by
+creating a tailored recommendation to him.
+Considering that no extra effort is required from
+the driver and that he could quickly accept or ignore
+the recommendations, the extremely high decoding performance
+is not a prerequisite. Our results are, therefore,
+promising for bringing this type of BCIs to intelligent cars.
+Finally, our approach can benefit from improvements in
+different components, such as decoders robust to the natural
+temporal variability of EEG potentials, reliable and
+computationally efficient eye fixation algorithms,
+longer training of subjects over multiple sessions,
+and multimodal integration of neural and ocular data.
+
 
 \ack
 
