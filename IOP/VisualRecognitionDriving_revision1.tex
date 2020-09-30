@@ -505,6 +505,7 @@ as the number of target boards he/she counted along the current road.
 
 \subsubsection*{Online phase.}
 Subjects are instructed to search for boards with the target symbol and to pay attention to the feedback at the end of a road segment -- after crossing the finish line the inferred target symbol is rendered at the bottom of the screen as a 2D object (Figure \ref{fig:setup}). 
+If the target identification was correct a green circle is also shown, otherwise the circle color is red.
 The online phase resembles a closed-loop interaction because
 the subjects perceive the decoder result shortly after
 looking at the stimuli, within 15 seconds after the first board on the road.
@@ -734,7 +735,7 @@ EEG processing  was identical to the offline procedure
 except for 2 steps:
 \begin{itemize}
     \item the spectral filtering was done on a 5 s buffer of data,
-        approximately around [-2, 3] s around the fixation onset;
+        around [-2, 3] s in reference to the fixation onset;
     \item the eye movement artifacts were removed based on the multiple
         regression coefficients trained with offline phase eye movement data.
 \end{itemize}
@@ -1202,7 +1203,8 @@ It is confirmed by the similar
 attendance rate on targets and non-targets.
 %by just a few errors in the counting task.
 However, the difference is statistically significant 
-which suggests that could be rare cases of peripheral recognition.
+which suggests
+that peripheral recognition is not completely excluded by the stimuli design.
 We were concerned that the introduction of new symbols in the online phase
 may change the behavior or the cognitive response due to the novelty.
 The balanced confusion matrices of decoding target recognition in the online phase
@@ -1279,7 +1281,7 @@ causing delays. Eye fixation extraction was successfully done
 with IDT provided by SMI. 
 I2MC method requires more computation due to a clustering step 
 on a sliding window manner, however, it might also 
-be suitable for a real-time application.
+be adjusted for a real-time application.
 Spatial and temporal filtering as well as eye movement artifact removal
 are fast linear operations.
 Regarding feature extraction and inference of the classifier,
@@ -1330,7 +1332,7 @@ recognition of visual targets from brain signals in
 challenging conditions of a naturalistic driving scenario. 
 By decoding the brain signals the intelligent car can learn
 drivers’ interest and enhance their interaction by
-creating a tailored recommendation to him.
+creating a tailored recommendation to them.
 Considering that no extra effort is required from
 the driver and that he could quickly accept or ignore
 the recommendations, the extremely high decoding performance
