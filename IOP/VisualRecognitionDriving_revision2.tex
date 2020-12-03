@@ -139,22 +139,22 @@ Given that subjects exhibit an unconstrained overt
 visual behavior, we based our study on 
 eye fixation-related potentials (EFRP).
 We report on gaze behavior and single-trial 
-EFRP decoding performance (fixations on task-related vs. distracting objects).
+EFRP decoding performance (fixations on visually similar target vs. non-target objects).
 In addition, we demonstrate the application
 of our approach in a closed-loop BCI setup.
 \textit{Main results.}
-To identify the target out of four symbol types along a road segment, the BCI system integrated decoding probabilities of multiple EFRP and achieved the average online accuracy of 0.37 $\pm$ 6 (12 subjects), statistically significantly above the chance level.
+To identify the target out of four symbol types along a road segment, the BCI system integrated decoding probabilities of multiple EFRP and achieved the average online accuracy of 0.37 $\pm$ 0.06 (12 subjects), statistically significantly above the chance level.
 Using the acquired data, we performed a comparative study
 of classification algorithms (discriminating target vs. non-target) and feature spaces in
 a simulated online scenario. The EEG approaches yielded
-similar moderate performances not higher than 0.6 AUC,
+similar moderate performances of at most 0.6 AUC,
 yet statistically significantly above the chance level.
 In addition, the gaze duration (dwell time) appears
 to be an additional informative feature in this context.
 \textit{Significance.}
 These results show that visual recognition of sudden events
 can be decoded during active driving. 
-It lays a foundation for assistive and recommender systems
+Therefore, this study lays a foundation for assistive and recommender systems
 based on the driver's brain signals.
 \end{abstract}
 
@@ -552,7 +552,7 @@ there was an interval of about 900 ms between board onsets.
 
 \subsubsection{Stimuli content.} In order to link the perception of the symbols on the board
 with the eye fixations, the recognition by
-peripheral vision must be avoided. Therefore, the target and distracting
+peripheral vision must be avoided. Therefore, the target and non-target
 symbols were similar and surrounded by the \# character to create
 a crowding effect and force the foveating on the main symbol
 as done in a previous study \cite{kamienkowski_fixation-related_2012}.
@@ -960,8 +960,12 @@ The median dwell time for targets is statistically significantly longer in the o
 \subsection{EFRP waveform}
 \begin{figure}[!t]
 \center
-    \includegraphics[trim={0cm 0cm 1.5cm 0cm},clip,width=0.45\columnwidth]{../images/offline/Epochs_GA_chCz_Saggregate_objrec_subjects_popuponline_s1.pdf}
-    \includegraphics[trim={0cm 0cm 1.5cm 0cm},clip,width=0.45\columnwidth]{../images/online/Epochs_GA_chCz_Saggregate_objrec_subjects_popuponline_s1.pdf}
+    %\includegraphics[trim={0cm 0cm 1.5cm 0cm},clip,width=0.45\columnwidth]{../images/offline/Epochs_GA_chCz_Saggregate_objrec_subjects_popuponline_s1.pdf}%
+    %\includegraphics[trim={0cm 0cm 1.5cm 0cm},clip,width=0.45\columnwidth]{../images/online/Epochs_GA_chCz_Saggregate_objrec_subjects_popuponline_s1.pdf}%
+    %\includegraphics[trim={0cm 0cm 1.5cm 0cm},clip,height=0.65\columnwidth]{../images/offline/Epochs_GA_chCz_Saggregate_objrec_subjects_popuponline_s1.pdf}%
+    %\includegraphics[trim={0cm 0cm 1.5cm 0cm},clip,height=0.65\columnwidth]{../images/online/Epochs_GA_chCz_Saggregate_objrec_subjects_popuponline_s1.pdf}%
+    %\includegraphics[trim={0cm 0cm 0cm 0cm},clip,height=0.65\columnwidth]{../images/online/Colorbar.pdf}
+    \includegraphics[trim={0cm 0cm 0cm 0cm},clip,height=0.65\columnwidth]{../images/Epochs_GA_chCz_ALL.pdf}%
     \caption{The signal of Cz channel for extracted EFRP epochs aggregated
         for the 4 best performing subjects with the offline AUC above 0.6 with the PLR-Waveform approach.
         Left: offline phase. Right: online phase.
@@ -1336,14 +1340,14 @@ Multimodal integration may improve decoding performance \cite{jangraw_neurally_2
 In this study, we have demonstrated the feasibility of decoding
 visual target recognition from brain signals in 
 challenging conditions of a naturalistic driving scenario. 
-By decoding the brain signals, the intelligent car can learn
-the drivers’ interest and enhance their interaction by
+By decoding the brain signals, the smart car can acquire information about
+the drivers’ priorities and enhance their interaction by
 creating a tailored recommendation.
 Considering that no extra effort is required from
 the driver and that he could quickly accept or ignore
 the recommendations, the extremely high decoding performance
 is not a prerequisite. Our results are, therefore,
-promising for bringing this type of BCIs to intelligent cars.
+promising for bringing this type of BCIs to smart cars.
 Finally, our approach can benefit from improvements in
 different components, such as decoders robust to the natural
 temporal variability of EEG potentials, reliable and
