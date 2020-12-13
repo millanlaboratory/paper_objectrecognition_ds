@@ -88,11 +88,6 @@ La Pi\`ece 12,
 1180 Rolle,
 Switzerland
 }
-%\address{$^3$Zurich University of Applied Sciences, ZHAW,
-%InIT Institut of Applied Information Technology,
-%Ob. Kirchgasse 2,
-%8400 Winterthur,
-%Switzerland}
 
 \address{$^3$\'Ecole Polytechnique F\'ed\'erale de Lausanne (EPFL),
 Campus Biotech H4,
@@ -176,24 +171,9 @@ Visual recognition
 
 
 
-%There exist various well-established EEG-based BCI paradigms which
-%provide a high performance and rely on such phenomena as
-%Sensorimotor Rhythms (SMR), Steady-State Evoked Potentials (SSEP),
-%or Event-Related Potentials (ERP) and others \cite{hwang_eeg-based_2013}.
-%For each paradigm a specific data processing and feature
-%extraction steps are required \cite{lotte_review_2018}.
 
 \section{Introduction}
 \label{sec:intro}
-%Decoding of neural and behavioral correlates 
-%of visual recognition is complex in everyday life.
-%%Driving is a good example of daily activity in real life
-%%where BCI can enhance the driver's experience.
-%One of the common everyday activities is driving
-%which is a complex activity involving 
-%a range of neural processes from motor control
-%to visual information processing, thus illustrating
-%many BCI challenges in real world application.
 
 Brain-computer interfaces (BCI), especially those based on 
 non-invasive electroencephalogram (EEG) signals, are not only
@@ -259,23 +239,11 @@ in static scenes to static natural images or dynamic
 scenes with geometric shapes \cite{uscumlic_active_2016, devillez_p300_2015}.
 Only a few attempts on decoding ERP or EFRP in videos or virtual reality (VR) simulations
 have been reported, e.g., \cite{rosenthal_evoked_2014,jangraw_neurally_2014}. 
-%\textcolor{red}{Limitations of these studies
-%and motivate my study.
-%Explain that the used experimental conditions do not correspond to real world environment.
-%There is no real driving involved as a primary task STUDY 1.
-%The authors sped up the action video to clearly define the relevant
-%event time STUDY 2.}
 However, the experimental conditions in those studies did not fully
 reflect the real-world dynamics.
 For instance, in human action recognition from a cartoon animation, the video playback was sped up
 to limit the time of the recognition process
-%, and other experimental settings made unnecessary to utilize eye-tracking 
-%as it would have been the case on more natural setups
 \cite{rosenthal_evoked_2014}.
-%Examples of actions
-%include a person looking at his watch or entering the scene.
-%No eye-tracking was used and ERP was analyzed due to occurrence of 
-%a single salient event on the video \cite{rosenthal_evoked_2014}.
 The classification performance of Target vs. Non-Target event reached average AUC $> 0.8$.
 In another study involving maze navigation, subjects experienced fast autonomous driving
 and had to press a button whenever the car in front braked suddenly \cite{jangraw_neurally_2014}.
@@ -286,13 +254,6 @@ limit the transfer of the results to real driving.
 The classification performance based on a single EFRP 
 was around $0.65$ AUC on average across subjects.
 
-%In our study subjects perform visual recognition task while primarily engaged
-%in active driving in a car simulator.
-%The subject are faced with natural radially expanding optic flow.
-%We study EFRP
-%while driving and
-%facing optic flow
-%yet we ensured that recognition happens upon the fixation by introducing pop up effect.
 
 In this paper, we report a study on visual recognition decoding during driving
 in a car simulator based on the Eye Fixation Related
@@ -332,64 +293,13 @@ from the driver’s brainwaves can shed light on the driver’s intentions
 and goals, from which the ADAS system could derive useful 
 recommendations and assistance.
 
-%The accurate
-%decoding of the target traffic signs from the driver's mind
-%can shed light on what the driver's intentions and needs
-%and can be utilized for useful suggestions and recommendations.
-
-%Although subjects followed
-%the objects moving on the screen,
-%we could analyze their eye behavior by approximating smooth pursuit
-%with consecutive fixations combination.
 
 
-%Brain Computer Interfaces (BCI) proved their potential utility 
-%by successfully passing tests in controlled laboratory conditions.
-%One of the remarkable examples is P300-based spellers
-%which allow to type up to 10 characters per minute \cite{rezeika_braincomputer_2018}.
-%The home use of such spellers can improve the quality of life
-%of patients with strong motor disabilities, such as ALS \cite{sellers_brain-computer_2010,holz_long-term_2015}.
-%However, bringing BCI to everyday life for healthy people
-%remains a challenge.
-
-%A classical P300-based speller presents a static matrix of symbols on a screen.
-%The symbols are highlighted in groups (i.e. column-wise and row-wise)
-%by flashing regularly. The users pay attention on the screen and 
-%do a mental evaluation of whether the target symbol is highlighted or not.
-%At each flash an Event-Related Potential (ERP)
-%is elicited, and when the user believes that the target is active
-%the ERP will contain P300 component.
-%To reduce the noise in the signals the users are instructed to limit their body as well as
-%eye movements by staring in the middle of the screen.
-
-%The real world is more diverse and more dynamic than traditional
-%P300-based experimental protocols. So the time to evaluate
-%the visual input can vary which is reflected in the ERP waveform \cite{arico_evaluation_2013}.
-%Numerous attempts were done to close this gap and investigate
-%the limitations to detect P300 under more challenging conditions
-%which includes recognition of dynamic or semantically
-%rich stimuli as compared to alphabet characters \cite{rosenthal_evoked_2014}.
-%Additionally, natural environment does not provide regular flashing stimulation.
-%Instead, it is sampled by free visual exploration with free eye movements.
-%There are three major types of eye movements: saccades, fixations
-%and smooth pursuit. The clear and sharp perception of visual input
-%is only possible during fixations and smooth pursuit.
-%Fixations trigger a type of ERP called Eye Fixation Related Potentials (EFRP).
-%Although P300 was successfully detected within EFRP,
-%it 
 
 
-%P300 is a reflection of a cognitive process of stimulus evaluation and
-%categorization. Its application has potential to go beyond the selection from 
-%a limited set of stimuli. P300 can be monitored and detected during execution
-%of everyday tasks. For example, driving a car provides a suitable context
-%for this type of BCI application. Detection of recognition of critical objects
-%or traffic events will give a valuable information for the Advanced
-%Driving Assistant Systems (ADAS). Various paradigms were developed
-%to investigate decoding performance of EFRP-based P300 during simulated driving.
-%For passive driving task which require only brake input from the driver
-%the P300 decoding can achieve above chance level for half of the participants \cite{jangraw_neurally_2014}.
-%In this paper we address the P300 decoding during active simulated driving with automatic gear.
+
+
+
 
 
 
@@ -415,9 +325,6 @@ recommendations and assistance.
 \end{figure}
 
 \subsection{Data collection}
-%We had 13 volunteers (3 female) with the average age of 28.
-%Experiment lasted 3 hours including the set up (\~1h), the offline phase (\~45 min),
-%the break (\~30 min) and the online phase (\~45 min).
 
 Thirteen volunteers (age of 28 $\pm$ 6, 3 female, 2 left-handed) with normal or
 corrected-to-normal vision (8 with contact lenses) participated in the study.
@@ -442,8 +349,6 @@ for one minute in order to collect the data for eye movement artifact removal.
 The EEG was acquired with the Biosemi ActiveTwo system (Biosemi, the Netherlands) with 64 electrodes at a 2 kHz sampling rate.
 Additionally, we recorded 3 EOG channels to collect the eye movement data:
 two electrodes next to the outer canthi of the eyes and one above the nasion.
-%The EEG data was captured and saved on the laptop. The real time processing
-%of EEG in online phase was done on the same laptop.
 The real-time processing
 of EEG in the online phase was done on a dedicated computer.
 
@@ -464,9 +369,6 @@ a square pulse of 4 Hz was generated by the driving simulator and sent
 to the eye tracker through TCP connection and to BioSemi through the parallel port.
 
 \subsection{Driving simulator}
-%Our system is based on the driving simulator previously used for
-%EEG-based BCI experiments \cite{khaliliardali_action_2015,zhang_eeg-based_2015}.
-%We extend the protocol published in \cite{renold_eeg_2014}.
 In our study, we used the driving simulator previously used in
 \cite{khaliliardali_action_2015,zhang_eeg-based_2015,renold_eeg_2014}.
 It allows for an immersive driving experience by utilizing
@@ -482,11 +384,8 @@ direction indications on the road, target cues, boards with symbols,
 and finish lines (Figure \ref{fig:setup}).
 
 
-%\begin{figure}[!t]
     %\includegraphics[trim={0cm 0cm 0cm 0cm},clip,width=0.6\columnwidth]{../images/Target}
     %\caption{Protocol}
-%\label{fig:protocol}
-%\end{figure}
 
 \subsection{Tasks}
 The experimental session had 2 phases: offline and online. In both phases, the subject is instructed to drive through the city (without stopping) while
@@ -498,11 +397,6 @@ The data collected in the offline phase allows us to train a single-trial classi
 The online phase illustrates how this classifier can be used in the closed-loop BCI application for detecting the driver's symbol of interest within a road segment.
 In particular, the single-trial classifier is used to decode the driver's brain responses to multiple instances of symbols along a road segment. The BCI system infers the target symbol based on this accumulated evidence and shows it to the driver as feedback at the end of a road segment.
 
-%Subjects are asked to count the number of boards with the target symbol in each segment. 
-%To keep subjects engaged in the task, they have to
-%report the number of targets in the offline phase or observe
-%feedback from the decoder in the online phase of the experiment
-%after they cross a finish line at the end of each road.
 
 \subsubsection*{Offline phase.}
 Subjects are asked  to search and count the number of boards with the target symbol along a road segment. To keep subjects engaged in the task, they have to report the number of targets at the end of a road segment. After crossing the finish line, the subject presses 
@@ -551,7 +445,6 @@ Nonetheless, all the subjects practiced until they felt comfortable
 completing the recognition task at the maximum speed
 during the EEG setup.
 Due to nearly constant speed and regular placement of the boards,
-%the boards popped up at a regular pace with a 900 ms period.
 there was an interval of about 900 ms between board onsets.
 
 \subsubsection{Stimuli content.} In order to link the perception of the symbols on the board
@@ -606,7 +499,6 @@ is selected as an identified target.
 
 \section{Methods}
 \label{sec:methods}
-%\subsection{Performed analyses}
 The offline and online phases of our experiment have different objectives. As earlier explained, the offline phase is necessary for collecting good quality data for training a classifier that differentiates between attending target and non-target objects to be used in the closed-loop BCI in the online phase. However, it also allows us to study EEG correlates of visual recognition and perform a comparative study of different classification algorithms. The online phase allows the estimation of the closed-loop BCI application performance. In the online phase, we apply a chosen classifier trained on all the offline data. 
 
 To make a comparative analysis of different decoding (classifications) approaches under online conditions, we performed a simulated online analysis. Namely, we trained different classifiers on all the offline data and evaluated their performance on the data recorded in the online phase. 
@@ -794,12 +686,9 @@ we standardize all the features to z-score when
 using PLR. For PLR, we applied elastic net regularization
 with a major contribution from $\ell^2$-norm (1000 times greater than $\ell^1$-norm; $\lambda_2 >> \lambda_1$).
 
-%The cost function of the PLR is given in Eq.1, where y corresponds to the class label, $\mathbf{x}$ represents EEG features and $\beta$ the estimated coefficients.  
 
-%\begin{equation}
     %\beta= arg min_{\beta} {|| y - \beta \mathbf{x}||}^2 + \lambda_2 {||\beta||}^2+\lambda_1 {||\beta||}_1
 
-%\end{equation}
 
 \subsubsection*{Online decoding.}
 The preliminary tests on two subjects showed that the RF-Waveform classifier
@@ -824,11 +713,9 @@ The inner loop is implemented with 4-fold cross-validation while keeping
 the temporal order of the trials before the split.
 Since the classes of target and non-target eye fixations are unbalanced,
 we utilized AUC to measure the classification performance.
-%The group-level average performance was tested with t-test for each classifier.
 The group-level average performance was tested with a non-parametric one-sided one-sample Wilcoxon signed-rank test against the theoretical chance level of 0.5 AUC for each classifier.
 The p-values are corrected with 
 the Benjamini-Hochberg correction \cite{benjamini_controlling_1995}.
-%The differences between classifiers are estimated with a repeated measures ANOVA.
 The differences between classifiers are estimated with a non-parametric Friedman test.
 
 \subsubsection*{Simulated online performance evaluation.}
@@ -923,10 +810,6 @@ The values in parentheses represent the number of boards per subject.}
     \end{tabular}
     \label{tab:boardAtt}
 \end{table}
-%TargOff    0.868838
-%DistOff    0.865138
-%TargOn     0.454746
-%DistOn     0.428700
 
 
 
@@ -1048,15 +931,12 @@ above 0.6 for at least one of the approaches based
 on EEG features.
 The performance of different approaches has a different ranking per subject,
 and the differences between
-%the approaches are statistically significant (F(5,55) $=6.5$, p-value $= 0.0001$ with repeated measures ANOVA).
 the approaches are statistically significant ($\chi^2_5 = 6.5$, $p = 0.0001$ with repeated measures ANOVA).
 It is worth noticing that the combination of both dwell time and EEG waveform is
 better than just one of these feature sets with the post hoc 
-%paired t-test providing $p = 0.04$.
 one-sided Wilcoxon signed-rank providing $p = 0.04$.
 The \textit{Riemann} feature set has poorer performance than the \textit{Riemann+}
 feature set with the post hoc
-%paired t-test providing $p = 0.002$.
 one-sided Wilcoxon signed-rank providing $p = 0.001$.
 
 \subsubsection*{Simulated online}
@@ -1210,7 +1090,6 @@ We carefully designed stimuli
 to ensure that their recognition requires foveal vision.
 It is confirmed by the similar
 attendance rate on targets and non-targets.
-%by just a few errors in the counting task.
 However, the difference is statistically significant,
 suggesting
 that peripheral recognition is not completely excluded with the provided stimuli design.
@@ -1246,9 +1125,6 @@ is controlled (with a constant frequency), here, the
 overlap of EFRP is variable across trials.
 It is an additional challenge as compared to typical
 event-related potential detection approaches.
-%It leads to the overlap between P300-like component and 
-%the evoked fixation-related components. This overlap contaminates the
-%data and complicates the decoding of cognitive process.
 Removing the activity related to previous and subsequent fixations
 from the EEG was attempted by modeling it from
 various characteristics of the previous and subsequent fixations.
@@ -1260,9 +1136,6 @@ eye behavior (e.g., amplitude and direction of the saccades)
 as well as low-level features of the visual input
 \cite{nikolaev_combining_2016}.
 
-%We limited the removal of artifacts to high frequency spatial noise with SPHARA 
-%and direct eye movement potential propagation by regressing it out 
-%from the EOG signal.
 
 We compared multiple EFRP-based classification approaches on the offline data. In addition, 
 we did a comparative study using recorded online data (simulated online analysis).
